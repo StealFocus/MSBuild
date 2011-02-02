@@ -12,7 +12,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Resources;
 using System.Runtime.InteropServices;
-using System.Security.Permissions;
 
 [assembly: AssemblyDescription("StealFocus.MSBuild.Tests")]
 [assembly: AssemblyTitle("StealFocus.MSBuild.Tests")]
