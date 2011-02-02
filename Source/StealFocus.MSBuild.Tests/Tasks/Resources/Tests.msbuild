@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <UsingTask
+    TaskName="StealFocus.MSBuild.Tasks.DateFormatter"
+		AssemblyFile="StealFocus.MSBuild.dll" />
+  <UsingTask
+    TaskName="StealFocus.MSBuild.Tasks.DateStringParser"
+		AssemblyFile="StealFocus.MSBuild.dll" />
+  <UsingTask
+    TaskName="StealFocus.MSBuild.Tasks.FileRegex"
+		AssemblyFile="StealFocus.MSBuild.dll" />
+  <UsingTask
+    TaskName="StealFocus.MSBuild.Tasks.TextFileRegexReplace"
+		AssemblyFile="StealFocus.MSBuild.dll" />
+  <UsingTask
+    TaskName="StealFocus.MSBuild.Tasks.VersionNumberParser"
+		AssemblyFile="StealFocus.MSBuild.dll" />
+  <UsingTask
+    TaskName="StealFocus.MSBuild.Tasks.XmlFileChecker"
+		AssemblyFile="StealFocus.MSBuild.dll" />
+
+  <ItemGroup>
+    <TestFileRegexFailFiles Include="TestFileRegexFailFile.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TestFileRegexSuccessFiles Include="TestFileRegexSuccessFile.txt" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <TestTextFileRegexReplaceSuccessFiles Include="TestTextFileRegexReplaceSuccessFile.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TestTextFileRegexReplaceFailFiles Include="TestTextFileRegexReplaceFailFile.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TestXmlFileCheckerSuccessFiles Include="TestXmlFileCheckerSuccessFile.xml" />
+    <!-- We will test the exclusion of this file. -->
+    <TestXmlFileCheckerSuccessFiles Include="TestXmlFileCheckerFailFile.xml" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <TestXmlFileCheckerFailFiles Include="TestXmlFileCheckerFailFile.xml" />
+  </ItemGroup>
+  
+  <Target Name="TestFileRegexFail">
+    <FileRegex
+      Files="@(TestFileRegexFailFiles)"
+      RegularExpression="bad">
+      <Output
+        TaskParameter="MatchCount"
+        PropertyName="FileRegexMatchCount" />
+    </FileRegex>
+    <Error
+      Condition=" '$(FileRegexMatchCount)'!='0' "
+      Text="Regular expression matches not as expected." />
+  </Target>
+
+  <Target Name="TestFileRegexSuccess">
+    <FileRegex
+      Files="@(TestFileRegexSuccessFiles)"
+      RegularExpression="good">
+      <Output
+        TaskParameter="MatchCount"
+        PropertyName="FileRegexMatchCount" />
+    </FileRegex>
+    <Error
+      Condition=" '$(FileRegexMatchCount)'!='1' "
+      Text="Regular expression matches not as expected." />
+  </Target>
+
+  <Target Name="TestTextFileRegexReplaceFail">
+    <TextFileRegexReplace
+      TargetFilePaths="@(TestTextFileRegexReplaceFailFiles)"
+			DictionaryFilePath="TestTextFileRegexReplaceFailDictionary.xml">
+    </TextFileRegexReplace>
+  </Target>
+
+  <Target Name="TestTextFileRegexReplaceSuccess">
+    <TextFileRegexReplace
+      TargetFilePaths="@(TestTextFileRegexReplaceSuccessFiles)"
+			DictionaryFilePath="TestTextFileRegexReplaceSuccessDictionary.xml">
+    </TextFileRegexReplace>
+  </Target>
+
+  <Target Name="TestXmlFileCheckerFail">
+    <XmlFileChecker
+      FilesToCheck="@(TestXmlFileCheckerFailFiles)"
+      XmlFileCheckerConfigurationFilePath="TestXmlFileCheckerFailConfiguration.xml" />
+  </Target>
+
+  <Target Name="TestXmlFileCheckerSuccess">
+    <XmlFileChecker
+      FilesToCheck="@(TestXmlFileCheckerSuccessFiles)"
+      XmlFileCheckerConfigurationFilePath="TestXmlFileCheckerSuccessConfiguration.xml" />
+  </Target>
+
+  <Target Name="TestDateFormatterSuccess">
+    <DateFormatter 
+      DateTimeUtcString="2009-06-15 20:45:30Z" 
+      OutputDateTimeFormatString="yMMdd">
+      <Output
+        TaskParameter="DateTimeString"
+        PropertyName="DateTimeString" />
+    </DateFormatter>
+    <Error
+      Condition=" '$(DateTimeString)'!='90615' "
+      Text="DateTimeString not as expected." />
+  </Target>
+
+  <Target Name="TestDateFormatterFail">
+    <DateFormatter
+      DateTimeUtcString="BadDateTimeUtcString"
+      OutputDateTimeFormatString="yMMdd">
+      <Output
+        TaskParameter="DateTimeString"
+        PropertyName="DateTimeString" />
+    </DateFormatter>
+  </Target>
+
+  <Target Name="DateStringParserSuccess">
+    <DateStringParser
+      InputDateTimeString="20090615"
+      InputDateTimeFormatString="yyyyMMdd">
+      <Output
+        TaskParameter="DateTimeUtcString"
+        PropertyName="DateTimeUtcString" />
+    </DateStringParser>
+    <Error
+      Condition=" '$(DateTimeUtcString)'!='2009-06-15 00:00:00Z' "
+      Text="DateTimeString not as expected." />
+  </Target>
+
+  <Target Name="DateStringParserFail">
+    <DateStringParser
+      InputDateTimeString="BadDateTimeString"
+      InputDateTimeFormatString="yMMdd">
+      <Output
+        TaskParameter="DateTimeUtcString"
+        PropertyName="DateTimeUtcString" />
+    </DateStringParser>
+    <Error
+      Condition=" '$(DateTimeUtcString)'!='2009-06-15 00:00:00Z' "
+      Text="DateTimeString not as expected." />
+  </Target>
+
+  <Target Name="VersionNumberParserSuccess">
+    <VersionNumberParser
+      VersionNumber="10.11.12.13">
+      <Output
+        TaskParameter="MajorVersionNumber"
+        PropertyName="MajorVersionNumber" />
+      <Output
+        TaskParameter="MinorVersionNumber"
+        PropertyName="MinorVersionNumber" />
+      <Output
+        TaskParameter="BuildNumber"
+        PropertyName="BuildNumber" />
+      <Output
+        TaskParameter="RevisionNumber"
+        PropertyName="RevisionNumber" />
+    </VersionNumberParser>
+    <Error
+      Condition=" '$(MajorVersionNumber)'!='10' "
+      Text=" not as expected." />
+    <Error
+      Condition=" '$(MinorVersionNumber)'!='11' "
+      Text=" not as expected." />
+    <Error
+      Condition=" '$(BuildNumber)'!='12' "
+      Text=" not as expected." />
+    <Error
+      Condition=" '$(RevisionNumber)'!='13' "
+      Text=" not as expected." />
+  </Target>
+
+  <Target Name="VersionNumberParserFail">
+    <VersionNumberParser
+      VersionNumber="BadVersionNumber">
+      <Output
+        TaskParameter="MajorVersionNumber"
+        PropertyName="MajorVersionNumber" />
+      <Output
+        TaskParameter="MinorVersionNumber"
+        PropertyName="MinorVersionNumber" />
+      <Output
+        TaskParameter="BuildNumber"
+        PropertyName="BuildNumber" />
+      <Output
+        TaskParameter="RevisionNumber"
+        PropertyName="RevisionNumber" />
+    </VersionNumberParser>
+  </Target>
+
+</Project>

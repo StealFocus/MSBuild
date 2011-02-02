@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TextFileRegexReplaceDictionary xmlns="http://schemas.StealFocus.co.uk/MSBuild/TextFileRegexReplaceDictionary/v1.0">
+  <Entry expectedMatches="1" regularExpression="##MyToken1##">
+    <ReplacementValue>MyReplacementValue1</ReplacementValue>
+  </Entry>
+  <Entry expectedMatches="3" regularExpression="##MyToken2##">
+    <ReplacementValue>MyReplacementValue2</ReplacementValue>
+  </Entry>
+</TextFileRegexReplaceDictionary>

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XmlFileCheckerConfiguration xmlns="http://schemas.StealFocus.co.uk/MSBuild/XmlFileCheckerConfiguration/v1.0">
+  <XmlNamespace id="def">http://schemas.acme.com/namespace</XmlNamespace>
+  <XPathToCheck xpath="/def:MyDocument" advice="To correct this blah blah.">
+    <FileExclusion>TestXmlFileCheckerFailFile.xml</FileExclusion>
+  </XPathToCheck>
+</XmlFileCheckerConfiguration>

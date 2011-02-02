@@ -46,6 +46,11 @@
     <DelaySign>true</DelaySign>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Build.Framework" />
+    <Reference Include="Microsoft.Build.Utilities.v3.5" />
+    <Reference Include="StealFocus.Core">
+      <HintPath>..\..\Library\StealFocus.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -58,7 +63,29 @@
       <Link>Properties\AssemblyInfoCommon.cs</Link>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="MSBuildException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tasks\CreateGuid.cs" />
+    <Compile Include="Tasks\DateFormatter.cs" />
+    <Compile Include="Tasks\DateStringParser.cs" />
+    <Compile Include="Tasks\DateTime.cs" />
+    <Compile Include="Tasks\Entry.g.cs" />
+    <Compile Include="Tasks\EntryCollection.g.cs" />
+    <Compile Include="Tasks\FileProperties.cs" />
+    <Compile Include="Tasks\FileRegex.cs" />
+    <Compile Include="Tasks\FrameworkVersionDependentTask.cs" />
+    <Compile Include="Tasks\GuidFormat.cs" />
+    <Compile Include="Tasks\MSTest.cs" />
+    <Compile Include="Tasks\StringCollection.g.cs" />
+    <Compile Include="Tasks\TextFileRegExReplace.cs" />
+    <Compile Include="Tasks\TextFileRegexReplaceDictionary.g.cs" />
+    <Compile Include="Tasks\VersionNumberParser.cs" />
+    <Compile Include="Tasks\XmlFileChecker.cs" />
+    <Compile Include="Tasks\XmlFileCheckerConfiguration.g.cs" />
+    <Compile Include="Tasks\XmlNamespace.g.cs" />
+    <Compile Include="Tasks\XmlNamespaceCollection.g.cs" />
+    <Compile Include="Tasks\XPathToCheck.g.cs" />
+    <Compile Include="Tasks\XPathToCheckCollection.g.cs" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="..\FxCopCustomDictionary.xml">

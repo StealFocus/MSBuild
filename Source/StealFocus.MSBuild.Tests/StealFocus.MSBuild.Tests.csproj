@@ -48,7 +48,12 @@
     <DelaySign>true</DelaySign>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Build.Framework" />
+    <Reference Include="Microsoft.Build.Utilities.v3.5, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="StealFocus.Core">
+      <HintPath>..\..\Library\StealFocus.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -65,16 +70,42 @@
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tasks\DateFormatterTests.cs" />
+    <Compile Include="Tasks\DateStringParserTests.cs" />
+    <Compile Include="Tasks\FileRegexTests.cs" />
+    <Compile Include="Tasks\MSBuildTests.cs" />
+    <Compile Include="Tasks\TextFileRegExReplaceTests.cs" />
+    <Compile Include="Tasks\VersionNumberParserTests.cs" />
+    <Compile Include="Tasks\XmlFileCheckerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\StealFocus.MSBuild.StrongNamePublicKey.snk">
       <Link>StealFocus.MSBuild.StrongNamePublicKey.snk</Link>
     </None>
+    <EmbeddedResource Include="Tasks\Resources\Tests.msbuild" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="..\FxCopCustomDictionary.xml">
       <Link>FxCopCustomDictionary.xml</Link>
     </CodeAnalysisDictionary>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Tasks\Resources\TestFileRegexFailFile.txt" />
+    <EmbeddedResource Include="Tasks\Resources\TestFileRegexSuccessFile.txt" />
+    <EmbeddedResource Include="Tasks\Resources\TestTextFileRegexReplaceFailDictionary.xml" />
+    <EmbeddedResource Include="Tasks\Resources\TestTextFileRegexReplaceFailFile.txt" />
+    <EmbeddedResource Include="Tasks\Resources\TestTextFileRegexReplaceSuccessDictionary.xml" />
+    <EmbeddedResource Include="Tasks\Resources\TestTextFileRegexReplaceSuccessFile.txt" />
+    <EmbeddedResource Include="Tasks\Resources\TestXmlFileCheckerFailConfiguration.xml" />
+    <EmbeddedResource Include="Tasks\Resources\TestXmlFileCheckerFailFile.xml" />
+    <EmbeddedResource Include="Tasks\Resources\TestXmlFileCheckerSuccessConfiguration.xml" />
+    <EmbeddedResource Include="Tasks\Resources\TestXmlFileCheckerSuccessFile.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StealFocus.MSBuild\StealFocus.MSBuild.csproj">
+      <Project>{DD84C8EE-9ACD-4F85-BBEC-A3E9331A9D1D}</Project>
+      <Name>StealFocus.MSBuild</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup Condition=" '$(SolutionDir)'=='*Undefined*' ">
