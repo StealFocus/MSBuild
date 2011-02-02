@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <!-- 
+    IMPORTANT - you must import these targets for the build scripts to function.
+  -->
+  <Import Project="$(MSBuildExtensionsPath)\StealFocus\Kata\v1.2\StealFocus.Kata.targets" />
+
+  <PropertyGroup>
+    <CompanyName>StealFocus</CompanyName>
+    <Culture>en-GB</Culture>
+    <FrameworkVersion>3.5</FrameworkVersion>
+    <ProductName>MSBuild</ProductName>
+    <RuntimeVersion>2.0</RuntimeVersion>
+    <StrongNamePublicKey>002400000480000094000000060200000024000052534131000400000100010091f3a1387d8aaa839ce59eda176c2263088cae9647db571c71f0301d3ce48546c14ae61863dfa636335fa82c483e105c7c84fa666d9768e0d33d8d38459a88f2d7f9b503ba54af3764937ff65653c2b7c9decce95ca9849944d747653b3beaf45111a6d31fbfdff1a92e67c1193fbc239e852d0ad7ffe7172c3451f6e80ed192</StrongNamePublicKey>
+    <StrongNamePublicKeyToken>9694192b6b1f9d20</StrongNamePublicKeyToken>
+    <ToolsVersion>4.0</ToolsVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!--<Environments Include="Development">
+      <IsIncludedInDesktopBuild>true</IsIncludedInDesktopBuild>
+      <ConfigurationDictionaryFilePath>..\Artefacts\Configuration\Dictionaries\Development.xml</ConfigurationDictionaryFilePath>
+    </Environments>
+    <Environments Include="Production">
+      <IsIncludedInDesktopBuild>false</IsIncludedInDesktopBuild>
+      <ConfigurationDictionaryFilePath>..\Artefacts\Configuration\Dictionaries\Production.xml</ConfigurationDictionaryFilePath>
+    </Environments>
+    <Environments Include="SystemTest">
+      <IsIncludedInDesktopBuild>false</IsIncludedInDesktopBuild>
+      <ConfigurationDictionaryFilePath>..\Artefacts\Configuration\Dictionaries\SystemTest.xml</ConfigurationDictionaryFilePath>
+    </Environments>
+    <Environments Include="UserAcceptanceTest">
+      <IsIncludedInDesktopBuild>false</IsIncludedInDesktopBuild>
+      <ConfigurationDictionaryFilePath>..\Artefacts\Configuration\Dictionaries\UserAcceptanceTest.xml</ConfigurationDictionaryFilePath>
+    </Environments>-->
+  </ItemGroup>
+
+  <ItemGroup>
+    <!--<WebApplicationProject Include="StealFocus.MSBuild.Web.UI">
+      <AppPoolUsername></AppPoolUsername>
+      <AppPoolUserDomain></AppPoolUserDomain>
+      <AppPoolPassword></AppPoolPassword>
+      <AppPoolLocalGroupName>IIS_WPG</AppPoolLocalGroupName>
+      --><!-- AuthFlags = NTLM, Anonymous, Basic, Digest --><!--
+      <AuthFlags>NTLM</AuthFlags>
+      --><!-- IdentityType = LocalSystem | LocalService | NetworkService | SpecifiedUserAccount --><!--
+      <IdentityType>NetworkService</IdentityType>
+      <ProjectDir>..\StealFocus.MSBuild.Web.UI</ProjectDir>
+      <WebSiteName>Default Web Site</WebSiteName>
+    </WebApplicationProject>-->
+  </ItemGroup>
+  
+  <ItemGroup>
+    <!-- 
+      Add "WebApplicationScriptMap" items as required. These will be applied to each "WebApplicationProject" listed 
+      above.
+    -->
+    <!--<WebApplicationScriptMap Include=".svc">
+      <MapToAspNet>true</MapToAspNet>
+      <Verbs>GET,POST,HEAD,DEBUG</Verbs>
+      <VerifyFileExists>false</VerifyFileExists>
+    </WebApplicationScriptMap>
+    <WebApplicationScriptMap Include=".mvc">
+      <MapToAspNet>true</MapToAspNet>
+      <Verbs>GET,POST,HEAD,DEBUG</Verbs>
+      <VerifyFileExists>false</VerifyFileExists>
+    </WebApplicationScriptMap>-->
+  </ItemGroup>
+
+</Project>

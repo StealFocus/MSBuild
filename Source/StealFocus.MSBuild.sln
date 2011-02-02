@@ -1,8 +1,108 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StealFocus.MSBuild", "StealFocus.MSBuild\StealFocus.MSBuild.csproj", "{DD84C8EE-9ACD-4F85-BBEC-A3E9331A9D1D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{3AA5F23D-EB61-48DC-B5E7-2D0B32597A69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StealFocus.MSBuild.Tests", "StealFocus.MSBuild.Tests\StealFocus.MSBuild.Tests.csproj", "{28380DD6-3444-48ED-8028-5A4BFC392F89}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F655AE1F-5973-488A-A9A4-9B24EA8B3958}"
+	ProjectSection(SolutionItems) = preProject
+		AssemblyInfoCommon.cs = AssemblyInfoCommon.cs
+		FxCopCustomDictionary.xml = FxCopCustomDictionary.xml
+		Local.testsettings = Local.testsettings
+		Notes.txt = Notes.txt
+		Settings.StyleCop = Settings.StyleCop
+		StealFocus.MSBuild.License.rtf = StealFocus.MSBuild.License.rtf
+		StealFocus.MSBuild.ruleset = StealFocus.MSBuild.ruleset
+		StealFocus.MSBuild.StrongNameKeyPair.snk = StealFocus.MSBuild.StrongNameKeyPair.snk
+		StealFocus.MSBuild.StrongNamePublicKey.snk = StealFocus.MSBuild.StrongNamePublicKey.snk
+		StealFocus.MSBuild.vsmdi = StealFocus.MSBuild.vsmdi
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "StealFocus.MSBuild.Setup", "StealFocus.MSBuild.Setup\StealFocus.MSBuild.Setup.wixproj", "{2E4920EB-2965-45EC-8AF9-F2211BC23E65}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{B81A7F8F-EC4E-4D88-BB71-CB77439FA667}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts\StealFocus.MSBuild.Build.proj = Scripts\StealFocus.MSBuild.Build.proj
+		Scripts\StealFocus.MSBuild.CCNet.proj = Scripts\StealFocus.MSBuild.CCNet.proj
+		Scripts\StealFocus.MSBuild.Project.Assembly.targets = Scripts\StealFocus.MSBuild.Project.Assembly.targets
+		Scripts\StealFocus.MSBuild.Project.CSharp.targets = Scripts\StealFocus.MSBuild.Project.CSharp.targets
+		Scripts\StealFocus.MSBuild.Project.targets = Scripts\StealFocus.MSBuild.Project.targets
+		Scripts\StealFocus.MSBuild.Project.VisualBasic.targets = Scripts\StealFocus.MSBuild.Project.VisualBasic.targets
+		Scripts\StealFocus.MSBuild.Project.WiX.targets = Scripts\StealFocus.MSBuild.Project.WiX.targets
+		Scripts\StealFocus.MSBuild.shfbproj = Scripts\StealFocus.MSBuild.shfbproj
+		Scripts\StealFocus.MSBuild.targets = Scripts\StealFocus.MSBuild.targets
+		Scripts\XmlFileCheckerConfiguration-AssemblyProjectFile-CSharp.xml = Scripts\XmlFileCheckerConfiguration-AssemblyProjectFile-CSharp.xml
+		Scripts\XmlFileCheckerConfiguration-SilverlightProjectFile-CSharp.xml = Scripts\XmlFileCheckerConfiguration-SilverlightProjectFile-CSharp.xml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Artefacts", "Artefacts", "{7C0C6982-35D9-4B9C-A691-A59FE692B359}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configuration", "{E188DF22-29A9-4922-9391-C9660BDD1BAA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dictionaries", "Dictionaries", "{F1380610-F33A-43E4-A279-1D7361F84F4B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{8042AED0-517B-49C1-A094-30BD9D2A9720}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CommandFiles", "CommandFiles", "{008846AC-387E-492D-A305-C865651670FC}"
+	ProjectSection(SolutionItems) = preProject
+		CommandFiles\StealFocus.MSBuild.Build.cmd = CommandFiles\StealFocus.MSBuild.Build.cmd
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = StealFocus.MSBuild.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DD84C8EE-9ACD-4F85-BBEC-A3E9331A9D1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD84C8EE-9ACD-4F85-BBEC-A3E9331A9D1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD84C8EE-9ACD-4F85-BBEC-A3E9331A9D1D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{DD84C8EE-9ACD-4F85-BBEC-A3E9331A9D1D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{DD84C8EE-9ACD-4F85-BBEC-A3E9331A9D1D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DD84C8EE-9ACD-4F85-BBEC-A3E9331A9D1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD84C8EE-9ACD-4F85-BBEC-A3E9331A9D1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD84C8EE-9ACD-4F85-BBEC-A3E9331A9D1D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{DD84C8EE-9ACD-4F85-BBEC-A3E9331A9D1D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{DD84C8EE-9ACD-4F85-BBEC-A3E9331A9D1D}.Release|x86.ActiveCfg = Release|Any CPU
+		{28380DD6-3444-48ED-8028-5A4BFC392F89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28380DD6-3444-48ED-8028-5A4BFC392F89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28380DD6-3444-48ED-8028-5A4BFC392F89}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{28380DD6-3444-48ED-8028-5A4BFC392F89}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{28380DD6-3444-48ED-8028-5A4BFC392F89}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{28380DD6-3444-48ED-8028-5A4BFC392F89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28380DD6-3444-48ED-8028-5A4BFC392F89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28380DD6-3444-48ED-8028-5A4BFC392F89}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{28380DD6-3444-48ED-8028-5A4BFC392F89}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{28380DD6-3444-48ED-8028-5A4BFC392F89}.Release|x86.ActiveCfg = Release|Any CPU
+		{2E4920EB-2965-45EC-8AF9-F2211BC23E65}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{2E4920EB-2965-45EC-8AF9-F2211BC23E65}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{2E4920EB-2965-45EC-8AF9-F2211BC23E65}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{2E4920EB-2965-45EC-8AF9-F2211BC23E65}.Debug|x86.ActiveCfg = Debug|x86
+		{2E4920EB-2965-45EC-8AF9-F2211BC23E65}.Debug|x86.Build.0 = Debug|x86
+		{2E4920EB-2965-45EC-8AF9-F2211BC23E65}.Release|Any CPU.ActiveCfg = Release|x86
+		{2E4920EB-2965-45EC-8AF9-F2211BC23E65}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{2E4920EB-2965-45EC-8AF9-F2211BC23E65}.Release|Mixed Platforms.Build.0 = Release|x86
+		{2E4920EB-2965-45EC-8AF9-F2211BC23E65}.Release|x86.ActiveCfg = Release|x86
+		{2E4920EB-2965-45EC-8AF9-F2211BC23E65}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{28380DD6-3444-48ED-8028-5A4BFC392F89} = {3AA5F23D-EB61-48DC-B5E7-2D0B32597A69}
+		{E188DF22-29A9-4922-9391-C9660BDD1BAA} = {7C0C6982-35D9-4B9C-A691-A59FE692B359}
+		{F1380610-F33A-43E4-A279-1D7361F84F4B} = {E188DF22-29A9-4922-9391-C9660BDD1BAA}
+		{8042AED0-517B-49C1-A094-30BD9D2A9720} = {E188DF22-29A9-4922-9391-C9660BDD1BAA}
 	EndGlobalSection
 EndGlobal

@@ -1,0 +1,952 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>StealFocus.Core</name>
+    </assembly>
+    <members>
+        <member name="T:StealFocus.Core.Xml.XmlDocumentExtensions">
+            <summary>
+            XmlDocumentExtensions Class.
+            </summary>
+            <remarks>
+            Extention methods for <see cref="T:System.Xml.XmlDocument"/>.
+            </remarks>
+        </member>
+        <member name="M:StealFocus.Core.Xml.XmlDocumentExtensions.AddElement(System.Xml.XmlDocument,System.String,System.String)">
+            <summary>
+            Adds an element to the document.
+            </summary>
+            <param name="xmlDocument">The XML document.</param>
+            <param name="elementName">The XML element name.</param>
+            <param name="elementNamespace">The XML element namespace.</param>
+            <returns>The XML element.</returns>
+        </member>
+        <member name="M:StealFocus.Core.Xml.XmlDocumentExtensions.AddElement(System.Xml.XmlDocument,System.String)">
+            <summary>
+            Adds an element to the document.
+            </summary>
+            <param name="xmlDocument">The XML document.</param>
+            <param name="elementName">The XML element name.</param>
+            <returns>The XML element.</returns>
+        </member>
+        <member name="M:StealFocus.Core.Xml.XmlDocumentExtensions.SelectElement(System.Xml.XmlDocument,System.String,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Selects an XML element.
+            </summary>
+            <param name="xmlDocument">The XML document.</param>
+            <param name="xpath">The XPath e.g. "/def:MyDocumentElement".</param>
+            <param name="namespaces">The namespaces e.g. the key/value pair of "def" and "http://schemas.acme.com/PetShop".</param>
+            <returns>The selected XML element.</returns>
+        </member>
+        <member name="T:StealFocus.Core.ComponentLifestyleType">
+            <summary>
+            Lifestyle for components in the <see cref="T:StealFocus.Core.ComponentContainer">Container</see>.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.ComponentLifestyleType.Undefined">
+            <summary>
+            No lifestyle specified.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.ComponentLifestyleType.Singleton">
+            <summary>
+            Singleton components are instantiated once, and shared
+            between all clients.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.ComponentLifestyleType.Thread">
+            <summary>
+            Thread components have a unique instance per thread.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.ComponentLifestyleType.Transient">
+            <summary>
+            Transient components are created on demand.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.ComponentLifestyleType.Pooled">
+            <summary>
+            Optimization of transient components that keeps instance in a pool instead of always creating them.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.ComponentLifestyleType.Custom">
+            <summary>
+            Any other logic to create/release components.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.ComponentLifestyleType.PerWebRequest">
+            <summary>
+            PerWebRequest components are created once per HTTP Request.
+            </summary>
+        </member>
+        <member name="T:StealFocus.Core.ComponentContainer">
+            <summary>
+            ComponentContainer Class.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.ComponentContainer.container">
+            <summary>
+            The container.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.ComponentContainer.InitialiseForWcf">
+            <summary>
+            This is here to enable WCF facility registration in the Application On Start.
+            </summary>
+            <remarks>
+            Where you have WCF services, add the following to your Global.asax:
+            <code>
+            protected void Application_Start(object sender, EventArgs e)
+            {
+                ...
+                ComponentContainer.InitialiseForWcf();
+                ...
+            }
+            </code>
+            Your .svc files will need to specify the custom service factory.
+            <code>
+            <![CDATA[
+            <%@ ServiceHost Language="C#" Debug="true" Service="MyService" Factory="Castle.Facilities.WcfIntegration.DefaultServiceHostFactory, Castle.Facilities.WcfIntegration" %>
+            ]]>
+            </code>
+            The "Service" value in the .svc file must be the Component ID in the Castle configuration:
+            <code>
+            <![CDATA[
+            <castle>
+              <components>
+                <component
+                  id="MyService"
+                  service="Acme.PetShop.Services.Spec.IMyService, Acme.PetShop.Services.Spec"
+                  type="Acme.PetShop.Services.MyService, Acme.PetShop.Services"
+                  lifestyle="transient"/>
+              </components>
+            <castle>
+            ]]>
+            </code>
+            See how the "MyService" Service value in the .svc file matches the "MyService" Component ID in the Castle configuration.
+            </remarks>
+        </member>
+        <member name="M:StealFocus.Core.ComponentContainer.Register``2">
+            <summary>
+            Register a component.
+            </summary>
+            <typeparam name="TInterface">The interface.</typeparam>
+            <typeparam name="TImplementor">The type to resolve.</typeparam>
+            <remarks />
+        </member>
+        <member name="M:StealFocus.Core.ComponentContainer.Register``2(System.String)">
+            <summary>
+            Register a component.
+            </summary>
+            <typeparam name="TInterface">The interface.</typeparam>
+            <typeparam name="TImplementor">The type to resolve.</typeparam>
+            <param name="key">The key in the configuration.</param>
+            <remarks />
+        </member>
+        <member name="M:StealFocus.Core.ComponentContainer.Register``2(System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Register a component.
+            </summary>
+            <typeparam name="TInterface">The interface.</typeparam>
+            <typeparam name="TImplementor">The type to resolve.</typeparam>
+            <param name="parameters">An <see cref="T:System.Collections.IDictionary"/>. The parameters.</param>
+            <remarks/>
+        </member>
+        <member name="M:StealFocus.Core.ComponentContainer.Register``2(System.String,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Register a component.
+            </summary>
+            <typeparam name="TInterface">The interface.</typeparam>
+            <typeparam name="TImplementor">The type to resolve.</typeparam>
+            <param name="key">The key in the configuration.</param>
+            <param name="parameters">An <see cref="T:System.Collections.IDictionary"/>. The parameters.</param>
+            <remarks/>
+        </member>
+        <member name="M:StealFocus.Core.ComponentContainer.Register``1(System.Reflection.Assembly)">
+            <summary>
+            Register a component.
+            </summary>
+            <typeparam name="T">The type to register.</typeparam>
+            <param name="assembly">An <see cref="T:System.Reflection.Assembly"/>. The <c>Assemnbly</c> holding the types.</param>
+            <remarks/>
+        </member>
+        <member name="M:StealFocus.Core.ComponentContainer.RegisterComponentInstance(System.String,System.Object)">
+            <summary>
+            Register a component instance.
+            </summary>
+            <param name="key">The key to add with.</param>
+            <param name="instance">The instance to add.</param>
+        </member>
+        <member name="M:StealFocus.Core.ComponentContainer.RemoveComponent(System.String)">
+            <summary>
+            Remove a component.
+            </summary>
+            <param name="key">The key to identify.</param>
+        </member>
+        <member name="M:StealFocus.Core.ComponentContainer.RegisterComponents``1(System.Reflection.Assembly)">
+            <summary>
+            Register all instances of the specified <see cref="T:System.Type"/> from the specified assembly.
+            </summary>
+            <typeparam name="T">The type of object (or interface) to register.</typeparam>
+            <param name="assembly">The <see cref="T:System.Reflection.Assembly"/> to load the types from.</param>
+        </member>
+        <member name="M:StealFocus.Core.ComponentContainer.RegisterComponents``1(System.Reflection.Assembly,StealFocus.Core.ComponentLifestyleType,System.Type[])">
+            <summary>
+            Register all instances of the specified <see cref="T:System.Type"/> from the specified assembly.
+            </summary>
+            <typeparam name="T">The type of object (or interface) to register.</typeparam>
+            <param name="assembly">The <see cref="T:System.Reflection.Assembly"/> to load the types from.</param>
+            <param name="lifestyle">The <see cref="T:StealFocus.Core.ComponentLifestyleType"></see> to use for the registrations.</param>
+            <param name="interceptors">The Types of any interceptors to add to the registered instances.</param>
+        </member>
+        <member name="M:StealFocus.Core.ComponentContainer.RegisterWcfClients(System.Reflection.Assembly)">
+            <summary>
+            Register client proxies for all <see cref="T:System.ServiceModel.ServiceContractAttribute">Service Contracts</see> from the specified assembly.
+            </summary>
+            <param name="assembly">The <see cref="T:System.Reflection.Assembly"/> to load the types from.</param>
+            <remarks>
+            All proxies will use the <see cref="F:Castle.Core.LifestyleType.Transient"/> lifestyle.
+            </remarks>
+        </member>
+        <member name="M:StealFocus.Core.ComponentContainer.RegisterWcfClients(System.Reflection.Assembly,StealFocus.Core.ComponentLifestyleType,System.Type[])">
+            <summary>
+            Register client proxies for all <see cref="T:System.ServiceModel.ServiceContractAttribute">Service Contracts</see> from the specified assembly.
+            </summary>
+            <param name="assembly">The <see cref="T:System.Reflection.Assembly"/> to load the types from.</param>
+            <param name="lifestyle">The lifestyle to use for the client proxies.</param>
+            <param name="interceptors">The interceptors to apply to the service client.</param>
+        </member>
+        <member name="M:StealFocus.Core.ComponentContainer.Release(System.Object)">
+            <summary>
+            Releases the given object instance.
+            </summary>
+            <param name="instance">An <see cref="T:System.Object"/>. The object to release.</param>
+            <remarks/>
+        </member>
+        <member name="M:StealFocus.Core.ComponentContainer.Resolve(System.String)">
+            <summary>
+            Retrieve a named implementation of a service described by the passed in type using the specified arguments.
+            </summary>
+            <param name="key">The key for the component to return.</param>
+            <returns>The resolved instance.</returns>
+            <remarks />
+        </member>
+        <member name="M:StealFocus.Core.ComponentContainer.Resolve``1">
+            <summary>
+            Retrieve a named implementation of a service described by the passed in type using the specified arguments.
+            </summary>
+            <typeparam name="T">The type to resolve.</typeparam>
+            <returns>The resolved instance.</returns>
+            <remarks />
+        </member>
+        <member name="M:StealFocus.Core.ComponentContainer.Resolve(System.Type)">
+            <summary>
+            Retrieve a named implementation of a service described by the passed in type using the specified arguments.
+            </summary>
+            <param name="type">The type to resolve.</param>
+            <returns>An <see cref="T:System.Object"/>. The resolved instance.</returns>
+            <remarks/>
+        </member>
+        <member name="M:StealFocus.Core.ComponentContainer.Resolve``1(System.Collections.IDictionary)">
+            <summary>
+            Retrieve a named implementation of a service described by the passed in type using the specified arguments.
+            </summary>
+            <typeparam name="T">The type to resolve.</typeparam>
+            <param name="arguments">An <see cref="T:System.Collections.IDictionary"/>. The arguments.</param>
+            <returns>The resolved instance.</returns>
+            <remarks/>
+        </member>
+        <member name="M:StealFocus.Core.ComponentContainer.Resolve(System.Type,System.Collections.IDictionary)">
+            <summary>
+            Retrieve a named implementation of a service described by the passed in type using the specified arguments.
+            </summary>
+            <param name="type">The type to resolve.</param>
+            <param name="arguments">An <see cref="T:System.Collections.IDictionary"/>. The arguments.</param>
+            <returns>An <see cref="T:System.Object"/>. The resolved instance.</returns>
+            <remarks/>
+        </member>
+        <member name="M:StealFocus.Core.ComponentContainer.Resolve``1(System.String)">
+            <summary>
+            Retrieve a named implementation of a service described by the passed in type using the specified arguments.
+            </summary>
+            <typeparam name="T">The type to resolve.</typeparam>
+            <param name="key">The key in the configuration.</param>
+            <returns>The resolved instance.</returns>
+            <remarks />
+        </member>
+        <member name="M:StealFocus.Core.ComponentContainer.Resolve(System.String,System.Type)">
+            <summary>
+            Retrieve a named implementation of a service described by the passed in type using the specified arguments.
+            </summary>
+            <param name="key">The key in the configuration.</param>
+            <param name="type">The type to resolve.</param>
+            <returns>An <see cref="T:System.Object"/>. The resolved instance.</returns>
+            <remarks/>
+        </member>
+        <member name="M:StealFocus.Core.ComponentContainer.Resolve``1(System.String,System.Collections.IDictionary)">
+            <summary>
+            Retrieve a named implementation of a service described by the passed in type using the specified arguments.
+            </summary>
+            <typeparam name="T">The type to resolve.</typeparam>
+            <param name="key">The key in the configuration.</param>
+            <param name="arguments">An <see cref="T:System.Collections.IDictionary"/>. The arguments.</param>
+            <returns>The resolved instance.</returns>
+            <remarks/>
+        </member>
+        <member name="M:StealFocus.Core.ComponentContainer.Resolve(System.String,System.Type,System.Collections.IDictionary)">
+            <summary>
+            Retrieve a named implementation of a service described by the passed in type using the specified arguments.
+            </summary>
+            <param name="key">The key in the configuration.</param>
+            <param name="type">The type to resolve.</param>
+            <param name="arguments">An <see cref="T:System.Collections.IDictionary"/>. The arguments.</param>
+            <returns>An <see cref="T:System.Object"/>. The resolved instance.</returns>
+            <remarks/>
+        </member>
+        <member name="M:StealFocus.Core.ComponentContainer.ValidateConfiguration">
+            <summary>
+            Validates the configuration for the container.
+            </summary>
+            <remarks />
+        </member>
+        <member name="M:StealFocus.Core.ComponentContainer.Configure">
+            <summary>
+            Configures the <see cref="F:StealFocus.Core.ComponentContainer.container"/>.
+            </summary>
+            <returns>An <see cref="T:Castle.Windsor.IWindsorContainer"/>. The configured container.</returns>
+        </member>
+        <member name="M:StealFocus.Core.ComponentContainer.RegisterWcfClients(System.Reflection.Assembly,Castle.Core.LifestyleType,System.Type[])">
+            <summary>
+            Register WCF clients.
+            </summary>
+            <param name="assembly">The assembly containing the types to register.</param>
+            <param name="lifestyle">The lifestyle to apply.</param>
+            <param name="interceptors">The interceptors to apply.</param>
+        </member>
+        <member name="M:StealFocus.Core.ComponentContainer.GetServiceContracts(System.Reflection.Assembly)">
+            <summary>
+            Get all types with a <see cref="T:System.ServiceModel.ServiceContractAttribute"/> from the given assembly.
+            </summary>
+            <param name="assembly">The assembly.</param>
+            <returns>A list of types.</returns>
+        </member>
+        <member name="T:StealFocus.Core.Xml.XmlElementExtensions">
+            <summary>
+            XmlElementExtensions Class.
+            </summary>
+            <remarks>
+            Extention methods for <see cref="T:System.Xml.XmlElement"/>.
+            </remarks>
+        </member>
+        <member name="M:StealFocus.Core.Xml.XmlElementExtensions.AddElement(System.Xml.XmlElement,System.String,System.String)">
+            <summary>
+            Adds an element to the document.
+            </summary>
+            <param name="parentElement">The parent.</param>
+            <param name="elementName">The XML element name.</param>
+            <param name="elementNamespace">The XML element namespace.</param>
+            <returns>The XML element.</returns>
+        </member>
+        <member name="M:StealFocus.Core.Xml.XmlElementExtensions.AddElement(System.Xml.XmlElement,System.String)">
+            <summary>
+            Adds an element to the document.
+            </summary>
+            <param name="parentElement">The parent.</param>
+            <param name="elementName">The XML element name.</param>
+            <returns>The XML element.</returns>
+        </member>
+        <member name="M:StealFocus.Core.Xml.XmlElementExtensions.AddElementBefore(System.Xml.XmlElement,System.String,System.String)">
+            <summary>
+            Adds an element to the document as a sibling.
+            </summary>
+            <param name="siblingElement">The sibling.</param>
+            <param name="elementName">The XML element name.</param>
+            <param name="elementNamespace">The XML element namespace.</param>
+            <returns>The XML element.</returns>
+        </member>
+        <member name="M:StealFocus.Core.Xml.XmlElementExtensions.AddElementBefore(System.Xml.XmlElement,System.String)">
+            <summary>
+            Adds an element to the document as a sibling.
+            </summary>
+            <param name="siblingElement">The sibling.</param>
+            <param name="elementName">The XML element name.</param>
+            <returns>The XML element.</returns>
+        </member>
+        <member name="M:StealFocus.Core.Xml.XmlElementExtensions.AddElementAfter(System.Xml.XmlElement,System.String,System.String)">
+            <summary>
+            Adds an element to the document as a sibling.
+            </summary>
+            <param name="siblingElement">The sibling.</param>
+            <param name="elementName">The XML element name.</param>
+            <param name="elementNamespace">The XML element namespace.</param>
+            <returns>The XML element.</returns>
+        </member>
+        <member name="M:StealFocus.Core.Xml.XmlElementExtensions.AddElementAfter(System.Xml.XmlElement,System.String)">
+            <summary>
+            Adds an element to the document as a sibling.
+            </summary>
+            <param name="siblingElement">The sibling.</param>
+            <param name="elementName">The XML element name.</param>
+            <returns>The XML element.</returns>
+        </member>
+        <member name="M:StealFocus.Core.Xml.XmlElementExtensions.AddValue(System.Xml.XmlElement,System.String)">
+            <summary>
+            Add a value to the element.
+            </summary>
+            <param name="xmlElement">The XML element to hold the value.</param>
+            <param name="value">The value to add.</param>
+            <returns>The XML element.</returns>
+        </member>
+        <member name="M:StealFocus.Core.Xml.XmlElementExtensions.AddAttribute(System.Xml.XmlElement,System.String,System.String)">
+            <summary>
+            Adds an attribute to the element.
+            </summary>
+            <param name="xmlElement">The XML element to contain the attribute.</param>
+            <param name="attributeName">The name of the attribute.</param>
+            <param name="attributeValue">The value for the attribute.</param>
+            <returns>The original XML element.</returns>
+        </member>
+        <member name="M:StealFocus.Core.Xml.XmlElementExtensions.Parent(System.Xml.XmlElement)">
+            <summary>
+            Gets the parent.
+            </summary>
+            <param name="xmlElement">The current XML element.</param>
+            <returns>The parent.</returns>
+        </member>
+        <member name="M:StealFocus.Core.Xml.XmlElementExtensions.Child(System.Xml.XmlElement,System.String)">
+            <summary>
+            Selects a child element of the provided name.
+            </summary>
+            <param name="xmlElement">The XML element.</param>
+            <param name="childName">The child name.</param>
+            <returns>The child element.</returns>
+            <remarks>
+            Ignores any XML namespaces, looks for the first match only.
+            </remarks>
+        </member>
+        <member name="M:StealFocus.Core.Xml.XmlElementExtensions.Child(System.Xml.XmlElement,System.String,System.Int32)">
+            <summary>
+            Selects a child element of the provided name.
+            </summary>
+            <param name="xmlElement">The XML element.</param>
+            <param name="childName">The child name.</param>
+            <param name="childNameInstanceMatch">The instance to match, zero based e.g. 1 matches the second element matching the given name.</param>
+            <returns>The child element.</returns>
+            <remarks>
+            Ignores any XML namespaces.
+            </remarks>
+        </member>
+        <member name="T:StealFocus.Core.Xml.Serialization.SimpleXmlSerializer`1">
+            <summary>
+            SimpleXmlSerializer Class.
+            </summary>
+            <remarks>
+            None.
+            </remarks>
+            <typeparam name="T">The type to be serialized.</typeparam>
+        </member>
+        <member name="M:StealFocus.Core.Xml.Serialization.SimpleXmlSerializer`1.Serialize(`0)">
+            <summary>
+            Serializes the given object to XML.
+            </summary>
+            <param name="value">An <see cref="T:System.Object"/>. To be serialized.</param>
+            <returns>The XML representing the object.</returns>
+            <remarks>
+            None.
+            </remarks>
+        </member>
+        <member name="M:StealFocus.Core.Xml.Serialization.SimpleXmlSerializer`1.Serialize(`0,System.String)">
+            <summary>
+            Serializes the given object to XML.
+            </summary>
+            <param name="value">An <see cref="T:System.Object"/>. To be serialized.</param>
+            <param name="defaultNamespace">The default namespace.</param>
+            <returns>The XML representing the object.</returns>
+            <remarks>
+            None.
+            </remarks>
+        </member>
+        <member name="M:StealFocus.Core.Xml.Serialization.SimpleXmlSerializer`1.Deserialize(System.String)">
+            <summary>
+            Deserializes the XML to the given Type.
+            </summary>
+            <param name="xml">The XML representing the Object.</param>
+            <returns>An <see cref="T:System.Object"/>.</returns>
+            <remarks>
+            None.
+            </remarks>
+        </member>
+        <member name="M:StealFocus.Core.Xml.Serialization.SimpleXmlSerializer`1.Deserialize(System.String,System.String)">
+            <summary>
+            Deserializes the XML to the given Type.
+            </summary>
+            <param name="xml">The XML representing the Object.</param>
+            <param name="defaultNamespace">The default namespace.</param>
+            <returns>An <see cref="T:System.Object"/>.</returns>
+            <remarks>
+            None.
+            </remarks>
+        </member>
+        <member name="M:StealFocus.Core.Xml.Serialization.SimpleXmlSerializer`1.Serialize(`0,System.Xml.Serialization.XmlSerializer)">
+            <summary>
+            Serializes the given object to XML.
+            </summary>
+            <param name="value">The object.</param>
+            <param name="xmlSerializer">An <see cref="T:System.Xml.Serialization.XmlSerializer"/>. The serializer.</param>
+            <returns>The XML containing the serialized object.</returns>
+        </member>
+        <member name="M:StealFocus.Core.Xml.Serialization.SimpleXmlSerializer`1.Deserialize(System.String,System.Xml.Serialization.XmlSerializer)">
+            <summary>
+            Deserializes the XML to the given Type.
+            </summary>
+            <param name="xml">The XML representing the Object.</param>
+            <param name="xmlSerializer">An <see cref="T:System.Xml.Serialization.XmlSerializer"/>. The serializer.</param>
+            <returns>The deserialized object.</returns>
+        </member>
+        <member name="T:StealFocus.Core.Resource">
+            <summary>
+            Resource Class.
+            </summary>
+            <remarks />
+        </member>
+        <member name="M:StealFocus.Core.Resource.GetString(System.Object,System.String)">
+            <summary>
+            Gets a resource string for the <c>requester</c> matching the <c>key</c>.
+            </summary>
+            <param name="requester">An <see cref="T:System.Object"/>. The object requesting the resource.</param>
+            <param name="key">The key identifying the resource..</param>
+            <returns>The string retrieved from the Resource File.</returns>
+            <remarks>
+            None.
+            </remarks>
+        </member>
+        <member name="M:StealFocus.Core.Resource.GetString(System.Type,System.String)">
+            <summary>
+            Gets a resource string for the <c>requesterType</c> matching the <c>key</c>.
+            </summary>
+            <param name="requesterType">An <see cref="T:System.Object"/>. The <see cref="T:System.Type"/> of the requester of the resource.</param>
+            <param name="key">The key identifying the resource..</param>
+            <returns>The string retrieved from the Resource File.</returns>
+            <remarks>
+            None.
+            </remarks>
+            <exception cref="T:StealFocus.Core.CoreException">Thrown when the <see cref="T:System.Resources.ResourceManager"/> returns a null resource string for the provided key.</exception>
+        </member>
+        <member name="M:StealFocus.Core.Resource.GetXmlDocument(System.String,System.String)">
+            <summary>
+            Loads an XML Document from a resource.
+            </summary>
+            <param name="assemblyName">The assembly name.</param>
+            <param name="xmlDocumentResourceName">The XML Document Resource Name.</param>
+            <returns>
+            An <see cref="T:System.Xml.XmlDocument"/>, the embedded resource.
+            </returns>
+            <remarks>
+            The <c>assemblyName</c> should be the assembly file name without the ".dll" extension. The <c>xmlDocumentResourceName</c> should be the fully qualified name of the resource e.g. "Namespace.DocumentName.xml".
+            </remarks>
+        </member>
+        <member name="M:StealFocus.Core.Resource.GetXmlDocument(System.Reflection.Assembly,System.String)">
+            <summary>
+            Gets an XML Document from an embedded resource.
+            </summary>
+            <param name="assembly">The assembly.</param>
+            <param name="xmlDocumentResourceName">The XML Document Resource Name.</param>
+            <returns>
+            An <see cref="T:System.Xml.XmlDocument"/>, the embedded resource.
+            </returns>
+            <remarks/>
+        </member>
+        <member name="M:StealFocus.Core.Resource.GetXmlSchema(System.String,System.String)">
+            <summary>
+            Loads an XSD Schema from a resource.
+            </summary>
+            <param name="assemblyName">The assembly name.</param>
+            <param name="xsdDocumentResourceName">The XSD Document Resource Name.</param>
+            <returns>
+            An <see cref="T:System.Xml.Schema.XmlSchema"/>, the embedded resource.
+            </returns>
+            <remarks>
+            The <c>assemblyName</c> should be the assembly file name without the ".dll" extension. The <c>xsdDocumentResourceName</c> should be the fully qualified name of the resource e.g. "Namespace.DocumentName.xml".
+            </remarks>
+        </member>
+        <member name="M:StealFocus.Core.Resource.GetXmlSchema(System.Reflection.Assembly,System.String)">
+            <summary>
+            Loads an XSD Schema from a resource.
+            </summary>
+            <param name="assembly">The assembly.</param>
+            <param name="xsdDocumentResourceName">The XSD Document Resource Name.</param>
+            <returns>
+            An <see cref="T:System.Xml.Schema.XmlSchema"/>, the embedded resource.
+            </returns>
+            <remarks>
+            The <c>assemblyName</c> should be the assembly file name without the ".dll" extension. The <c>xsdDocumentResourceName</c> should be the fully qualified name of the resource e.g. "Namespace.DocumentName.xml".
+            </remarks>
+        </member>
+        <member name="M:StealFocus.Core.Resource.GetFile(System.String,System.String)">
+            <summary>
+            Get a file from an embedded resource.
+            </summary>
+            <param name="assemblyName">The assembly name.</param>
+            <param name="fileResourceName">The name of the resource.</param>
+            <returns>
+            A Stream containing the file.
+            </returns>
+        </member>
+        <member name="M:StealFocus.Core.Resource.GetFile(System.Reflection.Assembly,System.String)">
+            <summary>
+            Get a file from an embedded resource.
+            </summary>
+            <param name="assembly">The assembly.</param>
+            <param name="fileResourceName">The name of the resource.</param>
+            <returns>
+            A Stream containing the file.
+            </returns>
+        </member>
+        <member name="M:StealFocus.Core.Resource.GetFileAndWriteToPath(System.String,System.String,System.String)">
+            <summary>
+            Gets a file from an embedded resource and writes it to a path.
+            </summary>
+            <param name="assemblyName">The assembly name.</param>
+            <param name="fileResourceName">The name of the resource.</param>
+            <param name="filePathToBeWrittenTo">The path to write the file to.</param>
+        </member>
+        <member name="M:StealFocus.Core.Resource.GetFileAndWriteToPath(System.Reflection.Assembly,System.String,System.String)">
+            <summary>
+            Gets a file from an embedded resource and writes it to a path.
+            </summary>
+            <param name="assembly">The assembly.</param>
+            <param name="fileResourceName">The name of the resource.</param>
+            <param name="filePathToBeWrittenTo">The path to write the file to.</param>
+        </member>
+        <member name="M:StealFocus.Core.Resource.GetBinaryFileAndWriteToPath(System.String,System.String,System.String)">
+            <summary>
+            Gets a binary file from an embedded resource and writes it to a path.
+            </summary>
+            <param name="assemblyName">The assembly name.</param>
+            <param name="fileResourceName">The name of the resource.</param>
+            <param name="filePathToBeWrittenTo">The path to write the file to.</param>
+        </member>
+        <member name="M:StealFocus.Core.Resource.GetBinaryFileAndWriteToPath(System.String,System.String)">
+            <summary>
+            Gets a binary file from an embedded resource and writes it to a path.
+            </summary>
+            <param name="fileResourceName">The name of the resource.</param>
+            <param name="filePathToBeWrittenTo">The path to write the file to.</param>
+        </member>
+        <member name="M:StealFocus.Core.Resource.GetBinaryFileAndWriteToPath(System.Reflection.Assembly,System.String,System.String)">
+            <summary>
+            Gets a binary file from an embedded resource and writes it to a path.
+            </summary>
+            <param name="assembly">The assembly.</param>
+            <param name="fileResourceName">The name of the resource.</param>
+            <param name="filePathToBeWrittenTo">The path to write the file to.</param>
+        </member>
+        <member name="M:StealFocus.Core.Resource.GetImage(System.String,System.String)">
+            <summary>
+            Gets an embedded image resource.
+            </summary>
+            <param name="assemblyName">The assembly name.</param>
+            <param name="imageResourceName">The image resource name.</param>
+            <returns>
+            An image from the embedded resource.
+            </returns>
+        </member>
+        <member name="M:StealFocus.Core.Resource.GetImage(System.String)">
+            <summary>
+            Gets an embedded image resource.
+            </summary>
+            <param name="imageResourceName">The image resource name.</param>
+            <returns>
+            An image from the embedded resource.
+            </returns>
+        </member>
+        <member name="M:StealFocus.Core.Resource.GetImage(System.Reflection.Assembly,System.String)">
+            <summary>
+            Gets an embedded image resource.
+            </summary>
+            <param name="assembly">The assembly.</param>
+            <param name="imageResourceName">The image resource name.</param>
+            <returns>
+            An image from the embedded resource.
+            </returns>
+        </member>
+        <member name="M:StealFocus.Core.Resource.GetAssemblyBytes(System.String,System.String)">
+            <summary>
+            Gets an assembly resource.
+            </summary>
+            <param name="assemblyName">The assembly name.</param>
+            <param name="assemblyResourceName">The assembly resource name.</param>
+            <returns>
+            An assembly from the embedded resource.
+            </returns>
+        </member>
+        <member name="M:StealFocus.Core.Resource.GetAssemblyBytes(System.String)">
+            <summary>
+            Gets an assembly resource.
+            </summary>
+            <param name="assemblyResourceName">The assembly resource name.</param>
+            <returns>
+            An assembly from the embedded resource.
+            </returns>
+        </member>
+        <member name="M:StealFocus.Core.Resource.GetAssemblyBytes(System.Reflection.Assembly,System.String)">
+            <summary>
+            Gets an assembly resource.
+            </summary>
+            <param name="assembly">The assembly.</param>
+            <param name="assemblyResourceName">The assembly resource name.</param>
+            <returns>
+            An assembly from the embedded resource.
+            </returns>
+        </member>
+        <member name="M:StealFocus.Core.Resource.GetAssembly(System.String,System.String)">
+            <summary>
+            Gets an assembly resource.
+            </summary>
+            <param name="assemblyName">The assembly name.</param>
+            <param name="assemblyResourceName">The assembly resource name.</param>
+            <returns>
+            An assembly from the embedded resource.
+            </returns>
+        </member>
+        <member name="M:StealFocus.Core.Resource.GetAssembly(System.String)">
+            <summary>
+            Gets an assembly resource.
+            </summary>
+            <param name="assemblyResourceName">The assembly resource name.</param>
+            <returns>
+            An assembly from the embedded resource.
+            </returns>
+        </member>
+        <member name="M:StealFocus.Core.Resource.GetAssembly(System.Reflection.Assembly,System.String)">
+            <summary>
+            Gets an assembly resource.
+            </summary>
+            <param name="assembly">The assembly.</param>
+            <param name="assemblyResourceName">The assembly resource name.</param>
+            <returns>
+            An assembly from the embedded resource.
+            </returns>
+        </member>
+        <member name="M:StealFocus.Core.Resource.GetAssemblyContainingResource(System.String)">
+            <summary>
+            Gets the assembly containing the resource.
+            </summary>
+            <param name="assemblyName">The assembly Name.</param>
+            <returns>
+            An assembly.
+            </returns>
+        </member>
+        <member name="M:StealFocus.Core.Resource.CheckNullParameter(System.Object,System.String)">
+            <summary>
+            Checks for a null parameter.
+            </summary>
+            <param name="parameter">The parameter.</param>
+            <param name="parameterName">The name of the parameter.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if the <c>parameter</c> is found to be null.</exception>
+        </member>
+        <member name="M:StealFocus.Core.Resource.GetCurrentCulture">
+            <summary>
+            Gets the current <see cref="T:System.Globalization.CultureInfo">culture</see>.
+            </summary>
+            <returns>The culture information for the current thread.</returns>
+            <remarks>
+            None.
+            </remarks>
+        </member>
+        <member name="T:StealFocus.Core.Configuration.StealFocusCoreConfigurationSection">
+            <summary>
+            The StealFocusCoreConfigurationSection Configuration Section.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.Configuration.StealFocusCoreConfigurationSection.Log4NetConfigurationFileNamePropertyName">
+            <summary>
+            The XML name of the <see cref="P:StealFocus.Core.Configuration.StealFocusCoreConfigurationSection.Log4NetConfigurationFileName"/> property.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.Configuration.StealFocusCoreConfigurationSection.StealFocusCoreConfigurationSectionSectionName">
+            <summary>
+            The XML name of the StealFocusCoreConfigurationSection Configuration Section.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.Configuration.StealFocusCoreConfigurationSection.XmlnsPropertyName">
+            <summary>
+            The XML name of the <see cref="P:StealFocus.Core.Configuration.StealFocusCoreConfigurationSection.Xmlns"/> property.
+            </summary>
+        </member>
+        <member name="P:StealFocus.Core.Configuration.StealFocusCoreConfigurationSection.Log4NetConfigurationFileName">
+            <summary>
+            Gets or sets the Log4NetConfigurationFileName.
+            </summary>
+        </member>
+        <member name="P:StealFocus.Core.Configuration.StealFocusCoreConfigurationSection.Instance">
+            <summary>
+            Gets the StealFocusCoreConfigurationSection instance.
+            </summary>
+        </member>
+        <member name="P:StealFocus.Core.Configuration.StealFocusCoreConfigurationSection.Xmlns">
+            <summary>
+            Gets the XML namespace of this Configuration Section.
+            </summary>
+            <remarks>
+            This property makes sure that if the configuration file contains the XML namespace,
+            the parser doesn't throw an exception because it encounters the unknown "xmlns" attribute.
+            </remarks>
+        </member>
+        <member name="T:StealFocus.Core.StrongNameUtility">
+            <summary>
+            StrongNameUtility Class.
+            </summary>
+            <remarks>
+            Provides helpers to run "sn.exe" and manipulate Strong Name Keys.
+            </remarks>
+        </member>
+        <member name="F:StealFocus.Core.StrongNameUtility.SNDotExeName">
+            <summary>
+            Holds the name of "sn.exe".
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.StrongNameUtility.GenerateKeyPair(Microsoft.Build.Utilities.TargetDotNetFrameworkVersion,System.String)">
+            <summary>
+            Generate an Strong Name Key pair.
+            </summary>
+            <param name="targetDotNetFrameworkVersion">The target .NET Framework version.</param>
+            <param name="strongNameKeyPairPath">The path to the Strong Name Key pair.</param>
+        </member>
+        <member name="M:StealFocus.Core.StrongNameUtility.GeneratePublicKey(Microsoft.Build.Utilities.TargetDotNetFrameworkVersion,System.String,System.String)">
+            <summary>
+            Generate a Public Key.
+            </summary>
+            <param name="targetDotNetFrameworkVersion">The target .NET Framework version.</param>
+            <param name="strongNameKeyPairPath">The path to the Strong Name Key pair.</param>
+            <param name="publicKeyFilePath">The path to write to.</param>
+        </member>
+        <member name="M:StealFocus.Core.StrongNameUtility.ExtractPublicKeyToken(System.String)">
+            <summary>
+            Extract the public key token from the given Strong Name Key Pair File.
+            </summary>
+            <param name="strongNameKeyPairFilePath">The path to the Strong Name Key Pair File.</param>
+            <returns>The Public Key Token.</returns>
+        </member>
+        <member name="M:StealFocus.Core.StrongNameUtility.ExtractPublicKey(System.String)">
+            <summary>
+            Extract the public key from the given Strong Name Key Pair File.
+            </summary>
+            <param name="strongNameKeyPairFilePath">The path to the Strong Name Key Pair File.</param>
+            <returns>The Public Key.</returns>
+        </member>
+        <member name="M:StealFocus.Core.StrongNameUtility.GetStrongNameKey(System.String)">
+            <summary>
+            Get the Strong Name Key Pair.
+            </summary>
+            <param name="strongNameKeyPairFilePath">The path to the Strong Name Key Pair File.</param>
+            <returns>The Strong Name Key Pair.</returns>
+        </member>
+        <member name="M:StealFocus.Core.StrongNameUtility.ExecuteSNDotExe(Microsoft.Build.Utilities.TargetDotNetFrameworkVersion,System.String)">
+            <summary>
+            Execute sn.exe.
+            </summary>
+            <param name="targetDotNetFrameworkVersion">The target .NET Framework version.</param>
+            <param name="strongNameDotExePathArguments">The arguments to supply.</param>
+        </member>
+        <member name="T:StealFocus.Core.CoreException">
+            <summary>
+            CoreException Class.
+            </summary>
+            <remarks>
+            Base exception class for the framework.
+            </remarks>
+        </member>
+        <member name="M:StealFocus.Core.CoreException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:StealFocus.Core.CoreException"/> class.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.CoreException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StealFocus.Core.CoreException"/> class.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <remarks>
+            None.
+            </remarks>
+        </member>
+        <member name="M:StealFocus.Core.CoreException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StealFocus.Core.CoreException"/> class.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">An <see cref="T:System.Exception"/>. The exception that is the cause of the current exception. If the <paramref name="innerException"/> parameter is not a null reference, the current exception is raised in a catch block that handles the inner exception.</param>
+            <remarks>
+            None.
+            </remarks>
+        </member>
+        <member name="M:StealFocus.Core.CoreException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StealFocus.Core.CoreException"/> class.
+            </summary>
+            <param name="info">The object that holds the serialized object data.</param>
+            <param name="context">The contextual information about the source or destination.</param>
+            <remarks>
+            None.
+            </remarks>
+        </member>
+        <member name="T:StealFocus.Core.IO.FileSystem">
+            <summary>
+            FileSystem Class.
+            </summary>
+            <remarks>
+            Contains methods to help when working with the file system.
+            </remarks>
+        </member>
+        <member name="F:StealFocus.Core.IO.FileSystem.AssemblyExpected">
+            <summary>
+            Used to indicate if a file is an assembly.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.IO.FileSystem.ComputeHash(System.String)">
+            <summary>
+            Gets a hash of a file at a given path.
+            </summary>
+            <param name="pathToFile">The path to the file.</param>
+            <returns>The hash of the given file.</returns>
+        </member>
+        <member name="M:StealFocus.Core.IO.FileSystem.Compare(System.String,System.String)">
+            <summary>
+            Compares two files and indicates if they are the same.
+            </summary>
+            <param name="pathToFile1">A path to file 1.</param>
+            <param name="pathToFile2">A path to file 2.</param>
+            <returns>Indicates if the files are the same.</returns>
+        </member>
+        <member name="M:StealFocus.Core.IO.FileSystem.IsAssembly(System.String)">
+            <summary>
+            Determines if a file is an Assembly.
+            </summary>
+            <param name="filePath">The path of the file.</param>
+            <returns>Indicating if the file is an assembly.</returns>
+        </member>
+        <member name="M:StealFocus.Core.IO.FileSystem.CopyAccessControlList(System.String,System.String)">
+            <summary>
+            Copies the Access Control List (ACL) from one file to another.
+            </summary>
+            <param name="pathToSourceFile">The path to the source file.</param>
+            <param name="pathToDestinationFile">The path to the destination file.</param>
+        </member>
+        <member name="M:StealFocus.Core.IO.FileSystem.CopyAccessControlList(System.String,System.String,System.Security.AccessControl.FileSystemAccessRule[])">
+            <summary>
+            Copies the Access Control List (ACL) from one file to another and specify additional ACL rules on the destination file.
+            </summary>
+            <param name="pathToSourceFile">The path to the source file.</param>
+            <param name="pathToDestinationFile">The path to the destination file.</param>
+            <param name="additionalFileSystemAccessRules">An array of <see cref="T:System.Security.AccessControl.FileSystemAccessRule"/>. The additional ACLs.</param>
+        </member>
+        <member name="M:StealFocus.Core.IO.FileSystem.CheckFilePathParameter(System.String,System.String)">
+            <summary>
+            Check if a file is at a given path when a path is given as a parameter.
+            </summary>
+            <param name="filePathParameterName">The name of the parameter.</param>
+            <param name="filePathParameterValue">The path given in the parameter value.</param>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix
+  xmlns="http://schemas.microsoft.com/wix/2006/wi"
+  xmlns:util='http://schemas.microsoft.com/wix/UtilExtension'
+  xmlns:netfx='http://schemas.microsoft.com/wix/NetFxExtension'
+  xmlns:iis='http://schemas.microsoft.com/wix/IIsExtension'>
+	<Product 
+    Id="71D87341-E0BF-43FA-96FB-407F3FF7D5BE" 
+    Name="StealFocus MSBuild $(var.BuildLabelNumber)" 
+    Language="1033" 
+    Version="$(var.VersionNumber)" 
+    Manufacturer="StealFocus" 
+    UpgradeCode="B5DEBD8C-E9F7-4B23-81D1-F2DC2664D455">
+    
+		<Package InstallerVersion="200" Compressed="yes" />
+
+		<Media Id="1" Cabinet="StealFocus.MSBuild.cab" EmbedCab="yes" />
+
+    <!-- Per machine (1), NOT per user (2) -->
+    <Property Id="ALLUSERS" Value="1" />
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+        <Directory Id='MicrosoftVisualStudio9' Name='Microsoft Visual Studio 9.0' >
+          <Directory Id='Xml' Name='Xml'>
+            <Directory Id='XmlSchemas' Name='Schemas'>
+              <Directory Id='XmlSchemas1033_1' Name='1033'>
+                <Component Id='MSBuildSchemaConfiguration' Guid='{1D045E16-EA4E-47DF-8681-C32B1E4BDDA9}' KeyPath='yes'>
+                  <!-- Import StealFocus.MSBuild.xsd -->
+                  <util:XmlConfig
+                    Id='InsertIncludeElement_StealFocusMSBuild'
+                    Action='create'
+                    ElementPath='/xs:schema'
+										File='[XmlSchemas1033_1]Microsoft.Build.xsd'
+                    Name='xs:include'
+                    Node='element'
+										On='install'
+                    Sequence='1' />
+                  <util:XmlConfig
+                    Id='InsertSchemaLocationAttribute_StealFocusMSBuild'
+                    Action='create'
+										ElementPath='/xs:schema/xs:include[\[]not(@schemaLocation)[\]]'
+										File='[XmlSchemas1033_1]Microsoft.Build.xsd'
+                    Name='schemaLocation'
+                    Node='value'
+										On='install'
+                    Sequence='2'
+                    Value='MSBuild\StealFocus.MSBuild.xsd' />
+                  <util:XmlConfig 
+                    Id='RemoveIncludeElement_StealFocusMSBuild'
+										Action='delete'
+										ElementPath="/xs:schema"
+										File='[XmlSchemas1033_1]Microsoft.Build.xsd'
+                    Node='element'
+										On='uninstall'
+                    Sequence='1'
+                    VerifyPath="xs:include[\[]@schemaLocation = 'MSBuild\\StealFocus.MSBuild.xsd'[\]]" />
+                </Component>
+              </Directory>
+              <Directory Id='XmlSchemas1033_2' Name='1033'>
+                <Directory Id='XmlSchemas1033MSBuild' Name='MSBuild'>
+                  <Component Id='MSBuildSchemas' Guid='{0F06AF8E-4748-4D18-A001-291EF6E15EE6}' KeyPath='yes'>
+                    <!-- Schema files -->
+                    <File
+                      Id='StealFocusMSBuildSchema_MSBuildSchemas'
+                      Name='StealFocus.MSBuild.xsd'
+                      Source='Temp\StealFocus.MSBuild.xsd' />
+                  </Component>
+                </Directory>
+              </Directory>
+            </Directory>
+          </Directory>
+        </Directory>
+        <Directory Id='MSBuild' Name='MSBuild'>
+          <Directory Id='MSBuild_StealFocus' Name='StealFocus'>
+            <Directory Id='MSBuild_StealFocus_MSBuild' Name='MSBuild'>
+              <Directory Id='MSBuild_StealFocus_MSBuild_v1.0' Name='v1.0'>
+                <Component Id='MSBuildArtefacts' Guid='{331F0766-C08C-42B8-8B85-1B2D703DED84}' KeyPath='yes'>
+                  <!-- Targets files -->
+                  <File
+                    Id='StealFocusMSBuildTargets'
+                    Name='StealFocus.MSBuild.Targets'
+									  Source='Temp\StealFocus.MSBuild.Targets'/>
+                  <!-- Schema files -->
+                  <File
+                    Id='StealFocusMSBuildSchema_MSBuildArtefacts'
+                    Name='StealFocus.MSBuild.xsd'
+                    Source='Temp\StealFocus.MSBuild.xsd' />
+                  <File
+                    Id='TextFileRegExReplaceDictionarySchema'
+                    Name='TextFileRegExReplaceDictionary-v1.0.xsd'
+                    Source='$(var.StealFocus.MSBuild.ProjectDir)\Tasks\TextFileRegExReplaceDictionary-v1.0.xsd' />
+                  <File
+                    Id='XmlFileCheckerConfigurationSchema'
+                    Name='XmlFileCheckerConfiguration-v1.0.xsd'
+                    Source='$(var.StealFocus.MSBuild.ProjectDir)\Tasks\XmlFileCheckerConfiguration-v1.0.xsd' />
+                  <!-- StealFocus assemblies -->
+                  <File
+                    Id='StealFocusCoreAssembly'
+                    Name='StealFocus.Core.dll'
+                    Source='..\..\Library\StealFocus.Core.dll' />
+                  <File
+                    Id='StealFocusMSBuildAssembly'
+                    Name='$(var.StealFocus.MSBuild.TargetFileName)'
+                    Source='$(var.StealFocus.MSBuild.TargetPath)' />
+                </Component>
+              </Directory>
+            </Directory>
+          </Directory>
+        </Directory>
+			</Directory>
+		</Directory>
+
+    <!-- License? -->
+    
+		<Feature Id="ProductFeature" Title="StealFocus MSBuild" Level="1">
+      <ComponentRef Id="MSBuildArtefacts" />
+      <Feature Id="VisualStudio2008Intellisense" Title="Visual Studio 2008 MSBuild Intellisense" Level="1">
+        <ComponentRef Id="MSBuildSchemaConfiguration" />
+        <ComponentRef Id="MSBuildSchemas" />
+      </Feature>
+		</Feature>
+
+    <UIRef Id="WixUI_Mondo" />
+
+    <UIRef Id="WixUI_ErrorProgressText" />
+
+  </Product>
+</Wix>

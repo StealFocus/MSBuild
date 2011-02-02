@@ -3,7 +3,7 @@
 *_p.c
 *.aps
 *.bak
-*.cache
+*.[Cc]ache
 *.exe
 *.ilk
 *.log
@@ -27,3 +27,8 @@
 _ReSharper*/
 obj/
 Thumbs.db
+
+/Build/
+/Source/StealFocus.MSBuild.Setup/Temp/
+/Source/AssemblyInfoCommon.cs
+!/Library/*.pdb
