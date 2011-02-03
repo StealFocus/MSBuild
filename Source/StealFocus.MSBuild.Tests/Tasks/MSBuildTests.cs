@@ -26,7 +26,7 @@ namespace StealFocus.MSBuild.Tests.Tasks
         /// <summary>
         /// Holds the file name.
         /// </summary>
-        public const string MSBuildProjectFileName = "StealFocus.MSBuild.Tests.Tasks.msbuild";
+        protected const string MSBuildProjectFileName = "StealFocus.MSBuild.Tests.Tasks.msbuild";
 
         /// <summary>
         /// Holds the path to MSBuild.

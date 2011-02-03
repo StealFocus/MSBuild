@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<UsingTask 
+    TaskName="StealFocus.MSBuild.Tasks.BizTalk2009.Bts2009CreateApplication"
+	  AssemblyFile="StealFocus.MSBuild.Tasks.BizTalk2009.dll" />
+	<UsingTask 
+    TaskName="StealFocus.MSBuild.Tasks.BizTalk2009.Bts2009RemoveApplication"
+		AssemblyFile="StealFocus.MSBuild.Tasks.BizTalk2009.dll" />
+	<UsingTask 
+    TaskName="StealFocus.MSBuild.Tasks.BizTalk2009.Bts2009StopHost"
+		AssemblyFile="StealFocus.MSBuild.Tasks.BizTalk2009.dll" />
+	<UsingTask 
+    TaskName="StealFocus.MSBuild.Tasks.BizTalk2009.Bts2009CleanHostQueue"
+		AssemblyFile="StealFocus.MSBuild.Tasks.BizTalk2009.dll" />
+	<UsingTask 
+    TaskName="StealFocus.MSBuild.Tasks.BizTalk2009.Bts2009DeleteReceiveHandler"
+		AssemblyFile="StealFocus.MSBuild.Tasks.BizTalk2009.dll" />
+	<UsingTask 
+    TaskName="StealFocus.MSBuild.Tasks.BizTalk2009.Bts2009DeleteSendHandler"
+		AssemblyFile="StealFocus.MSBuild.Tasks.BizTalk2009.dll" />
+	<UsingTask 
+    TaskName="StealFocus.MSBuild.Tasks.BizTalk2009.Bts2009DeleteHost"
+		AssemblyFile="StealFocus.MSBuild.Tasks.BizTalk2009.dll" />
+	<UsingTask 
+    TaskName="StealFocus.MSBuild.Tasks.BizTalk2009.Bts2009CreateHost"
+		AssemblyFile="StealFocus.MSBuild.Tasks.BizTalk2009.dll" />
+	<UsingTask 
+    TaskName="StealFocus.MSBuild.Tasks.BizTalk2009.Bts2009CreateHostInstance"
+		AssemblyFile="StealFocus.MSBuild.Tasks.BizTalk2009.dll" />
+	<UsingTask 
+    TaskName="StealFocus.MSBuild.Tasks.BizTalk2009.Bts2009CreateSendHandler"
+		AssemblyFile="StealFocus.MSBuild.Tasks.BizTalk2009.dll" />
+	<UsingTask 
+    TaskName="StealFocus.MSBuild.Tasks.BizTalk2009.Bts2009CreateReceiveHandler"
+		AssemblyFile="StealFocus.MSBuild.Tasks.BizTalk2009.dll" />
+	<UsingTask 
+    TaskName="StealFocus.MSBuild.Tasks.BizTalk2009.Bts2009StartHost"
+		AssemblyFile="StealFocus.MSBuild.Tasks.BizTalk2009.dll" />
+
+	<PropertyGroup>
+		<ManagementDatabaseConnectionString>server=.\MSSqlSvr2008;database=BizTalkMgmtDb;integrated security=sspi;</ManagementDatabaseConnectionString>
+	</PropertyGroup>
+
+	<Target Name="CreateAndRemove">
+    <Bts2009RemoveApplication
+			ManagementDatabaseConnectionString="$(ManagementDatabaseConnectionString)"
+			ApplicationName="MyStealFocusMSBuildTestApplication*" />
+		<Bts2009CreateApplication
+			ManagementDatabaseConnectionString="$(ManagementDatabaseConnectionString)"
+			ApplicationName="MyStealFocusMSBuildTestApplication1" />
+		<Bts2009CreateApplication
+			ManagementDatabaseConnectionString="$(ManagementDatabaseConnectionString)"
+			ApplicationName="MyStealFocusMSBuildTestApplication2" />
+		<Bts2009RemoveApplication
+			ManagementDatabaseConnectionString="$(ManagementDatabaseConnectionString)"
+			ApplicationName="MyStealFocusMSBuildTestApplication*" />
+	</Target>
+
+	<Target Name="HostsManipulation">
+		<Bts2009CreateHost 
+      HostName="BTS_StealFocusMSBuildTestHostA"
+			HostTracking="true"
+			HostType="InProcess"
+			IsDefault="false"
+			Trusted="false"
+			WindowsGroupName="BizTalk Application Users" />
+		<Bts2009CreateSendHandler 
+      AdapterName="FILE" 
+      HostName="BTS_StealFocusMSBuildTestHostA" />
+		<Bts2009CreateReceiveHandler 
+      AdapterName="FILE" 
+      HostName="BTS_StealFocusMSBuildTestHostA" />
+		<Bts2009StartHost HostName="BTS_StealFocusMSBuildTestHostA" />
+		<Bts2009StopHost HostName="BTS_StealFocusMSBuildTestHostA" />
+		<Bts2009CleanHostQueue HostName="BTS_StealFocusMSBuildTestHostA" />
+		<Bts2009DeleteReceiveHandler 
+      AdapterName="FILE" 
+      HostName="BTS_StealFocusMSBuildTestHostA" />
+		<Bts2009DeleteSendHandler 
+      AdapterName="FILE" 
+      HostName="BTS_StealFocusMSBuildTestHostA" />
+		<Bts2009DeleteHost HostName="BTS_StealFocusMSBuildTestHostA" />
+	</Target>
+
+</Project>

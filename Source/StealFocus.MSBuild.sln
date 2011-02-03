@@ -52,6 +52,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CommandFiles", "CommandFile
 		CommandFiles\StealFocus.MSBuild.Build.cmd = CommandFiles\StealFocus.MSBuild.Build.cmd
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StealFocus.MSBuild.Tasks.BizTalk2009", "StealFocus.MSBuild.Tasks.BizTalk2009\StealFocus.MSBuild.Tasks.BizTalk2009.csproj", "{45BE1E6E-664F-4BE3-93EA-6394700C79CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StealFocus.MSBuild.Tasks.BizTalk2009.Tests", "StealFocus.MSBuild.Tasks.BizTalk2009.Tests\StealFocus.MSBuild.Tasks.BizTalk2009.Tests.csproj", "{C3078D43-7C01-41AB-9908-58067822F41C}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = StealFocus.MSBuild.vsmdi
@@ -95,12 +99,33 @@ Global
 		{2E4920EB-2965-45EC-8AF9-F2211BC23E65}.Release|Mixed Platforms.Build.0 = Release|x86
 		{2E4920EB-2965-45EC-8AF9-F2211BC23E65}.Release|x86.ActiveCfg = Release|x86
 		{2E4920EB-2965-45EC-8AF9-F2211BC23E65}.Release|x86.Build.0 = Release|x86
+		{45BE1E6E-664F-4BE3-93EA-6394700C79CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45BE1E6E-664F-4BE3-93EA-6394700C79CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45BE1E6E-664F-4BE3-93EA-6394700C79CF}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{45BE1E6E-664F-4BE3-93EA-6394700C79CF}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{45BE1E6E-664F-4BE3-93EA-6394700C79CF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{45BE1E6E-664F-4BE3-93EA-6394700C79CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45BE1E6E-664F-4BE3-93EA-6394700C79CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45BE1E6E-664F-4BE3-93EA-6394700C79CF}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{45BE1E6E-664F-4BE3-93EA-6394700C79CF}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{45BE1E6E-664F-4BE3-93EA-6394700C79CF}.Release|x86.ActiveCfg = Release|Any CPU
+		{C3078D43-7C01-41AB-9908-58067822F41C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3078D43-7C01-41AB-9908-58067822F41C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3078D43-7C01-41AB-9908-58067822F41C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{C3078D43-7C01-41AB-9908-58067822F41C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{C3078D43-7C01-41AB-9908-58067822F41C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C3078D43-7C01-41AB-9908-58067822F41C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3078D43-7C01-41AB-9908-58067822F41C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3078D43-7C01-41AB-9908-58067822F41C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{C3078D43-7C01-41AB-9908-58067822F41C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{C3078D43-7C01-41AB-9908-58067822F41C}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{28380DD6-3444-48ED-8028-5A4BFC392F89} = {3AA5F23D-EB61-48DC-B5E7-2D0B32597A69}
+		{C3078D43-7C01-41AB-9908-58067822F41C} = {3AA5F23D-EB61-48DC-B5E7-2D0B32597A69}
 		{E188DF22-29A9-4922-9391-C9660BDD1BAA} = {7C0C6982-35D9-4B9C-A691-A59FE692B359}
 		{F1380610-F33A-43E4-A279-1D7361F84F4B} = {E188DF22-29A9-4922-9391-C9660BDD1BAA}
 		{8042AED0-517B-49C1-A094-30BD9D2A9720} = {E188DF22-29A9-4922-9391-C9660BDD1BAA}

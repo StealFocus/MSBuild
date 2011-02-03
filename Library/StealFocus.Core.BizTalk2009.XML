@@ -1,0 +1,892 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>StealFocus.Core.BizTalk2009</name>
+    </assembly>
+    <members>
+        <member name="T:StealFocus.Core.BizTalk2009.ServiceStatus">
+            <summary>
+            ServiceStatus Class.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.BizTalk2009.ServiceStatus.ReadyToRun">
+            <summary>
+            Holds the ReadyToRun status.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.BizTalk2009.ServiceStatus.Active">
+            <summary>
+            Holds the Active status.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.BizTalk2009.ServiceStatus.SuspendedResumable">
+            <summary>
+            Holds the SuspendedResumable status.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.BizTalk2009.ServiceStatus.Dehydrated">
+            <summary>
+            Holds the Dehydrated status.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.BizTalk2009.ServiceStatus.CompletedWithDiscardedMessages">
+            <summary>
+            Holds the CompletedWithDiscardedMessages status.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.BizTalk2009.ServiceStatus.SuspendedNotResumable">
+            <summary>
+            Holds the SuspendedNotResumable status.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.BizTalk2009.ServiceStatus.InBreakpoint">
+            <summary>
+            Holds the InBreakpoint status.
+            </summary>
+        </member>
+        <member name="T:StealFocus.Core.BizTalk2009.ReceiveHandler">
+            <summary>
+            ReceiveHandler Class.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.ReceiveHandler.Create(System.String,System.String)">
+            <summary>
+            Create a Receive Handler.
+            </summary>
+            <param name="adapterName">The Adapter name.</param>
+            <param name="hostName">The Host name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.ReceiveHandler.Exists(System.String,System.String)">
+            <summary>
+            Check if a Receive Handler exists.
+            </summary>
+            <param name="adapterName">The Adapter name.</param>
+            <param name="hostName">The Host name.</param>
+            <returns>Indicating is the Handler exists.</returns>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.ReceiveHandler.Delete(System.String,System.String)">
+            <summary>
+            Delete a Receive Handler.
+            </summary>
+            <param name="adapterName">The Adapter name.</param>
+            <param name="hostName">The Host name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.ReceiveHandler.DeleteAll(System.String)">
+            <summary>
+            Delete all Receive Handlers.
+            </summary>
+            <param name="adapterName">The Adapter name.</param>
+        </member>
+        <member name="T:StealFocus.Core.BizTalk2009.HostType">
+            <summary>
+            Host types.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.BizTalk2009.HostType.Invalid">
+            <summary>
+            Invalid host type.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.BizTalk2009.HostType.InProcess">
+            <summary>
+            Inprocess host.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.BizTalk2009.HostType.Isolated">
+            <summary>
+            Isolated host, for example IIS.
+            </summary>
+        </member>
+        <member name="T:StealFocus.Core.BizTalk2009.BizTalkApplication">
+            <summary>
+            BizTalkApplication Class.
+            </summary>
+        </member>
+        <member name="T:StealFocus.Core.BizTalk2009.IBizTalkApplication">
+            <summary>
+            IBizTalkApplication Interface.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.IBizTalkApplication.StopAll">
+            <summary>
+            Stop the <c>BizTalk</c> Application.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.IBizTalkApplication.StartAll">
+            <summary>
+            Start the <c>BizTalk</c> Application.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.IBizTalkApplication.EnableReceiveLocation(System.String)">
+            <summary>
+            Enable the Receive Location.
+            </summary>
+            <param name="receiveLocationName">The Receive Location name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.IBizTalkApplication.EnableReceiveLocations(System.String[])">
+            <summary>
+            Enable the Receive Locations.
+            </summary>
+            <param name="receiveLocationNames">The Receive Location names.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.IBizTalkApplication.EnableAllReceiveLocations">
+            <summary>
+            Enable all Receive Locations.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.IBizTalkApplication.DisableReceiveLocation(System.String)">
+            <summary>
+            Disable the Receive Location.
+            </summary>
+            <param name="receiveLocationName">The Receive Location name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.IBizTalkApplication.DisableReceiveLocations(System.String[])">
+            <summary>
+            Disable the Receive Locations.
+            </summary>
+            <param name="receiveLocationNames">The Receive Location names.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.IBizTalkApplication.DisableAllReceiveLocations">
+            <summary>
+            Disable all Receive Locations.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.IBizTalkApplication.RemoveReceivePorts">
+            <summary>
+            Remove Receive Ports.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.IBizTalkApplication.GetAllOrchestrationNames">
+            <summary>
+            Get all Orchestration names.
+            </summary>
+            <returns>The names.</returns>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.IBizTalkApplication.TerminateOrchestration(System.String)">
+            <summary>
+            Terminate the Orchestration.
+            </summary>
+            <param name="orchestrationName">The Orchestration name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.IBizTalkApplication.TerminateOrchestrations(System.String[])">
+            <summary>
+            Terminate the Orchestrations.
+            </summary>
+            <param name="orchestrationNames">The Orchestration names.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.IBizTalkApplication.TerminateAllOrchestrations">
+            <summary>
+            Terminates all Orchestrations.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.IBizTalkApplication.StartOrchestration(System.String)">
+            <summary>
+            Start the Orchestration.
+            </summary>
+            <param name="orchestrationName">The Orchestration name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.IBizTalkApplication.StartOrchestrations(System.String[])">
+            <summary>
+            Start the Orchestrations.
+            </summary>
+            <param name="orchestrationNames">The Orchestration names.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.IBizTalkApplication.StartAllOrchestrations">
+            <summary>
+            Start all Orchestrations.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.IBizTalkApplication.StartSendPort(System.String)">
+            <summary>
+            Start the Send Port.
+            </summary>
+            <param name="sendPortName">The Send Port name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.IBizTalkApplication.StartSendPorts(System.String[])">
+            <summary>
+            Start the Send Ports.
+            </summary>
+            <param name="sendPortNames">The Send Port names.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.IBizTalkApplication.StartAllSendPorts">
+            <summary>
+            Start all Send Ports.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.IBizTalkApplication.StopSendPort(System.String)">
+            <summary>
+            Stop the Send Port.
+            </summary>
+            <param name="sendPortName">The Send Port name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.IBizTalkApplication.StopSendPorts(System.String[])">
+            <summary>
+            Stop the Send Ports.
+            </summary>
+            <param name="sendPortNames">The Send Port names.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.IBizTalkApplication.StopAllSendPorts">
+            <summary>
+            Stop all Send Ports.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.IBizTalkApplication.RemoveSendPorts">
+            <summary>
+            Remove all Send Ports.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.IBizTalkApplication.StartSendPortGroup(System.String)">
+            <summary>
+            Start Send Port Group.
+            </summary>
+            <param name="sendPortGroupName">The Send Port Group name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.IBizTalkApplication.StartSendPortGroups(System.String[])">
+            <summary>
+            Start Send Port Groups.
+            </summary>
+            <param name="sendPortGroupNames">The Send Port Group names.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.IBizTalkApplication.StartAllSendPortGroups">
+            <summary>
+            Start all Send Port Groups.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.IBizTalkApplication.StopSendPortGroup(System.String)">
+            <summary>
+            Stop Send Port Group.
+            </summary>
+            <param name="sendPortGroupName">The Send Port Group name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.IBizTalkApplication.StopSendPortGroups(System.String[])">
+            <summary>
+            Start Send Port Groups.
+            </summary>
+            <param name="sendPortGroupNames">The Send Port Group names.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.IBizTalkApplication.StopAllSendPortGroups">
+            <summary>
+            Stop all Send Port Groups.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.IBizTalkApplication.RemoveSendPortGroups">
+            <summary>
+            Remove Send Port Groups.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.BizTalk2009.BizTalkApplication.bizTalkApplication">
+            <summary>
+            Holds the <c>BizTalk</c> Application.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkApplication.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StealFocus.Core.BizTalk2009.BizTalkApplication"/> class.
+            </summary>
+            <param name="managementDatabaseConnectionString">The management database connection string.</param>
+            <param name="applicationName">The application name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkApplication.#ctor(StealFocus.Core.BizTalk2009.IBizTalkCatalogExplorer,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StealFocus.Core.BizTalk2009.BizTalkApplication"/> class.
+            </summary>
+            <param name="bizTalkCatalogExplorer">The <c>BizTalk</c> catalog.</param>
+            <param name="applicationName">The application name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkApplication.StopAll">
+            <summary>
+            Stop the <c>BizTalk</c> Application.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkApplication.StartAll">
+            <summary>
+            Start the <c>BizTalk</c> Application.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkApplication.EnableReceiveLocation(System.String)">
+            <summary>
+            Enable the Receive Location.
+            </summary>
+            <param name="receiveLocationName">The Receive Location name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkApplication.EnableReceiveLocations(System.String[])">
+            <summary>
+            Enable the Receive Locations.
+            </summary>
+            <param name="receiveLocationNames">The Receive Location names.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkApplication.EnableAllReceiveLocations">
+            <summary>
+            Enable all Receive Locations.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkApplication.DisableReceiveLocation(System.String)">
+            <summary>
+            Disable the Receive Location.
+            </summary>
+            <param name="receiveLocationName">The Receive Location name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkApplication.DisableReceiveLocations(System.String[])">
+            <summary>
+            Disable the Receive Locations.
+            </summary>
+            <param name="receiveLocationNames">The Receive Location names.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkApplication.DisableAllReceiveLocations">
+            <summary>
+            Disable all Receive Locations.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkApplication.RemoveReceivePorts">
+            <summary>
+            Remove Receive Ports.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkApplication.GetAllOrchestrationNames">
+            <summary>
+            Get all Orchestration names.
+            </summary>
+            <returns>The names.</returns>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkApplication.TerminateOrchestration(System.String)">
+            <summary>
+            Terminate the Orchestration.
+            </summary>
+            <param name="orchestrationName">The Orchestration name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkApplication.TerminateOrchestrations(System.String[])">
+            <summary>
+            Terminate the Orchestrations.
+            </summary>
+            <param name="orchestrationNames">The Orchestration names.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkApplication.TerminateAllOrchestrations">
+            <summary>
+            Terminates all Orchestrations.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkApplication.StartOrchestration(System.String)">
+            <summary>
+            Start the Orchestration.
+            </summary>
+            <param name="orchestrationName">The Orchestration name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkApplication.StartOrchestrations(System.String[])">
+            <summary>
+            Start the Orchestrations.
+            </summary>
+            <param name="orchestrationNames">The Orchestration names.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkApplication.StartAllOrchestrations">
+            <summary>
+            Start all Orchestrations.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkApplication.StartSendPort(System.String)">
+            <summary>
+            Start the Send Port.
+            </summary>
+            <param name="sendPortName">The Send Port name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkApplication.StartSendPorts(System.String[])">
+            <summary>
+            Start the Send Ports.
+            </summary>
+            <param name="sendPortNames">The Send Port names.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkApplication.StartAllSendPorts">
+            <summary>
+            Start all Send Ports.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkApplication.StopSendPort(System.String)">
+            <summary>
+            Stop the Send Port.
+            </summary>
+            <param name="sendPortName">The Send Port name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkApplication.StopSendPorts(System.String[])">
+            <summary>
+            Stop the Send Ports.
+            </summary>
+            <param name="sendPortNames">The Send Port names.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkApplication.StopAllSendPorts">
+            <summary>
+            Stop all Send Ports.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkApplication.RemoveSendPorts">
+            <summary>
+            Remove all Send Ports.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkApplication.StartSendPortGroup(System.String)">
+            <summary>
+            Start Send Port Group.
+            </summary>
+            <param name="sendPortGroupName">The Send Port Group name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkApplication.StartSendPortGroups(System.String[])">
+            <summary>
+            Start Send Port Groups.
+            </summary>
+            <param name="sendPortGroupNames">The Send Port Group names.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkApplication.StartAllSendPortGroups">
+            <summary>
+            Start all Send Port Groups.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkApplication.StopSendPortGroup(System.String)">
+            <summary>
+            Stop Send Port Group.
+            </summary>
+            <param name="sendPortGroupName">The Send Port Group name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkApplication.StopSendPortGroups(System.String[])">
+            <summary>
+            Start Send Port Groups.
+            </summary>
+            <param name="sendPortGroupNames">The Send Port Group names.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkApplication.StopAllSendPortGroups">
+            <summary>
+            Stop all Send Port Groups.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkApplication.RemoveSendPortGroups">
+            <summary>
+            Remove Send Port Groups.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkApplication.ChangeSendPortStatus(System.Collections.Generic.IEnumerable{System.String},Microsoft.BizTalk.ExplorerOM.PortStatus)">
+            <summary>
+            Change Send Ports status.
+            </summary>
+            <param name="sendPortNames">The Send Port names.</param>
+            <param name="newPortStatus">The Send Port status.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkApplication.GetAllSendPortNames">
+            <summary>
+            Get all Send Port names.
+            </summary>
+            <returns>The Send Port names.</returns>
+        </member>
+        <member name="T:StealFocus.Core.BizTalk2009.SendHandler">
+            <summary>
+            SendHandler Class.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.SendHandler.Create(System.String,System.String)">
+            <summary>
+            Create a Send Handler.
+            </summary>
+            <param name="adapterName">The Adapter name.</param>
+            <param name="hostName">The Host name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.SendHandler.Create(System.String,System.String,System.Boolean)">
+            <summary>
+            Create a Send Handler.
+            </summary>
+            <param name="adapterName">The Adapter name.</param>
+            <param name="hostName">The Host name.</param>
+            <param name="isDefault">Indicating if the Handler is the default.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.SendHandler.Exists(System.String,System.String)">
+            <summary>
+            Check if a Send Handler exists.
+            </summary>
+            <param name="adapterName">The Adapter name.</param>
+            <param name="hostName">The Host name.</param>
+            <returns>Indicating is the Handler exists.</returns>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.SendHandler.Delete(System.String,System.String)">
+            <summary>
+            Delete a Send Handler.
+            </summary>
+            <param name="adapterName">The Adapter name.</param>
+            <param name="hostName">The Host name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.SendHandler.DeleteAll(System.String)">
+            <summary>
+            Delete all Send Handlers.
+            </summary>
+            <param name="adapterName">The Adapter name.</param>
+        </member>
+        <member name="T:StealFocus.Core.BizTalk2009.Host">
+            <summary>
+            Host Class.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.Create(System.String,System.String,System.Boolean,StealFocus.Core.BizTalk2009.HostType,System.Boolean,System.Boolean)">
+            <summary>
+            Create a new Host.
+            </summary>
+            <param name="hostName">The Host name.</param>
+            <param name="windowsGroupName">The Windows Group name.</param>
+            <param name="trusted">Whether a trusted host.</param>
+            <param name="hostType">The Host type.</param>
+            <param name="hostTracking">Whether Host tracking is enabled.</param>
+            <param name="isDefault">Whether the Host is default.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.CreateInstance(System.String,System.String,System.String,System.String)">
+            <summary>
+            Create a new Host instance.
+            </summary>
+            <param name="serverName">The server name.</param>
+            <param name="hostName">The Host name.</param>
+            <param name="userName">The username.</param>
+            <param name="password">The password.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.Exists(System.String)">
+            <summary>
+            Check if a Host exists.
+            </summary>
+            <param name="hostName">The Host name.</param>
+            <returns>Indicates if the Host exists.</returns>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.Delete(System.String)">
+            <summary>
+            Delete a Host.
+            </summary>
+            <param name="hostName">The Host name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.Stop(System.String)">
+            <summary>
+            Stop a Host.
+            </summary>
+            <param name="hostName">The Host name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.Start(System.String)">
+            <summary>
+            Start a Host.
+            </summary>
+            <param name="hostName">The Host name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.Restart(System.String)">
+            <summary>
+            Restart a Host.
+            </summary>
+            <param name="hostName">The Host name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.GetSendHandlers(System.String)">
+            <summary>
+            Get the Send Handlers for a Host.
+            </summary>
+            <param name="hostName">The Host name.</param>
+            <returns>The Send Handler names.</returns>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.GetReceiveHandlers(System.String)">
+            <summary>
+            Get the Receive Handlers for a Host.
+            </summary>
+            <param name="hostName">The Host name.</param>
+            <returns>The Receive Handler names.</returns>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.CleanQueue(System.String)">
+            <summary>
+            Clean queue.
+            </summary>
+            <param name="hostName">The Host name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.CanTerminate(System.String)">
+            <summary>
+            Determines if the instance can be terminated.
+            </summary>
+            <param name="status">The status.</param>
+            <returns>Indicating if the service can be terminated.</returns>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.CanSuspend(System.String)">
+            <summary>
+            Determines if the instance can be suspended.
+            </summary>
+            <param name="status">The status.</param>
+            <returns>Indicating if the service can be terminated.</returns>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.CountMessageInstances(System.String)">
+            <summary>
+            Displays the message instances currently on this queue.
+            </summary>
+            <param name="hostName">The Host name.</param>
+            <returns>An <see cref="T:System.Int32"/>. The number of messages.</returns>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.TerminateMessageInstances(System.String)">
+            <summary>
+            This will terminate all message instances belonging to a host.
+            </summary>
+            <param name="hostName">The Host name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.SuspendMessageInstances(System.String)">
+            <summary>
+            This will suspend all message instances belonging to a host.
+            </summary>
+            <param name="hostName">The Host name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.CountServiceInstances(System.String)">
+            <summary>
+            Suspends all service instances for a host.
+            </summary>
+            <param name="hostName">The Host name.</param>
+            <returns>An <see cref="T:System.Int32"/>. The number of instances.</returns>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.SuspendServiceInstances(System.String)">
+            <summary>
+            Suspends all service instances for a host.
+            </summary>
+            <param name="hostName">The Host name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.TerminateServiceInstances(System.String)">
+            <summary>
+            Terminates all service instances for a host.
+            </summary>
+            <param name="hostName">The Host name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.SuspendServiceInstancesByID(System.String,System.String,System.String,System.String)">
+            <summary>
+            Suspends one service instance.
+            </summary>
+            <param name="hostName">The Host name.</param>
+            <param name="serviceInstanceId">The service instance ID.</param>
+            <param name="serviceClassId">The service class ID.</param>
+            <param name="serviceTypeId">The service type ID.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.TerminateServiceInstancesByID(System.String,System.String,System.String,System.String)">
+            <summary>
+            Terminates one service instance.
+            </summary>
+            <param name="hostName">The Host name.</param>
+            <param name="serviceInstanceId">The service instance ID.</param>
+            <param name="serviceClassId">The service class ID.</param>
+            <param name="serviceTypeId">The service type ID.</param>
+        </member>
+        <member name="T:StealFocus.Core.BizTalk2009.BizTalkCatalogExplorer">
+            <summary>
+            BizTalkCatalogExplorer Class.
+            </summary>
+        </member>
+        <member name="T:StealFocus.Core.BizTalk2009.IBizTalkCatalogExplorer">
+            <summary>
+            IBizTalkCatalogExplorer Interface.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.IBizTalkCatalogExplorer.ChangeManagementDatabase(System.String)">
+            <summary>
+            Change database.
+            </summary>
+            <param name="newManagementDatabaseConnectionString">The new connection string.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.IBizTalkCatalogExplorer.ApplicationExists(System.String)">
+            <summary>
+            Check if the <c>BizTalk</c> application exists.
+            </summary>
+            <param name="applicationName">The application name.</param>
+            <returns>Indicating if the application exists.</returns>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.IBizTalkCatalogExplorer.CreateApplication(System.String)">
+            <summary>
+            Create a new <c>BizTalk</c> application.
+            </summary>
+            <param name="applicationName">The <c>BizTalk</c> application name.</param>
+            <returns>An <see cref="T:Microsoft.BizTalk.ExplorerOM.IBizTalkApplication"/>. The new application.</returns>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.IBizTalkCatalogExplorer.GetApplication(System.String)">
+            <summary>
+            Get the <c>BizTalk</c> application.
+            </summary>
+            <param name="applicationName">The <c>BizTalk</c> application name.</param>
+            <returns>An <see cref="T:Microsoft.BizTalk.ExplorerOM.IBizTalkApplication"/>. The application.</returns>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.IBizTalkCatalogExplorer.GetApplicationNames">
+            <summary>
+            Get application names.
+            </summary>
+            <returns>The application names.</returns>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.IBizTalkCatalogExplorer.RemoveApplication(System.String)">
+            <summary>
+            Remove the <c>BizTalk</c> application.
+            </summary>
+            <param name="applicationName">The application name.</param>
+        </member>
+        <member name="F:StealFocus.Core.BizTalk2009.BizTalkCatalogExplorer.managementDatabaseConnectionString">
+            <summary>
+            Holds the connection string.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.BizTalk2009.BizTalkCatalogExplorer.btsCatalogExplorer">
+            <summary>
+            Holds the <c>BizTalk</c> catalog explorer.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.BizTalk2009.BizTalkCatalogExplorer.managementDatabaseServerName">
+            <summary>
+            Holds the database server name.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.BizTalk2009.BizTalkCatalogExplorer.managementDatabaseName">
+            <summary>
+            Holds the database name.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkCatalogExplorer.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StealFocus.Core.BizTalk2009.BizTalkCatalogExplorer"/> class. 
+            </summary>
+            <param name="managementDatabaseConnectionString">The connection string.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkCatalogExplorer.#ctor(Microsoft.BizTalk.ExplorerOM.IBtsCatalogExplorer2,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StealFocus.Core.BizTalk2009.BizTalkCatalogExplorer"/> class. 
+            </summary>
+            <param name="btsCatalogExplorer">The <c>BizTalk</c> catalog explorer.</param>
+            <param name="managementDatabaseConnectionString">The connection string.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkCatalogExplorer.ChangeManagementDatabase(System.String)">
+            <summary>
+            Change database.
+            </summary>
+            <param name="newManagementDatabaseConnectionString">The new connection string.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkCatalogExplorer.ApplicationExists(System.String)">
+            <summary>
+            Check if the <c>BizTalk</c> application exists.
+            </summary>
+            <param name="applicationName">The application name.</param>
+            <returns>Indicating if the application exists.</returns>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkCatalogExplorer.CreateApplication(System.String)">
+            <summary>
+            Create a new <c>BizTalk</c> application.
+            </summary>
+            <param name="applicationName">The <c>BizTalk</c> application name.</param>
+            <returns>An <see cref="T:Microsoft.BizTalk.ExplorerOM.IBizTalkApplication"/>. The new application.</returns>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkCatalogExplorer.GetApplication(System.String)">
+            <summary>
+            Get the <c>BizTalk</c> application.
+            </summary>
+            <param name="applicationName">The <c>BizTalk</c> application name.</param>
+            <returns>An <see cref="T:Microsoft.BizTalk.ExplorerOM.IBizTalkApplication"/>. The application.</returns>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkCatalogExplorer.GetApplicationNames">
+            <summary>
+            Get application names.
+            </summary>
+            <returns>The application names.</returns>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkCatalogExplorer.RemoveApplication(System.String)">
+            <summary>
+            Remove the <c>BizTalk</c> application.
+            </summary>
+            <param name="applicationName">The application name.</param>
+        </member>
+        <member name="T:StealFocus.Core.BizTalk2009.BizTalkOrchestration">
+            <summary>
+            BizTalkOrchestration Class.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.BizTalk2009.BizTalkOrchestration.name">
+            <summary>
+            Holds the name.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkOrchestration.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StealFocus.Core.BizTalk2009.BizTalkOrchestration"/> class. 
+            </summary>
+            <param name="name">The Orchestration name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkOrchestration.TerminateInstances">
+            <summary>
+            Terminate instances.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.BizTalkOrchestration.TerminateServiceInstancesByID(System.String,System.Collections.Specialized.StringCollection,System.Collections.Specialized.StringCollection,System.Collections.Specialized.StringCollection)">
+            <summary>
+            Terminate Service instances by ID.
+            </summary>
+            <param name="hostName">The host name.</param>
+            <param name="instanceIdList">The instance IDs.</param>
+            <param name="serviceClassIdList">The service class IDs.</param>
+            <param name="serviceTypeIdList">The service type IDs.</param>
+        </member>
+        <member name="T:StealFocus.Core.BizTalk2009.HostManagement">
+            <summary>
+            HostManagement Class.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.HostManagement.GetHostObject(System.String)">
+            <summary>
+            Get the Host object.
+            </summary>
+            <param name="hostName">The host name.</param>
+            <returns>The Host object.</returns>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.HostManagement.GetHostSettingsObject(System.String)">
+            <summary>
+            Get the Host settings object.
+            </summary>
+            <param name="hostSettingName">The host setting name.</param>
+            <returns>The Host settings object.</returns>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.HostManagement.GetHostSettingClass">
+            <summary>
+            Gets the host setting class.
+            </summary>
+            <returns>The host setting.</returns>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.HostManagement.GetManagementScope">
+            <summary>
+            Gets the management scope.
+            </summary>
+            <returns>The management scope.</returns>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.HostManagement.GetManagementClass(System.String)">
+            <summary>
+            Gets the management class.
+            </summary>
+            <param name="path">The WMI path.</param>
+            <returns>The management class.</returns>
+        </member>
+        <member name="T:StealFocus.Core.BizTalk2009.Adapter">
+            <summary>
+            Adapter Class.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Adapter.Add(System.String,System.Guid)">
+            <summary>
+            Adds the Adapter with the specified name.
+            </summary>
+            <param name="name">The name of the Adapter.</param>
+            <param name="managementClassId">The management class ID.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Adapter.Add(System.String,System.Guid,System.String)">
+            <summary>
+            Adds the specified name.
+            </summary>
+            <param name="name">The name of the Adapter.</param>
+            <param name="managementClassId">The management class ID.</param>
+            <param name="comment">The comment.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Adapter.Delete(System.String)">
+            <summary>
+            Deletes the Adapter with the specified name.
+            </summary>
+            <param name="adapterName">Name of the adapter.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Adapter.GetAdapters">
+            <summary>
+            Gets the adapters.
+            </summary>
+            <returns>A list of Adapter names.</returns>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Adapter.GetManagementClassId(System.String)">
+            <summary>
+            Gets the management class ID of an Adapter.
+            </summary>
+            <param name="adapterName">Name of the adapter.</param>
+            <returns>The management class ID.</returns>
+        </member>
+    </members>
+</doc>

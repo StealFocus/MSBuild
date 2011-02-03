@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{45BE1E6E-664F-4BE3-93EA-6394700C79CF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>StealFocus.MSBuild.Tasks.BizTalk2009</RootNamespace>
+    <AssemblyName>StealFocus.MSBuild.Tasks.BizTalk2009</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>1607</NoWarn>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\StealFocus.MSBuild.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>1607</NoWarn>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\StealFocus.MSBuild.StrongNamePublicKey.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DelaySign>true</DelaySign>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.BizTalk.ExplorerOM, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Library\Microsoft.BizTalk.ExplorerOM.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Build.Framework" />
+    <Reference Include="Microsoft.Build.Utilities.v3.5" />
+    <Reference Include="StealFocus.Core">
+      <HintPath>..\..\Library\StealFocus.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="StealFocus.Core.BizTalk2009">
+      <HintPath>..\..\Library\StealFocus.Core.BizTalk2009.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\AssemblyInfoCommon.cs">
+      <Link>Properties\AssemblyInfoCommon.cs</Link>
+    </Compile>
+    <Compile Include="BizTalkAdapterTask.cs" />
+    <Compile Include="BizTalkApplicationTask.cs" />
+    <Compile Include="BizTalkHostTask.cs" />
+    <Compile Include="BizTalkSendReceiveHandlerTask.cs" />
+    <Compile Include="Bts2009AddAdapter.cs" />
+    <Compile Include="Bts2009CleanHostQueue.cs" />
+    <Compile Include="Bts2009CreateApplication.cs" />
+    <Compile Include="Bts2009CreateHost.cs" />
+    <Compile Include="Bts2009CreateHostInstance.cs" />
+    <Compile Include="Bts2009CreateReceiveHandler.cs" />
+    <Compile Include="Bts2009CreateSendHandler.cs" />
+    <Compile Include="Bts2009DeleteAllReceiveHandlers.cs" />
+    <Compile Include="Bts2009DeleteAllSendHandlers.cs" />
+    <Compile Include="Bts2009DeleteHost.cs" />
+    <Compile Include="Bts2009DeleteReceiveHandler.cs" />
+    <Compile Include="Bts2009DeleteSendHandler.cs" />
+    <Compile Include="Bts2009DisableAllReceiveLocations.cs" />
+    <Compile Include="Bts2009DisableReceiveLocations.cs" />
+    <Compile Include="Bts2009EnableAllReceiveLocations.cs" />
+    <Compile Include="Bts2009EnableReceiveLocations.cs" />
+    <Compile Include="Bts2009HostExists.cs" />
+    <Compile Include="Bts2009RemoveApplication.cs" />
+    <Compile Include="Bts2009StartAllOrchestrations.cs" />
+    <Compile Include="Bts2009StartAllSendPorts.cs" />
+    <Compile Include="Bts2009StartApplication.cs" />
+    <Compile Include="Bts2009StartHost.cs" />
+    <Compile Include="Bts2009StartOrchestrations.cs" />
+    <Compile Include="Bts2009StartSendPorts.cs" />
+    <Compile Include="Bts2009StopAllSendPorts.cs" />
+    <Compile Include="Bts2009StopApplication.cs" />
+    <Compile Include="Bts2009StopHost.cs" />
+    <Compile Include="Bts2009StopSendPorts.cs" />
+    <Compile Include="Bts2009TerminateAllOrchestrations.cs" />
+    <Compile Include="Bts2009TerminateOrchestrations.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\StealFocus.MSBuild.StrongNamePublicKey.snk">
+      <Link>StealFocus.MSBuild.StrongNamePublicKey.snk</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="..\FxCopCustomDictionary.xml">
+      <Link>FxCopCustomDictionary.xml</Link>
+    </CodeAnalysisDictionary>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup Condition=" '$(SolutionDir)'=='*Undefined*' ">
+    <SolutionDir>..\</SolutionDir>
+  </PropertyGroup>
+  <Import Project="$(SolutionDir)\Scripts\StealFocus.MSBuild.Project.CSharp.targets" />
+</Project>

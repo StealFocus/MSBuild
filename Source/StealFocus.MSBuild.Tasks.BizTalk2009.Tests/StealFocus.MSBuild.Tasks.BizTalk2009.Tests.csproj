@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C3078D43-7C01-41AB-9908-58067822F41C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>StealFocus.MSBuild.Tasks.BizTalk2009.Tests</RootNamespace>
+    <AssemblyName>StealFocus.MSBuild.Tasks.BizTalk2009.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>1607</NoWarn>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\StealFocus.MSBuild.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>1607</NoWarn>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\StealFocus.MSBuild.StrongNamePublicKey.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DelaySign>true</DelaySign>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Build.Framework" />
+    <Reference Include="Microsoft.Build.Utilities.v3.5, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="StealFocus.Core">
+      <HintPath>..\..\Library\StealFocus.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="StealFocus.Core.BizTalk2009">
+      <HintPath>..\..\Library\StealFocus.Core.BizTalk2009.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
+      <Visible>False</Visible>
+    </CodeAnalysisDependentAssemblyPaths>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\AssemblyInfoCommon.cs">
+      <Link>Properties\AssemblyInfoCommon.cs</Link>
+    </Compile>
+    <Compile Include="Bts2009Tests.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="..\FxCopCustomDictionary.xml">
+      <Link>FxCopCustomDictionary.xml</Link>
+    </CodeAnalysisDictionary>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\StealFocus.MSBuild.StrongNamePublicKey.snk">
+      <Link>StealFocus.MSBuild.StrongNamePublicKey.snk</Link>
+    </None>
+    <EmbeddedResource Include="Resources\Tests.msbuild" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StealFocus.MSBuild.Tasks.BizTalk2009\StealFocus.MSBuild.Tasks.BizTalk2009.csproj">
+      <Project>{45BE1E6E-664F-4BE3-93EA-6394700C79CF}</Project>
+      <Name>StealFocus.MSBuild.Tasks.BizTalk2009</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StealFocus.MSBuild.Tests\StealFocus.MSBuild.Tests.csproj">
+      <Project>{28380DD6-3444-48ED-8028-5A4BFC392F89}</Project>
+      <Name>StealFocus.MSBuild.Tests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StealFocus.MSBuild\StealFocus.MSBuild.csproj">
+      <Project>{DD84C8EE-9ACD-4F85-BBEC-A3E9331A9D1D}</Project>
+      <Name>StealFocus.MSBuild</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup Condition=" '$(SolutionDir)'=='*Undefined*' ">
+    <SolutionDir>..\</SolutionDir>
+  </PropertyGroup>
+  <Import Project="$(SolutionDir)\Scripts\StealFocus.MSBuild.Project.CSharp.targets" />
+</Project>
