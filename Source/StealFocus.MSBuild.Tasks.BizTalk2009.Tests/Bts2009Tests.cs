@@ -36,7 +36,8 @@ namespace StealFocus.MSBuild.Tasks.BizTalk2009.Tests
         public void IntegrationTestCreateAndRemove()
         {
             const string TargetName = "CreateAndRemove";
-            string arguments = string.Format(CultureInfo.CurrentCulture, "{0} /t:{1}", MSBuildProjectFileName, TargetName);
+            const string ManagementDatabaseConnectionString = "server=.\\MSSqlSvr2008;database=BizTalkMgmtDb;integrated security=sspi;";
+            string arguments = string.Format(CultureInfo.CurrentCulture, "{0} /t:{1} /p:ManagementDatabaseConnectionString=\"{2}\"", MSBuildProjectFileName, TargetName, ManagementDatabaseConnectionString);
             int exitCode = RunMSBuild(arguments);
             Assert.IsTrue(exitCode == 0, "The MSBuild Task failed.");
         }

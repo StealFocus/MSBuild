@@ -38,10 +38,6 @@
     TaskName="StealFocus.MSBuild.Tasks.BizTalk2009.Bts2009StartHost"
 		AssemblyFile="StealFocus.MSBuild.Tasks.BizTalk2009.dll" />
 
-	<PropertyGroup>
-		<ManagementDatabaseConnectionString>server=.\MSSqlSvr2008;database=BizTalkMgmtDb;integrated security=sspi;</ManagementDatabaseConnectionString>
-	</PropertyGroup>
-
 	<Target Name="CreateAndRemove">
     <Bts2009RemoveApplication
 			ManagementDatabaseConnectionString="$(ManagementDatabaseConnectionString)"
