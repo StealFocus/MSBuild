@@ -91,7 +91,7 @@
       Importance="high"
       Text="Using 'VersionNumber' = '$(VersionNumber)'." />
     <MSBuild
-      Projects="StealFocus.Core.Build.proj"
+      Projects="StealFocus.MSBuild.Build.proj"
       Properties="BranchName=$(BranchName);BuildLabel=$(BuildLabel);BuildLabelNumber=$(BuildLabelNumber);DropLocationForBuild=$(DropLocationForBuild);IsAllConfigurationsBuild=$(IsAllConfigurationsBuild);IsCommandLineBuild=$(IsCommandLineBuild);IsDesktopBuild=$(IsDesktopBuild);IsDocumentationBuild=$(IsDocumentationBuild);IsInitialiseEnvironmentBuild=$(IsInitialiseEnvironmentBuild);IsPackagedBuild=$(IsPackagedBuild);VersionNumber=$(VersionNumber)" />
   </Target>
 
