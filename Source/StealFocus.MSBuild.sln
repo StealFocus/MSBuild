@@ -23,6 +23,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "StealFocus.MSBuild.Setup", "StealFocus.MSBuild.Setup\StealFocus.MSBuild.Setup.wixproj", "{2E4920EB-2965-45EC-8AF9-F2211BC23E65}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C3078D43-7C01-41AB-9908-58067822F41C} = {C3078D43-7C01-41AB-9908-58067822F41C}
+		{28380DD6-3444-48ED-8028-5A4BFC392F89} = {28380DD6-3444-48ED-8028-5A4BFC392F89}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{B81A7F8F-EC4E-4D88-BB71-CB77439FA667}"
 	ProjectSection(SolutionItems) = preProject
