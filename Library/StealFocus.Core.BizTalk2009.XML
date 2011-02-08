@@ -4,98 +4,44 @@
         <name>StealFocus.Core.BizTalk2009</name>
     </assembly>
     <members>
-        <member name="T:StealFocus.Core.BizTalk2009.ServiceStatus">
+        <member name="T:StealFocus.Core.BizTalk2009.Adapter">
             <summary>
-            ServiceStatus Class.
+            Adapter Class.
             </summary>
         </member>
-        <member name="F:StealFocus.Core.BizTalk2009.ServiceStatus.ReadyToRun">
+        <member name="M:StealFocus.Core.BizTalk2009.Adapter.Add(System.String,System.Guid)">
             <summary>
-            Holds the ReadyToRun status.
+            Adds the Adapter with the specified name.
             </summary>
+            <param name="name">The name of the Adapter.</param>
+            <param name="managementClassId">The management class ID.</param>
         </member>
-        <member name="F:StealFocus.Core.BizTalk2009.ServiceStatus.Active">
+        <member name="M:StealFocus.Core.BizTalk2009.Adapter.Add(System.String,System.Guid,System.String)">
             <summary>
-            Holds the Active status.
+            Adds the specified name.
             </summary>
+            <param name="name">The name of the Adapter.</param>
+            <param name="managementClassId">The management class ID.</param>
+            <param name="comment">The comment.</param>
         </member>
-        <member name="F:StealFocus.Core.BizTalk2009.ServiceStatus.SuspendedResumable">
+        <member name="M:StealFocus.Core.BizTalk2009.Adapter.Delete(System.String)">
             <summary>
-            Holds the SuspendedResumable status.
+            Deletes the Adapter with the specified name.
             </summary>
+            <param name="adapterName">Name of the adapter.</param>
         </member>
-        <member name="F:StealFocus.Core.BizTalk2009.ServiceStatus.Dehydrated">
+        <member name="M:StealFocus.Core.BizTalk2009.Adapter.GetAdapters">
             <summary>
-            Holds the Dehydrated status.
+            Gets the adapters.
             </summary>
+            <returns>A list of Adapter names.</returns>
         </member>
-        <member name="F:StealFocus.Core.BizTalk2009.ServiceStatus.CompletedWithDiscardedMessages">
+        <member name="M:StealFocus.Core.BizTalk2009.Adapter.GetManagementClassId(System.String)">
             <summary>
-            Holds the CompletedWithDiscardedMessages status.
+            Gets the management class ID of an Adapter.
             </summary>
-        </member>
-        <member name="F:StealFocus.Core.BizTalk2009.ServiceStatus.SuspendedNotResumable">
-            <summary>
-            Holds the SuspendedNotResumable status.
-            </summary>
-        </member>
-        <member name="F:StealFocus.Core.BizTalk2009.ServiceStatus.InBreakpoint">
-            <summary>
-            Holds the InBreakpoint status.
-            </summary>
-        </member>
-        <member name="T:StealFocus.Core.BizTalk2009.ReceiveHandler">
-            <summary>
-            ReceiveHandler Class.
-            </summary>
-        </member>
-        <member name="M:StealFocus.Core.BizTalk2009.ReceiveHandler.Create(System.String,System.String)">
-            <summary>
-            Create a Receive Handler.
-            </summary>
-            <param name="adapterName">The Adapter name.</param>
-            <param name="hostName">The Host name.</param>
-        </member>
-        <member name="M:StealFocus.Core.BizTalk2009.ReceiveHandler.Exists(System.String,System.String)">
-            <summary>
-            Check if a Receive Handler exists.
-            </summary>
-            <param name="adapterName">The Adapter name.</param>
-            <param name="hostName">The Host name.</param>
-            <returns>Indicating is the Handler exists.</returns>
-        </member>
-        <member name="M:StealFocus.Core.BizTalk2009.ReceiveHandler.Delete(System.String,System.String)">
-            <summary>
-            Delete a Receive Handler.
-            </summary>
-            <param name="adapterName">The Adapter name.</param>
-            <param name="hostName">The Host name.</param>
-        </member>
-        <member name="M:StealFocus.Core.BizTalk2009.ReceiveHandler.DeleteAll(System.String)">
-            <summary>
-            Delete all Receive Handlers.
-            </summary>
-            <param name="adapterName">The Adapter name.</param>
-        </member>
-        <member name="T:StealFocus.Core.BizTalk2009.HostType">
-            <summary>
-            Host types.
-            </summary>
-        </member>
-        <member name="F:StealFocus.Core.BizTalk2009.HostType.Invalid">
-            <summary>
-            Invalid host type.
-            </summary>
-        </member>
-        <member name="F:StealFocus.Core.BizTalk2009.HostType.InProcess">
-            <summary>
-            Inprocess host.
-            </summary>
-        </member>
-        <member name="F:StealFocus.Core.BizTalk2009.HostType.Isolated">
-            <summary>
-            Isolated host, for example IIS.
-            </summary>
+            <param name="adapterName">Name of the adapter.</param>
+            <returns>The management class ID.</returns>
         </member>
         <member name="T:StealFocus.Core.BizTalk2009.BizTalkApplication">
             <summary>
@@ -473,193 +419,6 @@
             </summary>
             <returns>The Send Port names.</returns>
         </member>
-        <member name="T:StealFocus.Core.BizTalk2009.SendHandler">
-            <summary>
-            SendHandler Class.
-            </summary>
-        </member>
-        <member name="M:StealFocus.Core.BizTalk2009.SendHandler.Create(System.String,System.String)">
-            <summary>
-            Create a Send Handler.
-            </summary>
-            <param name="adapterName">The Adapter name.</param>
-            <param name="hostName">The Host name.</param>
-        </member>
-        <member name="M:StealFocus.Core.BizTalk2009.SendHandler.Create(System.String,System.String,System.Boolean)">
-            <summary>
-            Create a Send Handler.
-            </summary>
-            <param name="adapterName">The Adapter name.</param>
-            <param name="hostName">The Host name.</param>
-            <param name="isDefault">Indicating if the Handler is the default.</param>
-        </member>
-        <member name="M:StealFocus.Core.BizTalk2009.SendHandler.Exists(System.String,System.String)">
-            <summary>
-            Check if a Send Handler exists.
-            </summary>
-            <param name="adapterName">The Adapter name.</param>
-            <param name="hostName">The Host name.</param>
-            <returns>Indicating is the Handler exists.</returns>
-        </member>
-        <member name="M:StealFocus.Core.BizTalk2009.SendHandler.Delete(System.String,System.String)">
-            <summary>
-            Delete a Send Handler.
-            </summary>
-            <param name="adapterName">The Adapter name.</param>
-            <param name="hostName">The Host name.</param>
-        </member>
-        <member name="M:StealFocus.Core.BizTalk2009.SendHandler.DeleteAll(System.String)">
-            <summary>
-            Delete all Send Handlers.
-            </summary>
-            <param name="adapterName">The Adapter name.</param>
-        </member>
-        <member name="T:StealFocus.Core.BizTalk2009.Host">
-            <summary>
-            Host Class.
-            </summary>
-        </member>
-        <member name="M:StealFocus.Core.BizTalk2009.Host.Create(System.String,System.String,System.Boolean,StealFocus.Core.BizTalk2009.HostType,System.Boolean,System.Boolean)">
-            <summary>
-            Create a new Host.
-            </summary>
-            <param name="hostName">The Host name.</param>
-            <param name="windowsGroupName">The Windows Group name.</param>
-            <param name="trusted">Whether a trusted host.</param>
-            <param name="hostType">The Host type.</param>
-            <param name="hostTracking">Whether Host tracking is enabled.</param>
-            <param name="isDefault">Whether the Host is default.</param>
-        </member>
-        <member name="M:StealFocus.Core.BizTalk2009.Host.CreateInstance(System.String,System.String,System.String,System.String)">
-            <summary>
-            Create a new Host instance.
-            </summary>
-            <param name="serverName">The server name.</param>
-            <param name="hostName">The Host name.</param>
-            <param name="userName">The username.</param>
-            <param name="password">The password.</param>
-        </member>
-        <member name="M:StealFocus.Core.BizTalk2009.Host.Exists(System.String)">
-            <summary>
-            Check if a Host exists.
-            </summary>
-            <param name="hostName">The Host name.</param>
-            <returns>Indicates if the Host exists.</returns>
-        </member>
-        <member name="M:StealFocus.Core.BizTalk2009.Host.Delete(System.String)">
-            <summary>
-            Delete a Host.
-            </summary>
-            <param name="hostName">The Host name.</param>
-        </member>
-        <member name="M:StealFocus.Core.BizTalk2009.Host.Stop(System.String)">
-            <summary>
-            Stop a Host.
-            </summary>
-            <param name="hostName">The Host name.</param>
-        </member>
-        <member name="M:StealFocus.Core.BizTalk2009.Host.Start(System.String)">
-            <summary>
-            Start a Host.
-            </summary>
-            <param name="hostName">The Host name.</param>
-        </member>
-        <member name="M:StealFocus.Core.BizTalk2009.Host.Restart(System.String)">
-            <summary>
-            Restart a Host.
-            </summary>
-            <param name="hostName">The Host name.</param>
-        </member>
-        <member name="M:StealFocus.Core.BizTalk2009.Host.GetSendHandlers(System.String)">
-            <summary>
-            Get the Send Handlers for a Host.
-            </summary>
-            <param name="hostName">The Host name.</param>
-            <returns>The Send Handler names.</returns>
-        </member>
-        <member name="M:StealFocus.Core.BizTalk2009.Host.GetReceiveHandlers(System.String)">
-            <summary>
-            Get the Receive Handlers for a Host.
-            </summary>
-            <param name="hostName">The Host name.</param>
-            <returns>The Receive Handler names.</returns>
-        </member>
-        <member name="M:StealFocus.Core.BizTalk2009.Host.CleanQueue(System.String)">
-            <summary>
-            Clean queue.
-            </summary>
-            <param name="hostName">The Host name.</param>
-        </member>
-        <member name="M:StealFocus.Core.BizTalk2009.Host.CanTerminate(System.String)">
-            <summary>
-            Determines if the instance can be terminated.
-            </summary>
-            <param name="status">The status.</param>
-            <returns>Indicating if the service can be terminated.</returns>
-        </member>
-        <member name="M:StealFocus.Core.BizTalk2009.Host.CanSuspend(System.String)">
-            <summary>
-            Determines if the instance can be suspended.
-            </summary>
-            <param name="status">The status.</param>
-            <returns>Indicating if the service can be terminated.</returns>
-        </member>
-        <member name="M:StealFocus.Core.BizTalk2009.Host.CountMessageInstances(System.String)">
-            <summary>
-            Displays the message instances currently on this queue.
-            </summary>
-            <param name="hostName">The Host name.</param>
-            <returns>An <see cref="T:System.Int32"/>. The number of messages.</returns>
-        </member>
-        <member name="M:StealFocus.Core.BizTalk2009.Host.TerminateMessageInstances(System.String)">
-            <summary>
-            This will terminate all message instances belonging to a host.
-            </summary>
-            <param name="hostName">The Host name.</param>
-        </member>
-        <member name="M:StealFocus.Core.BizTalk2009.Host.SuspendMessageInstances(System.String)">
-            <summary>
-            This will suspend all message instances belonging to a host.
-            </summary>
-            <param name="hostName">The Host name.</param>
-        </member>
-        <member name="M:StealFocus.Core.BizTalk2009.Host.CountServiceInstances(System.String)">
-            <summary>
-            Suspends all service instances for a host.
-            </summary>
-            <param name="hostName">The Host name.</param>
-            <returns>An <see cref="T:System.Int32"/>. The number of instances.</returns>
-        </member>
-        <member name="M:StealFocus.Core.BizTalk2009.Host.SuspendServiceInstances(System.String)">
-            <summary>
-            Suspends all service instances for a host.
-            </summary>
-            <param name="hostName">The Host name.</param>
-        </member>
-        <member name="M:StealFocus.Core.BizTalk2009.Host.TerminateServiceInstances(System.String)">
-            <summary>
-            Terminates all service instances for a host.
-            </summary>
-            <param name="hostName">The Host name.</param>
-        </member>
-        <member name="M:StealFocus.Core.BizTalk2009.Host.SuspendServiceInstancesByID(System.String,System.String,System.String,System.String)">
-            <summary>
-            Suspends one service instance.
-            </summary>
-            <param name="hostName">The Host name.</param>
-            <param name="serviceInstanceId">The service instance ID.</param>
-            <param name="serviceClassId">The service class ID.</param>
-            <param name="serviceTypeId">The service type ID.</param>
-        </member>
-        <member name="M:StealFocus.Core.BizTalk2009.Host.TerminateServiceInstancesByID(System.String,System.String,System.String,System.String)">
-            <summary>
-            Terminates one service instance.
-            </summary>
-            <param name="hostName">The Host name.</param>
-            <param name="serviceInstanceId">The service instance ID.</param>
-            <param name="serviceClassId">The service class ID.</param>
-            <param name="serviceTypeId">The service type ID.</param>
-        </member>
         <member name="T:StealFocus.Core.BizTalk2009.BizTalkCatalogExplorer">
             <summary>
             BizTalkCatalogExplorer Class.
@@ -811,6 +570,152 @@
             <param name="serviceClassIdList">The service class IDs.</param>
             <param name="serviceTypeIdList">The service type IDs.</param>
         </member>
+        <member name="T:StealFocus.Core.BizTalk2009.Host">
+            <summary>
+            Host Class.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.Create(System.String,System.String,System.Boolean,StealFocus.Core.BizTalk2009.HostType,System.Boolean,System.Boolean)">
+            <summary>
+            Create a new Host.
+            </summary>
+            <param name="hostName">The Host name.</param>
+            <param name="windowsGroupName">The Windows Group name.</param>
+            <param name="trusted">Whether a trusted host.</param>
+            <param name="hostType">The Host type.</param>
+            <param name="hostTracking">Whether Host tracking is enabled.</param>
+            <param name="isDefault">Whether the Host is default.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.CreateInstance(System.String,System.String,System.String,System.String)">
+            <summary>
+            Create a new Host instance.
+            </summary>
+            <param name="serverName">The server name.</param>
+            <param name="hostName">The Host name.</param>
+            <param name="userName">The username.</param>
+            <param name="password">The password.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.Exists(System.String)">
+            <summary>
+            Check if a Host exists.
+            </summary>
+            <param name="hostName">The Host name.</param>
+            <returns>Indicates if the Host exists.</returns>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.Delete(System.String)">
+            <summary>
+            Delete a Host.
+            </summary>
+            <param name="hostName">The Host name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.Stop(System.String)">
+            <summary>
+            Stop a Host.
+            </summary>
+            <param name="hostName">The Host name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.Start(System.String)">
+            <summary>
+            Start a Host.
+            </summary>
+            <param name="hostName">The Host name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.Restart(System.String)">
+            <summary>
+            Restart a Host.
+            </summary>
+            <param name="hostName">The Host name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.GetSendHandlers(System.String)">
+            <summary>
+            Get the Send Handlers for a Host.
+            </summary>
+            <param name="hostName">The Host name.</param>
+            <returns>The Send Handler names.</returns>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.GetReceiveHandlers(System.String)">
+            <summary>
+            Get the Receive Handlers for a Host.
+            </summary>
+            <param name="hostName">The Host name.</param>
+            <returns>The Receive Handler names.</returns>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.CleanQueue(System.String)">
+            <summary>
+            Clean queue.
+            </summary>
+            <param name="hostName">The Host name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.CanTerminate(System.String)">
+            <summary>
+            Determines if the instance can be terminated.
+            </summary>
+            <param name="status">The status.</param>
+            <returns>Indicating if the service can be terminated.</returns>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.CanSuspend(System.String)">
+            <summary>
+            Determines if the instance can be suspended.
+            </summary>
+            <param name="status">The status.</param>
+            <returns>Indicating if the service can be terminated.</returns>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.CountMessageInstances(System.String)">
+            <summary>
+            Displays the message instances currently on this queue.
+            </summary>
+            <param name="hostName">The Host name.</param>
+            <returns>An <see cref="T:System.Int32"/>. The number of messages.</returns>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.TerminateMessageInstances(System.String)">
+            <summary>
+            This will terminate all message instances belonging to a host.
+            </summary>
+            <param name="hostName">The Host name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.SuspendMessageInstances(System.String)">
+            <summary>
+            This will suspend all message instances belonging to a host.
+            </summary>
+            <param name="hostName">The Host name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.CountServiceInstances(System.String)">
+            <summary>
+            Suspends all service instances for a host.
+            </summary>
+            <param name="hostName">The Host name.</param>
+            <returns>An <see cref="T:System.Int32"/>. The number of instances.</returns>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.SuspendServiceInstances(System.String)">
+            <summary>
+            Suspends all service instances for a host.
+            </summary>
+            <param name="hostName">The Host name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.TerminateServiceInstances(System.String)">
+            <summary>
+            Terminates all service instances for a host.
+            </summary>
+            <param name="hostName">The Host name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.SuspendServiceInstancesByID(System.String,System.String,System.String,System.String)">
+            <summary>
+            Suspends one service instance.
+            </summary>
+            <param name="hostName">The Host name.</param>
+            <param name="serviceInstanceId">The service instance ID.</param>
+            <param name="serviceClassId">The service class ID.</param>
+            <param name="serviceTypeId">The service type ID.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.Host.TerminateServiceInstancesByID(System.String,System.String,System.String,System.String)">
+            <summary>
+            Terminates one service instance.
+            </summary>
+            <param name="hostName">The Host name.</param>
+            <param name="serviceInstanceId">The service instance ID.</param>
+            <param name="serviceClassId">The service class ID.</param>
+            <param name="serviceTypeId">The service type ID.</param>
+        </member>
         <member name="T:StealFocus.Core.BizTalk2009.HostManagement">
             <summary>
             HostManagement Class.
@@ -849,44 +754,139 @@
             <param name="path">The WMI path.</param>
             <returns>The management class.</returns>
         </member>
-        <member name="T:StealFocus.Core.BizTalk2009.Adapter">
+        <member name="T:StealFocus.Core.BizTalk2009.HostType">
             <summary>
-            Adapter Class.
+            Host types.
             </summary>
         </member>
-        <member name="M:StealFocus.Core.BizTalk2009.Adapter.Add(System.String,System.Guid)">
+        <member name="F:StealFocus.Core.BizTalk2009.HostType.Invalid">
             <summary>
-            Adds the Adapter with the specified name.
+            Invalid host type.
             </summary>
-            <param name="name">The name of the Adapter.</param>
-            <param name="managementClassId">The management class ID.</param>
         </member>
-        <member name="M:StealFocus.Core.BizTalk2009.Adapter.Add(System.String,System.Guid,System.String)">
+        <member name="F:StealFocus.Core.BizTalk2009.HostType.InProcess">
             <summary>
-            Adds the specified name.
+            Inprocess host.
             </summary>
-            <param name="name">The name of the Adapter.</param>
-            <param name="managementClassId">The management class ID.</param>
-            <param name="comment">The comment.</param>
         </member>
-        <member name="M:StealFocus.Core.BizTalk2009.Adapter.Delete(System.String)">
+        <member name="F:StealFocus.Core.BizTalk2009.HostType.Isolated">
             <summary>
-            Deletes the Adapter with the specified name.
+            Isolated host, for example IIS.
             </summary>
-            <param name="adapterName">Name of the adapter.</param>
         </member>
-        <member name="M:StealFocus.Core.BizTalk2009.Adapter.GetAdapters">
+        <member name="T:StealFocus.Core.BizTalk2009.ReceiveHandler">
             <summary>
-            Gets the adapters.
+            ReceiveHandler Class.
             </summary>
-            <returns>A list of Adapter names.</returns>
         </member>
-        <member name="M:StealFocus.Core.BizTalk2009.Adapter.GetManagementClassId(System.String)">
+        <member name="M:StealFocus.Core.BizTalk2009.ReceiveHandler.Create(System.String,System.String)">
             <summary>
-            Gets the management class ID of an Adapter.
+            Create a Receive Handler.
             </summary>
-            <param name="adapterName">Name of the adapter.</param>
-            <returns>The management class ID.</returns>
+            <param name="adapterName">The Adapter name.</param>
+            <param name="hostName">The Host name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.ReceiveHandler.Exists(System.String,System.String)">
+            <summary>
+            Check if a Receive Handler exists.
+            </summary>
+            <param name="adapterName">The Adapter name.</param>
+            <param name="hostName">The Host name.</param>
+            <returns>Indicating is the Handler exists.</returns>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.ReceiveHandler.Delete(System.String,System.String)">
+            <summary>
+            Delete a Receive Handler.
+            </summary>
+            <param name="adapterName">The Adapter name.</param>
+            <param name="hostName">The Host name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.ReceiveHandler.DeleteAll(System.String)">
+            <summary>
+            Delete all Receive Handlers.
+            </summary>
+            <param name="adapterName">The Adapter name.</param>
+        </member>
+        <member name="T:StealFocus.Core.BizTalk2009.SendHandler">
+            <summary>
+            SendHandler Class.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.SendHandler.Create(System.String,System.String)">
+            <summary>
+            Create a Send Handler.
+            </summary>
+            <param name="adapterName">The Adapter name.</param>
+            <param name="hostName">The Host name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.SendHandler.Create(System.String,System.String,System.Boolean)">
+            <summary>
+            Create a Send Handler.
+            </summary>
+            <param name="adapterName">The Adapter name.</param>
+            <param name="hostName">The Host name.</param>
+            <param name="isDefault">Indicating if the Handler is the default.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.SendHandler.Exists(System.String,System.String)">
+            <summary>
+            Check if a Send Handler exists.
+            </summary>
+            <param name="adapterName">The Adapter name.</param>
+            <param name="hostName">The Host name.</param>
+            <returns>Indicating is the Handler exists.</returns>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.SendHandler.Delete(System.String,System.String)">
+            <summary>
+            Delete a Send Handler.
+            </summary>
+            <param name="adapterName">The Adapter name.</param>
+            <param name="hostName">The Host name.</param>
+        </member>
+        <member name="M:StealFocus.Core.BizTalk2009.SendHandler.DeleteAll(System.String)">
+            <summary>
+            Delete all Send Handlers.
+            </summary>
+            <param name="adapterName">The Adapter name.</param>
+        </member>
+        <member name="T:StealFocus.Core.BizTalk2009.ServiceStatus">
+            <summary>
+            ServiceStatus Class.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.BizTalk2009.ServiceStatus.ReadyToRun">
+            <summary>
+            Holds the ReadyToRun status.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.BizTalk2009.ServiceStatus.Active">
+            <summary>
+            Holds the Active status.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.BizTalk2009.ServiceStatus.SuspendedResumable">
+            <summary>
+            Holds the SuspendedResumable status.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.BizTalk2009.ServiceStatus.Dehydrated">
+            <summary>
+            Holds the Dehydrated status.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.BizTalk2009.ServiceStatus.CompletedWithDiscardedMessages">
+            <summary>
+            Holds the CompletedWithDiscardedMessages status.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.BizTalk2009.ServiceStatus.SuspendedNotResumable">
+            <summary>
+            Holds the SuspendedNotResumable status.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.BizTalk2009.ServiceStatus.InBreakpoint">
+            <summary>
+            Holds the InBreakpoint status.
+            </summary>
         </member>
     </members>
 </doc>

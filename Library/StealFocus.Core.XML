@@ -4,63 +4,235 @@
         <name>StealFocus.Core</name>
     </assembly>
     <members>
-        <member name="T:StealFocus.Core.GlobalAssemblyCacheItem">
+        <member name="T:StealFocus.Core.Collections.Generic.SerializableDictionary`2">
             <summary>
-            GlobalAssemblyCacheItem Class.
+            Dictionary Class.
+            </summary>
+            <remarks>
+            Can be serialized.
+            </remarks>
+            <typeparam name="TKey">Type representing the key type.</typeparam>
+            <typeparam name="TValue">Type representing the value type.</typeparam>
+        </member>
+        <member name="M:StealFocus.Core.Collections.Generic.SerializableDictionary`2.#ctor">
+            <summary>
+            Initializes a new instance of the SerializableDictionary class.
             </summary>
         </member>
-        <member name="M:StealFocus.Core.GlobalAssemblyCacheItem.#ctor(System.String,System.String,System.String,System.String)">
+        <member name="M:StealFocus.Core.Collections.Generic.SerializableDictionary`2.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
             <summary>
-            Initializes a new instance of the <see cref="T:StealFocus.Core.GlobalAssemblyCacheItem"/> class. 
+            Initializes a new instance of the SerializableDictionary class.
             </summary>
-            <param name="name">The name of the item.</param>
-            <param name="version">The version.</param>
-            <param name="locale">The locale.</param>
-            <param name="publicKeyToken">The public key token.</param>
+            <param name="info">The object that holds the serialized object data.</param>
+            <param name="context">The contextual information about the source or destination.</param>
         </member>
-        <member name="P:StealFocus.Core.GlobalAssemblyCacheItem.Locale">
+        <member name="M:StealFocus.Core.Collections.Generic.SerializableDictionary`2.GetSchema">
             <summary>
-            Gets the Locale.
+            Returns the Schema.
             </summary>
+            <returns>The schema.</returns>
         </member>
-        <member name="P:StealFocus.Core.GlobalAssemblyCacheItem.Name">
+        <member name="M:StealFocus.Core.Collections.Generic.SerializableDictionary`2.ReadXml(System.Xml.XmlReader)">
             <summary>
-            Gets the Name.
+            Reads the XML.
             </summary>
+            <param name="reader">The reader.</param>
         </member>
-        <member name="P:StealFocus.Core.GlobalAssemblyCacheItem.PublicKeyToken">
+        <member name="M:StealFocus.Core.Collections.Generic.SerializableDictionary`2.WriteXml(System.Xml.XmlWriter)">
             <summary>
-            Gets the PublicKeyToken.
+            Writes the XML.
             </summary>
+            <param name="writer">An <see cref="T:System.Xml.XmlWriter"/>. The writer.</param>
         </member>
-        <member name="P:StealFocus.Core.GlobalAssemblyCacheItem.Version">
+        <member name="T:StealFocus.Core.CoreException">
             <summary>
-            Gets the Version.
+            CoreException Class.
             </summary>
+            <remarks>
+            Base exception class for the framework.
+            </remarks>
         </member>
-        <member name="T:StealFocus.Core.GlobalAssemblyCacheCategoryTypes">
+        <member name="M:StealFocus.Core.CoreException.#ctor">
             <summary>
-            GlobalAssemblyCacheCategoryTypes Enum.
-            </summary>
-        </member>
-        <member name="F:StealFocus.Core.GlobalAssemblyCacheCategoryTypes.None">
-            <summary>
-            The None Type.
-            </summary>
-        </member>
-        <member name="F:StealFocus.Core.GlobalAssemblyCacheCategoryTypes.Zap">
-            <summary>
-            The Zap Type.
+            Initializes a new instance of the <see cref="T:StealFocus.Core.CoreException"/> class.
             </summary>
         </member>
-        <member name="F:StealFocus.Core.GlobalAssemblyCacheCategoryTypes.Gac">
+        <member name="M:StealFocus.Core.CoreException.#ctor(System.String)">
             <summary>
-            The Gac Type.
+            Initializes a new instance of the <see cref="T:StealFocus.Core.CoreException"/> class.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <remarks>
+            None.
+            </remarks>
+        </member>
+        <member name="M:StealFocus.Core.CoreException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StealFocus.Core.CoreException"/> class.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">An <see cref="T:System.Exception"/>. The exception that is the cause of the current exception. If the <paramref name="innerException"/> parameter is not a null reference, the current exception is raised in a catch block that handles the inner exception.</param>
+            <remarks>
+            None.
+            </remarks>
+        </member>
+        <member name="M:StealFocus.Core.CoreException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StealFocus.Core.CoreException"/> class.
+            </summary>
+            <param name="info">The object that holds the serialized object data.</param>
+            <param name="context">The contextual information about the source or destination.</param>
+            <remarks>
+            None.
+            </remarks>
+        </member>
+        <member name="T:StealFocus.Core.Diagnostics.CircularTraceListener">
+            <summary>
+            CircularTraceListener Class.
+            </summary>
+            <remarks>
+            Usage as follows.
+            <![CDATA[
+                <system.diagnostics>
+                    <sharedListeners>
+                        <add
+                           name="CircularTraceListener"
+                            type="StealFocus.Core.Diagnostics.CircularTraceListener, StealFocus.Core"
+                            initializeData="C:\Windows\Temp\MySvcTraceFile.svclog"
+                            maxFileSizeKB="10000" />
+                    </sharedListeners>
+                    <sources>
+                        <source
+                            name="System.ServiceModel"
+                            switchValue="Information, ActivityTracing"
+                            propagateActivity="true" >
+                            <listeners>
+                                <add name="CircularTraceListener"/>
+                            </listeners>
+                        </source>
+                        <source 
+                            name="System.ServiceModel.MessageLogging">
+                            <listeners>
+                                <add name="CircularTraceListener" />
+                            </listeners>
+                        </source>
+                    <sources>
+                <system.diagnostics>
+            ]]>
+            </remarks>
+        </member>
+        <member name="F:StealFocus.Core.Diagnostics.CircularTraceListener.FileQuotaAttribute">
+            <summary>
+            Holds the FileQuotaAttribute.
             </summary>
         </member>
-        <member name="F:StealFocus.Core.GlobalAssemblyCacheCategoryTypes.Download">
+        <member name="F:StealFocus.Core.Diagnostics.CircularTraceListener.DefaultMaxQuota">
             <summary>
-            The Download Type.
+            Holds the DefaultMaxQuota.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.Diagnostics.CircularTraceListener.DefaultTraceFile">
+            <summary>
+            Holds the DefaultTraceFile.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.Diagnostics.CircularTraceListener.circularStream">
+            <summary>
+            Holds the circularStream.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.Diagnostics.CircularTraceListener.maxQuotaInitialized">
+            <summary>
+            Holds the maxQuotaInitialized.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.Diagnostics.CircularTraceListener.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StealFocus.Core.Diagnostics.CircularTraceListener"/> class.
+            </summary>
+            <param name="file">The file path.</param>
+        </member>
+        <member name="M:StealFocus.Core.Diagnostics.CircularTraceListener.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:StealFocus.Core.Diagnostics.CircularTraceListener"/> class.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.Diagnostics.CircularTraceListener.TraceData(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.Object)">
+            <summary>
+            Trace the data.
+            </summary>
+            <param name="eventCache">The event cache.</param>
+            <param name="source">The source.</param>
+            <param name="eventType">The event type.</param>
+            <param name="id">The ID value.</param>
+            <param name="data">The data to trace.</param>
+        </member>
+        <member name="M:StealFocus.Core.Diagnostics.CircularTraceListener.TraceEvent(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32)">
+            <summary>
+            Trace the data.
+            </summary>
+            <param name="eventCache">The event cache.</param>
+            <param name="source">The source.</param>
+            <param name="eventType">The event type.</param>
+            <param name="id">The ID value.</param>
+        </member>
+        <member name="M:StealFocus.Core.Diagnostics.CircularTraceListener.TraceData(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.Object[])">
+            <summary>
+            Trace the data.
+            </summary>
+            <param name="eventCache">The event cache.</param>
+            <param name="source">The source.</param>
+            <param name="eventType">The event type.</param>
+            <param name="id">The ID value.</param>
+            <param name="data">The data to trace.</param>
+        </member>
+        <member name="M:StealFocus.Core.Diagnostics.CircularTraceListener.TraceEvent(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.String,System.Object[])">
+            <summary>
+            Trace the data.
+            </summary>
+            <param name="eventCache">The event cache.</param>
+            <param name="source">The source.</param>
+            <param name="eventType">The event type.</param>
+            <param name="id">The ID value.</param>
+            <param name="format">The format.</param>
+            <param name="args">The args data.</param>
+        </member>
+        <member name="M:StealFocus.Core.Diagnostics.CircularTraceListener.TraceEvent(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.String)">
+            <summary>
+            Trace the data.
+            </summary>
+            <param name="eventCache">The event cache.</param>
+            <param name="source">The source.</param>
+            <param name="eventType">The event type.</param>
+            <param name="id">The ID value.</param>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:StealFocus.Core.Diagnostics.CircularTraceListener.TraceTransfer(System.Diagnostics.TraceEventCache,System.String,System.Int32,System.String,System.Guid)">
+            <summary>
+            Trace the data.
+            </summary>
+            <param name="eventCache">The event cache.</param>
+            <param name="source">The source.</param>
+            <param name="id">The ID value.</param>
+            <param name="message">The message.</param>
+            <param name="relatedActivityId">The related Activity ID.</param>
+        </member>
+        <member name="M:StealFocus.Core.Diagnostics.CircularTraceListener.GetSupportedAttributes">
+            <summary>
+            Get the supported attributes.
+            </summary>
+            <returns>
+            The attributes.
+            </returns>
+        </member>
+        <member name="M:StealFocus.Core.Diagnostics.CircularTraceListener.DetermineOverQuota">
+            <summary>
+            Determine if over quota.
+            </summary>
+        </member>
+        <member name="P:StealFocus.Core.Diagnostics.CircularTraceListener.MaxQuotaSize">
+            <summary>
+            Gets MaxQuotaSize.
             </summary>
         </member>
         <member name="T:StealFocus.Core.GlobalAssemblyCache">
@@ -106,167 +278,323 @@
             <param name="name">The name of the field.</param>
             <returns>An <see cref="T:System.Object"/>. The field value.</returns>
         </member>
-        <member name="T:StealFocus.Core.Security.Impersonation">
+        <member name="T:StealFocus.Core.GlobalAssemblyCacheCategoryTypes">
             <summary>
-            Allows the use of impersonation wrapped around a block of code
-            </summary>
-            <example>
-            using(new Impersonation(username, domain, password))
-            {
-                //do some work while impersonating
-            }
-            </example>
-        </member>
-        <member name="F:StealFocus.Core.Security.Impersonation.windowsImpersonationContext">
-            <summary>
-            Holds the impersonation context.
+            GlobalAssemblyCacheCategoryTypes Enum.
             </summary>
         </member>
-        <member name="F:StealFocus.Core.Security.Impersonation.disposed">
+        <member name="F:StealFocus.Core.GlobalAssemblyCacheCategoryTypes.None">
             <summary>
-            Holds whether the object is disposed.
+            The None Type.
             </summary>
         </member>
-        <member name="M:StealFocus.Core.Security.Impersonation.#ctor(System.String,System.String,System.String)">
+        <member name="F:StealFocus.Core.GlobalAssemblyCacheCategoryTypes.Zap">
             <summary>
-            Initializes a new instance of the <see cref="T:StealFocus.Core.Security.Impersonation"/> class.
+            The Zap Type.
             </summary>
-            <param name="user">The username.</param>
-            <param name="domain">The domain.</param>
+        </member>
+        <member name="F:StealFocus.Core.GlobalAssemblyCacheCategoryTypes.Gac">
+            <summary>
+            The Gac Type.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.GlobalAssemblyCacheCategoryTypes.Download">
+            <summary>
+            The Download Type.
+            </summary>
+        </member>
+        <member name="T:StealFocus.Core.GlobalAssemblyCacheItem">
+            <summary>
+            GlobalAssemblyCacheItem Class.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.GlobalAssemblyCacheItem.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:StealFocus.Core.GlobalAssemblyCacheItem"/> class. 
+            </summary>
+            <param name="name">The name of the item.</param>
+            <param name="version">The version.</param>
+            <param name="locale">The locale.</param>
+            <param name="publicKeyToken">The public key token.</param>
+        </member>
+        <member name="P:StealFocus.Core.GlobalAssemblyCacheItem.Locale">
+            <summary>
+            Gets the Locale.
+            </summary>
+        </member>
+        <member name="P:StealFocus.Core.GlobalAssemblyCacheItem.Name">
+            <summary>
+            Gets the Name.
+            </summary>
+        </member>
+        <member name="P:StealFocus.Core.GlobalAssemblyCacheItem.PublicKeyToken">
+            <summary>
+            Gets the PublicKeyToken.
+            </summary>
+        </member>
+        <member name="P:StealFocus.Core.GlobalAssemblyCacheItem.Version">
+            <summary>
+            Gets the Version.
+            </summary>
+        </member>
+        <member name="T:StealFocus.Core.Iis.Metabase">
+            <summary>
+            Metabase Class.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.Iis.Metabase.IsWebsiteRunning(System.String)">
+            <summary>
+            Indicates if the Web Site is running.
+            </summary>
+            <param name="websiteDescription">The website description e.g. "Default Web Site".</param>
+            <returns>An <see cref="T:System.Boolean"/>. Indicating if the Web Site is running.</returns>
+        </member>
+        <member name="M:StealFocus.Core.Iis.Metabase.IsAppPoolRunning(System.String)">
+            <summary>
+            Indicates if the AppPool is running.
+            </summary>
+            <param name="appPoolName">The AppPool name.</param>
+            <returns>An <see cref="T:System.Boolean"/>. Indicating if the AppPool is running.</returns>
+        </member>
+        <member name="T:StealFocus.Core.Iis.Metabase.IIsWebServerSettingPropertyNames">
+            <summary>
+            Holds the Property names found in the IIsWebServerSetting Management Object.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.Iis.Metabase.IIsWebServerSettingPropertyNames.ServerComment">
+            <summary>
+            The ServerComment Property name.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.Iis.Metabase.IIsWebServerSettingPropertyNames.Name">
+            <summary>
+            The Name Property name.
+            </summary>
+        </member>
+        <member name="T:StealFocus.Core.Iis.Metabase.IIsWebServerPropertyNames">
+            <summary>
+            Holds the Property names found in the IIsWebServerPropertyNames Management Object.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.Iis.Metabase.IIsWebServerPropertyNames.ServerState">
+            <summary>
+            The Name Property name.
+            </summary>
+        </member>
+        <member name="T:StealFocus.Core.Iis.Metabase.WebsiteStatus">
+            <summary>
+            Holds the available Website states.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.Iis.Metabase.WebsiteStatus.Started">
+            <summary>
+            The Started value.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.Iis.Metabase.WebsiteStatus.Stopped">
+            <summary>
+            The Stopped value.
+            </summary>
+        </member>
+        <member name="T:StealFocus.Core.Iis.Metabase.IisApplicationPoolSettingPropertyNames">
+            <summary>
+            Holds the Property names found in the IisApplicationPoolSetting Management Object.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.Iis.Metabase.IisApplicationPoolSettingPropertyNames.AppPoolState">
+            <summary>
+            The AppPoolState Property name.
+            </summary>
+        </member>
+        <member name="T:StealFocus.Core.Iis.Metabase.AppPoolStatus">
+            <summary>
+            Holds the available AppPool states.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.Iis.Metabase.AppPoolStatus.Started">
+            <summary>
+            The Started value.
+            </summary>
+        </member>
+        <member name="F:StealFocus.Core.Iis.Metabase.AppPoolStatus.Stopped">
+            <summary>
+            The Stopped value.
+            </summary>
+        </member>
+        <member name="T:StealFocus.Core.Iis.WebServer">
+            <summary>
+            WebServer Class.
+            </summary>
+        </member>
+        <member name="M:StealFocus.Core.Iis.WebServer.GetVersion">
+            <summary>
+            Gets the version of IIS.
+            </summary>
+            <returns>The OS version.</returns>
+        </member>
+        <member name="M:StealFocus.Core.Iis.WebServer.GetVersion(System.String)">
+            <summary>
+            Gets the version of IIS.
+            </summary>
+            <param name="machineName">The machine name.</param>
+            <returns>The OS version.</returns>
+        </member>
+        <member name="M:StealFocus.Core.Iis.WebServer.GetVersion(System.String,System.String,System.String)">
+            <summary>
+            Gets the version of IIS.
+            </summary>
+            <param name="machineName">The machine name.</param>
+            <param name="userName">The username.</param>
             <param name="password">The password.</param>
-            <exception cref="T:StealFocus.Core.CoreException"/>
+            <returns>The OS version.</returns>
         </member>
-        <member name="M:StealFocus.Core.Security.Impersonation.#ctor(System.Security.Principal.WindowsIdentity)">
+        <member name="M:StealFocus.Core.Iis.WebServer.GetDefaultAspNetUserName">
             <summary>
-            Initializes a new instance of the <see cref="T:StealFocus.Core.Security.Impersonation"/> class.
+            Get the default ASP.NET username.
             </summary>
-            <param name="windowsId">The Windows ID.</param>
-            <exception cref="T:System.ArgumentNullException"/>
+            <returns>The username.</returns>
         </member>
-        <member name="M:StealFocus.Core.Security.Impersonation.#ctor">
+        <member name="M:StealFocus.Core.Iis.WebServer.GetDefaultAspNetUserName(System.String)">
             <summary>
-            Initializes a new instance of the <see cref="T:StealFocus.Core.Security.Impersonation"/> class.
+            Get the default ASP.NET username for the given machine.
             </summary>
+            <param name="computerName">The machine name.</param>
+            <returns>The username.</returns>
+        </member>
+        <member name="M:StealFocus.Core.Iis.WebServer.GetDefaultAspNetUserNameUnqualified(System.String)">
+            <summary>
+            Gets the ASP.NET username without the domain/machine qualification.
+            </summary>
+            <param name="computerName">The computer name.</param>
+            <returns>The username.</returns>
             <remarks>
-            This uses the principal on the current thread to set up impersonation
+            For example returns "NETWORK SERVICE" instead of "NT AUTHORITY\NETWORK SERVICE".
             </remarks>
         </member>
-        <member name="M:StealFocus.Core.Security.Impersonation.Finalize">
+        <member name="M:StealFocus.Core.Iis.WebServer.GetVersion(System.String,System.Management.ConnectionOptions)">
             <summary>
-            Finalizes an instance of the <see cref="T:StealFocus.Core.Security.Impersonation"/> class. 
+            Gets the version of IIS for the given machine.
+            </summary>
+            <param name="machineName">The machine name.</param>
+            <param name="options">The connection options.</param>
+            <returns>The OS version.</returns>
+        </member>
+        <member name="T:StealFocus.Core.IO.CircularStream">
+            <summary>
+            CircularStream Class.
             </summary>
         </member>
-        <member name="M:StealFocus.Core.Security.Impersonation.Dispose">
+        <member name="F:StealFocus.Core.IO.CircularStream.fileStream">
             <summary>
-            Disposes the object.
+            Holds the file stream.
             </summary>
         </member>
-        <member name="M:StealFocus.Core.Security.Impersonation.Dispose(System.Boolean)">
+        <member name="F:StealFocus.Core.IO.CircularStream.filePaths">
             <summary>
-            Disposes the object.
-            </summary>
-            <param name="disposing">Whether to dispose.</param>
-        </member>
-        <member name="T:StealFocus.Core.Security.Impersonation.MySafeLogonHandle">
-            <summary>
-            Wrapper for my token
-            </summary>    
-        </member>
-        <member name="F:StealFocus.Core.Security.Impersonation.MySafeLogonHandle.LOGON32LOGONINTERACTIVE">
-            <summary>
-            Holds the Logon Interactive value.
+            Holds the file paths.
             </summary>
         </member>
-        <member name="F:StealFocus.Core.Security.Impersonation.MySafeLogonHandle.LOGON32LOGONNETWORK">
+        <member name="F:StealFocus.Core.IO.CircularStream.dataWritten">
             <summary>
-            Holds the Logon Network value.
+            Holds the data.
             </summary>
         </member>
-        <member name="F:StealFocus.Core.Security.Impersonation.MySafeLogonHandle.LOGON32LOGONBATCH">
+        <member name="F:StealFocus.Core.IO.CircularStream.fileQuota">
             <summary>
-            Holds the Logon Batch value.
+            Holds the file size quota.
             </summary>
         </member>
-        <member name="F:StealFocus.Core.Security.Impersonation.MySafeLogonHandle.LOGON32LOGONSERVICE">
+        <member name="F:StealFocus.Core.IO.CircularStream.currentFile">
             <summary>
-            Holds the Logon Service value.
+            Holds the .
             </summary>
         </member>
-        <member name="F:StealFocus.Core.Security.Impersonation.MySafeLogonHandle.LOGON32LOGONUNLOCK">
+        <member name="M:StealFocus.Core.IO.CircularStream.#ctor(System.String)">
             <summary>
-            Holds the Logon Unlock value.
+            Initializes a new instance of the <see cref="T:StealFocus.Core.IO.CircularStream"/> class.
+            </summary>
+            <param name="fileName">The file name.</param>
+        </member>
+        <member name="M:StealFocus.Core.IO.CircularStream.SwitchFiles">
+            <summary>
+            Switch the files being used.
             </summary>
         </member>
-        <member name="F:StealFocus.Core.Security.Impersonation.MySafeLogonHandle.LOGON32LOGONNETWORKCLEARTEXT">
+        <member name="M:StealFocus.Core.IO.CircularStream.Flush">
             <summary>
-            Holds the Logon Network Clear value.
+            Flish to the current file.
             </summary>
         </member>
-        <member name="F:StealFocus.Core.Security.Impersonation.MySafeLogonHandle.LOGON32LOGONNEWCREDENTIALS">
+        <member name="M:StealFocus.Core.IO.CircularStream.Seek(System.Int64,System.IO.SeekOrigin)">
             <summary>
-            Holds the Logon New Credentials value.
+            Seek a position in the stream.
+            </summary>
+            <param name="offset">The offset.</param>
+            <param name="origin">The origin.</param>
+            <returns>The position of the stream.</returns>
+        </member>
+        <member name="M:StealFocus.Core.IO.CircularStream.SetLength(System.Int64)">
+            <summary>
+            Set the length of the current stream.
+            </summary>
+            <param name="value">The length to set.</param>
+        </member>
+        <member name="M:StealFocus.Core.IO.CircularStream.Write(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Write to the stream.
+            </summary>
+            <param name="buffer">The buffer.</param>
+            <param name="offset">The offset.</param>
+            <param name="count">The count.</param>
+        </member>
+        <member name="M:StealFocus.Core.IO.CircularStream.Read(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Read from the current stream.
+            </summary>
+            <param name="buffer">The buffer.</param>
+            <param name="offset">The offset.</param>
+            <param name="count">The count.</param>
+            <returns>The value read.</returns>
+        </member>
+        <member name="M:StealFocus.Core.IO.CircularStream.Close">
+            <summary>
+            Close the currrent stream.
             </summary>
         </member>
-        <member name="F:StealFocus.Core.Security.Impersonation.MySafeLogonHandle.LOGON32PROVIDERDEFAULT">
+        <member name="P:StealFocus.Core.IO.CircularStream.MaxQuotaSize">
             <summary>
-            Holds the Logon Provider Default value.
+            Gets or sets MaxQuotaSize.
             </summary>
         </member>
-        <member name="M:StealFocus.Core.Security.Impersonation.MySafeLogonHandle.#ctor">
+        <member name="P:StealFocus.Core.IO.CircularStream.IsOverQuota">
             <summary>
-            Prevents a default instance of the <see cref="T:StealFocus.Core.Security.Impersonation.MySafeLogonHandle"/> class from being created.
-            </summary>
-            <remarks>
-            Create a SafeHandle, informing the base class
-            that this SafeHandle instance "owns" the handle,
-            and therefore SafeHandle should call
-            our ReleaseHandle method when the SafeHandle
-            is no longer in use.
-            </remarks>
-        </member>
-        <member name="M:StealFocus.Core.Security.Impersonation.MySafeLogonHandle.Logon(System.String,System.String,System.String)">
-            <summary>
-            Logs on the user
-            </summary>
-            <param name="user">The username.</param>
-            <param name="domain">The domain.</param>
-            <param name="password">The password.</param>
-            <returns>The Windows Identity.</returns>
-        </member>
-        <member name="M:StealFocus.Core.Security.Impersonation.MySafeLogonHandle.ReleaseHandle">
-            <summary>
-            Releases the handle
-            </summary>
-            <returns>If the handle is closed.</returns>
-        </member>
-        <member name="P:StealFocus.Core.Security.Impersonation.MySafeLogonHandle.IsInvalid">
-            <summary>
-            Overrides the isinvalid method
+            Gets a value indicating whether IsOverQuota.
             </summary>
         </member>
-        <member name="T:StealFocus.Core.Security.Impersonation.MySafeLogonHandle.NativeMethods">
+        <member name="P:StealFocus.Core.IO.CircularStream.CanRead">
             <summary>
-            Contains native methods
+            Gets a value indicating whether CanRead.
             </summary>
         </member>
-        <member name="M:StealFocus.Core.Security.Impersonation.MySafeLogonHandle.NativeMethods.CloseHandle(System.IntPtr)">
+        <member name="P:StealFocus.Core.IO.CircularStream.CanSeek">
             <summary>
-             Free the kernel's file object (close the file).
+            Gets a value indicating whether CanSeek.
             </summary>
-            <param name="handle">The handle.</param>
-            <returns>If the handle is closed.</returns>
         </member>
-        <member name="M:StealFocus.Core.Security.Impersonation.MySafeLogonHandle.NativeMethods.LogonUser(System.String,System.String,System.String,System.Int32,System.Int32,System.IntPtr@)">
+        <member name="P:StealFocus.Core.IO.CircularStream.Length">
             <summary>
-            Logon method
+            Gets Length.
             </summary>
-            <param name="lpszUsername">The username.</param>
-            <param name="lpszDomain">The domain.</param>
-            <param name="lpszPassword">The password.</param>
-            <param name="dwLogonType">The logon type.</param>
-            <param name="dwLogonProvider">The logon provider.</param>
-            <param name="phToken">The token.</param>
-            <returns>If the user is logged on.</returns>
+        </member>
+        <member name="P:StealFocus.Core.IO.CircularStream.Position">
+            <summary>
+            Gets or sets Position.
+            </summary>
+        </member>
+        <member name="P:StealFocus.Core.IO.CircularStream.CanWrite">
+            <summary>
+            Gets a value indicating whether CanWrite.
+            </summary>
         </member>
         <member name="T:StealFocus.Core.IO.FileSystem">
             <summary>
@@ -325,45 +653,40 @@
             <param name="filePathParameterName">The name of the parameter.</param>
             <param name="filePathParameterValue">The path given in the parameter value.</param>
         </member>
-        <member name="T:StealFocus.Core.Collections.Generic.SerializableDictionary`2">
+        <member name="T:StealFocus.Core.OperatingSystem">
             <summary>
-            Dictionary Class.
-            </summary>
-            <remarks>
-            Can be serialized.
-            </remarks>
-            <typeparam name="TKey">Type representing the key type.</typeparam>
-            <typeparam name="TValue">Type representing the value type.</typeparam>
-        </member>
-        <member name="M:StealFocus.Core.Collections.Generic.SerializableDictionary`2.#ctor">
-            <summary>
-            Initializes a new instance of the SerializableDictionary class.
+            OperatingSystem Class.
             </summary>
         </member>
-        <member name="M:StealFocus.Core.Collections.Generic.SerializableDictionary`2.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+        <member name="M:StealFocus.Core.OperatingSystem.GetVersion">
             <summary>
-            Initializes a new instance of the SerializableDictionary class.
+            Gets the version of the current OS.
             </summary>
-            <param name="info">The object that holds the serialized object data.</param>
-            <param name="context">The contextual information about the source or destination.</param>
+            <returns>The OS version.</returns>
         </member>
-        <member name="M:StealFocus.Core.Collections.Generic.SerializableDictionary`2.GetSchema">
+        <member name="M:StealFocus.Core.OperatingSystem.GetVersion(System.String)">
             <summary>
-            Returns the Schema.
+            Gets the version of the OS for the given machine.
             </summary>
-            <returns>The schema.</returns>
+            <param name="machineName">The machine name.</param>
+            <returns>The OS version.</returns>
         </member>
-        <member name="M:StealFocus.Core.Collections.Generic.SerializableDictionary`2.ReadXml(System.Xml.XmlReader)">
+        <member name="M:StealFocus.Core.OperatingSystem.GetVersion(System.String,System.String,System.String)">
             <summary>
-            Reads the XML.
+            Gets the version of the OS for the given machine.
             </summary>
-            <param name="reader">The reader.</param>
+            <param name="machineName">The machine name.</param>
+            <param name="userName">The username.</param>
+            <param name="password">The password.</param>
+            <returns>The OS version.</returns>
         </member>
-        <member name="M:StealFocus.Core.Collections.Generic.SerializableDictionary`2.WriteXml(System.Xml.XmlWriter)">
+        <member name="M:StealFocus.Core.OperatingSystem.GetVersion(System.String,System.Management.ConnectionOptions)">
             <summary>
-            Writes the XML.
+            Gets the version of the OS for the given machine.
             </summary>
-            <param name="writer">An <see cref="T:System.Xml.XmlWriter"/>. The writer.</param>
+            <param name="machineName">The machine name.</param>
+            <param name="options">The connection options.</param>
+            <returns>The OS version.</returns>
         </member>
         <member name="T:StealFocus.Core.Resource">
             <summary>
@@ -608,159 +931,167 @@
             None.
             </remarks>
         </member>
-        <member name="T:StealFocus.Core.Xml.XmlValidator">
+        <member name="T:StealFocus.Core.Security.Impersonation">
             <summary>
-            XmlValidator Class.
+            Allows the use of impersonation wrapped around a block of code
+            </summary>
+            <example>
+            using(new Impersonation(username, domain, password))
+            {
+                //do some work while impersonating
+            }
+            </example>
+        </member>
+        <member name="F:StealFocus.Core.Security.Impersonation.windowsImpersonationContext">
+            <summary>
+            Holds the impersonation context.
             </summary>
         </member>
-        <member name="M:StealFocus.Core.Xml.XmlValidator.Validate(System.Xml.XmlDocument,System.Xml.Schema.XmlSchemaSet)">
+        <member name="F:StealFocus.Core.Security.Impersonation.disposed">
             <summary>
-            Validate the given XML against the schema.
-            </summary>
-            <param name="xmlDocument">An <see cref="T:System.Xml.XmlDocument"/>. The XML to validate.</param>
-            <param name="schemas">An <see cref="T:System.Xml.Schema.XmlSchemaSet"/>. The schema to validate with.</param>
-        </member>
-        <member name="T:StealFocus.Core.Iis.WebServer">
-            <summary>
-            WebServer Class.
+            Holds whether the object is disposed.
             </summary>
         </member>
-        <member name="M:StealFocus.Core.Iis.WebServer.GetVersion">
+        <member name="M:StealFocus.Core.Security.Impersonation.#ctor(System.String,System.String,System.String)">
             <summary>
-            Gets the version of IIS.
+            Initializes a new instance of the <see cref="T:StealFocus.Core.Security.Impersonation"/> class.
             </summary>
-            <returns>The OS version.</returns>
-        </member>
-        <member name="M:StealFocus.Core.Iis.WebServer.GetVersion(System.String)">
-            <summary>
-            Gets the version of IIS.
-            </summary>
-            <param name="machineName">The machine name.</param>
-            <returns>The OS version.</returns>
-        </member>
-        <member name="M:StealFocus.Core.Iis.WebServer.GetVersion(System.String,System.String,System.String)">
-            <summary>
-            Gets the version of IIS.
-            </summary>
-            <param name="machineName">The machine name.</param>
-            <param name="userName">The username.</param>
+            <param name="user">The username.</param>
+            <param name="domain">The domain.</param>
             <param name="password">The password.</param>
-            <returns>The OS version.</returns>
+            <exception cref="T:StealFocus.Core.CoreException"/>
         </member>
-        <member name="M:StealFocus.Core.Iis.WebServer.GetDefaultAspNetUserName">
+        <member name="M:StealFocus.Core.Security.Impersonation.#ctor(System.Security.Principal.WindowsIdentity)">
             <summary>
-            Get the default ASP.NET username.
+            Initializes a new instance of the <see cref="T:StealFocus.Core.Security.Impersonation"/> class.
             </summary>
-            <returns>The username.</returns>
+            <param name="windowsId">The Windows ID.</param>
+            <exception cref="T:System.ArgumentNullException"/>
         </member>
-        <member name="M:StealFocus.Core.Iis.WebServer.GetDefaultAspNetUserName(System.String)">
+        <member name="M:StealFocus.Core.Security.Impersonation.#ctor">
             <summary>
-            Get the default ASP.NET username for the given machine.
+            Initializes a new instance of the <see cref="T:StealFocus.Core.Security.Impersonation"/> class.
             </summary>
-            <param name="computerName">The machine name.</param>
-            <returns>The username.</returns>
-        </member>
-        <member name="M:StealFocus.Core.Iis.WebServer.GetDefaultAspNetUserNameUnqualified(System.String)">
-            <summary>
-            Gets the ASP.NET username without the domain/machine qualification.
-            </summary>
-            <param name="computerName">The computer name.</param>
-            <returns>The username.</returns>
             <remarks>
-            For example returns "NETWORK SERVICE" instead of "NT AUTHORITY\NETWORK SERVICE".
+            This uses the principal on the current thread to set up impersonation
             </remarks>
         </member>
-        <member name="M:StealFocus.Core.Iis.WebServer.GetVersion(System.String,System.Management.ConnectionOptions)">
+        <member name="M:StealFocus.Core.Security.Impersonation.Finalize">
             <summary>
-            Gets the version of IIS for the given machine.
-            </summary>
-            <param name="machineName">The machine name.</param>
-            <param name="options">The connection options.</param>
-            <returns>The OS version.</returns>
-        </member>
-        <member name="T:StealFocus.Core.Iis.Metabase">
-            <summary>
-            Metabase Class.
+            Finalizes an instance of the <see cref="T:StealFocus.Core.Security.Impersonation"/> class. 
             </summary>
         </member>
-        <member name="M:StealFocus.Core.Iis.Metabase.IsWebsiteRunning(System.String)">
+        <member name="M:StealFocus.Core.Security.Impersonation.Dispose">
             <summary>
-            Indicates if the Web Site is running.
-            </summary>
-            <param name="websiteDescription">The website description e.g. "Default Web Site".</param>
-            <returns>An <see cref="T:System.Boolean"/>. Indicating if the Web Site is running.</returns>
-        </member>
-        <member name="M:StealFocus.Core.Iis.Metabase.IsAppPoolRunning(System.String)">
-            <summary>
-            Indicates if the AppPool is running.
-            </summary>
-            <param name="appPoolName">The AppPool name.</param>
-            <returns>An <see cref="T:System.Boolean"/>. Indicating if the AppPool is running.</returns>
-        </member>
-        <member name="T:StealFocus.Core.Iis.Metabase.IIsWebServerSettingPropertyNames">
-            <summary>
-            Holds the Property names found in the IIsWebServerSetting Management Object.
+            Disposes the object.
             </summary>
         </member>
-        <member name="F:StealFocus.Core.Iis.Metabase.IIsWebServerSettingPropertyNames.ServerComment">
+        <member name="M:StealFocus.Core.Security.Impersonation.Dispose(System.Boolean)">
             <summary>
-            The ServerComment Property name.
+            Disposes the object.
+            </summary>
+            <param name="disposing">Whether to dispose.</param>
+        </member>
+        <member name="T:StealFocus.Core.Security.Impersonation.MySafeLogonHandle">
+            <summary>
+            Wrapper for my token
+            </summary>    
+        </member>
+        <member name="F:StealFocus.Core.Security.Impersonation.MySafeLogonHandle.LOGON32LOGONINTERACTIVE">
+            <summary>
+            Holds the Logon Interactive value.
             </summary>
         </member>
-        <member name="F:StealFocus.Core.Iis.Metabase.IIsWebServerSettingPropertyNames.Name">
+        <member name="F:StealFocus.Core.Security.Impersonation.MySafeLogonHandle.LOGON32LOGONNETWORK">
             <summary>
-            The Name Property name.
+            Holds the Logon Network value.
             </summary>
         </member>
-        <member name="T:StealFocus.Core.Iis.Metabase.IIsWebServerPropertyNames">
+        <member name="F:StealFocus.Core.Security.Impersonation.MySafeLogonHandle.LOGON32LOGONBATCH">
             <summary>
-            Holds the Property names found in the IIsWebServerPropertyNames Management Object.
+            Holds the Logon Batch value.
             </summary>
         </member>
-        <member name="F:StealFocus.Core.Iis.Metabase.IIsWebServerPropertyNames.ServerState">
+        <member name="F:StealFocus.Core.Security.Impersonation.MySafeLogonHandle.LOGON32LOGONSERVICE">
             <summary>
-            The Name Property name.
+            Holds the Logon Service value.
             </summary>
         </member>
-        <member name="T:StealFocus.Core.Iis.Metabase.WebsiteStatus">
+        <member name="F:StealFocus.Core.Security.Impersonation.MySafeLogonHandle.LOGON32LOGONUNLOCK">
             <summary>
-            Holds the available Website states.
+            Holds the Logon Unlock value.
             </summary>
         </member>
-        <member name="F:StealFocus.Core.Iis.Metabase.WebsiteStatus.Started">
+        <member name="F:StealFocus.Core.Security.Impersonation.MySafeLogonHandle.LOGON32LOGONNETWORKCLEARTEXT">
             <summary>
-            The Started value.
+            Holds the Logon Network Clear value.
             </summary>
         </member>
-        <member name="F:StealFocus.Core.Iis.Metabase.WebsiteStatus.Stopped">
+        <member name="F:StealFocus.Core.Security.Impersonation.MySafeLogonHandle.LOGON32LOGONNEWCREDENTIALS">
             <summary>
-            The Stopped value.
+            Holds the Logon New Credentials value.
             </summary>
         </member>
-        <member name="T:StealFocus.Core.Iis.Metabase.IisApplicationPoolSettingPropertyNames">
+        <member name="F:StealFocus.Core.Security.Impersonation.MySafeLogonHandle.LOGON32PROVIDERDEFAULT">
             <summary>
-            Holds the Property names found in the IisApplicationPoolSetting Management Object.
+            Holds the Logon Provider Default value.
             </summary>
         </member>
-        <member name="F:StealFocus.Core.Iis.Metabase.IisApplicationPoolSettingPropertyNames.AppPoolState">
+        <member name="M:StealFocus.Core.Security.Impersonation.MySafeLogonHandle.#ctor">
             <summary>
-            The AppPoolState Property name.
+            Prevents a default instance of the <see cref="T:StealFocus.Core.Security.Impersonation.MySafeLogonHandle"/> class from being created.
+            </summary>
+            <remarks>
+            Create a SafeHandle, informing the base class
+            that this SafeHandle instance "owns" the handle,
+            and therefore SafeHandle should call
+            our ReleaseHandle method when the SafeHandle
+            is no longer in use.
+            </remarks>
+        </member>
+        <member name="M:StealFocus.Core.Security.Impersonation.MySafeLogonHandle.Logon(System.String,System.String,System.String)">
+            <summary>
+            Logs on the user
+            </summary>
+            <param name="user">The username.</param>
+            <param name="domain">The domain.</param>
+            <param name="password">The password.</param>
+            <returns>The Windows Identity.</returns>
+        </member>
+        <member name="M:StealFocus.Core.Security.Impersonation.MySafeLogonHandle.ReleaseHandle">
+            <summary>
+            Releases the handle
+            </summary>
+            <returns>If the handle is closed.</returns>
+        </member>
+        <member name="P:StealFocus.Core.Security.Impersonation.MySafeLogonHandle.IsInvalid">
+            <summary>
+            Overrides the isinvalid method
             </summary>
         </member>
-        <member name="T:StealFocus.Core.Iis.Metabase.AppPoolStatus">
+        <member name="T:StealFocus.Core.Security.Impersonation.MySafeLogonHandle.NativeMethods">
             <summary>
-            Holds the available AppPool states.
+            Contains native methods
             </summary>
         </member>
-        <member name="F:StealFocus.Core.Iis.Metabase.AppPoolStatus.Started">
+        <member name="M:StealFocus.Core.Security.Impersonation.MySafeLogonHandle.NativeMethods.CloseHandle(System.IntPtr)">
             <summary>
-            The Started value.
+             Free the kernel's file object (close the file).
             </summary>
+            <param name="handle">The handle.</param>
+            <returns>If the handle is closed.</returns>
         </member>
-        <member name="F:StealFocus.Core.Iis.Metabase.AppPoolStatus.Stopped">
+        <member name="M:StealFocus.Core.Security.Impersonation.MySafeLogonHandle.NativeMethods.LogonUser(System.String,System.String,System.String,System.Int32,System.Int32,System.IntPtr@)">
             <summary>
-            The Stopped value.
+            Logon method
             </summary>
+            <param name="lpszUsername">The username.</param>
+            <param name="lpszDomain">The domain.</param>
+            <param name="lpszPassword">The password.</param>
+            <param name="dwLogonType">The logon type.</param>
+            <param name="dwLogonProvider">The logon provider.</param>
+            <param name="phToken">The token.</param>
+            <returns>If the user is logged on.</returns>
         </member>
         <member name="T:StealFocus.Core.StringExtensions">
             <summary>
@@ -783,48 +1114,6 @@
             <param name="formatProvider">An <see cref="T:System.IFormatProvider"/>. The format provider.</param>
             <param name="values">An <see cref="T:System.Object"/> array. The format values.</param>
             <returns>The formatted string.</returns>
-        </member>
-        <member name="T:StealFocus.Core.CoreException">
-            <summary>
-            CoreException Class.
-            </summary>
-            <remarks>
-            Base exception class for the framework.
-            </remarks>
-        </member>
-        <member name="M:StealFocus.Core.CoreException.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:StealFocus.Core.CoreException"/> class.
-            </summary>
-        </member>
-        <member name="M:StealFocus.Core.CoreException.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:StealFocus.Core.CoreException"/> class.
-            </summary>
-            <param name="message">The error message that explains the reason for the exception.</param>
-            <remarks>
-            None.
-            </remarks>
-        </member>
-        <member name="M:StealFocus.Core.CoreException.#ctor(System.String,System.Exception)">
-            <summary>
-            Initializes a new instance of the <see cref="T:StealFocus.Core.CoreException"/> class.
-            </summary>
-            <param name="message">The error message that explains the reason for the exception.</param>
-            <param name="innerException">An <see cref="T:System.Exception"/>. The exception that is the cause of the current exception. If the <paramref name="innerException"/> parameter is not a null reference, the current exception is raised in a catch block that handles the inner exception.</param>
-            <remarks>
-            None.
-            </remarks>
-        </member>
-        <member name="M:StealFocus.Core.CoreException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-            <summary>
-            Initializes a new instance of the <see cref="T:StealFocus.Core.CoreException"/> class.
-            </summary>
-            <param name="info">The object that holds the serialized object data.</param>
-            <param name="context">The contextual information about the source or destination.</param>
-            <remarks>
-            None.
-            </remarks>
         </member>
         <member name="T:StealFocus.Core.Xml.Serialization.SimpleXmlSerializer`1">
             <summary>
@@ -893,154 +1182,39 @@
             <param name="xmlSerializer">An <see cref="T:System.Xml.Serialization.XmlSerializer"/>. The serializer.</param>
             <returns>The deserialized object.</returns>
         </member>
-        <member name="T:StealFocus.Core.Diagnostics.CircularTraceListener">
+        <member name="T:StealFocus.Core.Xml.XmlDocumentExtensions">
             <summary>
-            CircularTraceListener Class.
+            XmlDocumentExtensions Class.
             </summary>
             <remarks>
-            Usage as follows.
-            <![CDATA[
-                <system.diagnostics>
-                    <sharedListeners>
-                        <add
-                           name="CircularTraceListener"
-                            type="StealFocus.Core.Diagnostics.CircularTraceListener, StealFocus.Core"
-                            initializeData="C:\Windows\Temp\MySvcTraceFile.svclog"
-                            maxFileSizeKB="10000" />
-                    </sharedListeners>
-                    <sources>
-                        <source
-                            name="System.ServiceModel"
-                            switchValue="Information, ActivityTracing"
-                            propagateActivity="true" >
-                            <listeners>
-                                <add name="CircularTraceListener"/>
-                            </listeners>
-                        </source>
-                        <source 
-                            name="System.ServiceModel.MessageLogging">
-                            <listeners>
-                                <add name="CircularTraceListener" />
-                            </listeners>
-                        </source>
-                    <sources>
-                <system.diagnostics>
-            ]]>
+            Extention methods for <see cref="T:System.Xml.XmlDocument"/>.
             </remarks>
         </member>
-        <member name="F:StealFocus.Core.Diagnostics.CircularTraceListener.FileQuotaAttribute">
+        <member name="M:StealFocus.Core.Xml.XmlDocumentExtensions.AddElement(System.Xml.XmlDocument,System.String,System.String)">
             <summary>
-            Holds the FileQuotaAttribute.
+            Adds an element to the document.
             </summary>
+            <param name="xmlDocument">The XML document.</param>
+            <param name="elementName">The XML element name.</param>
+            <param name="elementNamespace">The XML element namespace.</param>
+            <returns>The XML element.</returns>
         </member>
-        <member name="F:StealFocus.Core.Diagnostics.CircularTraceListener.DefaultMaxQuota">
+        <member name="M:StealFocus.Core.Xml.XmlDocumentExtensions.AddElement(System.Xml.XmlDocument,System.String)">
             <summary>
-            Holds the DefaultMaxQuota.
+            Adds an element to the document.
             </summary>
+            <param name="xmlDocument">The XML document.</param>
+            <param name="elementName">The XML element name.</param>
+            <returns>The XML element.</returns>
         </member>
-        <member name="F:StealFocus.Core.Diagnostics.CircularTraceListener.DefaultTraceFile">
+        <member name="M:StealFocus.Core.Xml.XmlDocumentExtensions.SelectElement(System.Xml.XmlDocument,System.String,System.Collections.Generic.IDictionary{System.String,System.String})">
             <summary>
-            Holds the DefaultTraceFile.
+            Selects an XML element.
             </summary>
-        </member>
-        <member name="F:StealFocus.Core.Diagnostics.CircularTraceListener.circularStream">
-            <summary>
-            Holds the circularStream.
-            </summary>
-        </member>
-        <member name="F:StealFocus.Core.Diagnostics.CircularTraceListener.maxQuotaInitialized">
-            <summary>
-            Holds the maxQuotaInitialized.
-            </summary>
-        </member>
-        <member name="M:StealFocus.Core.Diagnostics.CircularTraceListener.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:StealFocus.Core.Diagnostics.CircularTraceListener"/> class.
-            </summary>
-            <param name="file">The file path.</param>
-        </member>
-        <member name="M:StealFocus.Core.Diagnostics.CircularTraceListener.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:StealFocus.Core.Diagnostics.CircularTraceListener"/> class.
-            </summary>
-        </member>
-        <member name="M:StealFocus.Core.Diagnostics.CircularTraceListener.TraceData(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.Object)">
-            <summary>
-            Trace the data.
-            </summary>
-            <param name="eventCache">The event cache.</param>
-            <param name="source">The source.</param>
-            <param name="eventType">The event type.</param>
-            <param name="id">The ID value.</param>
-            <param name="data">The data to trace.</param>
-        </member>
-        <member name="M:StealFocus.Core.Diagnostics.CircularTraceListener.TraceEvent(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32)">
-            <summary>
-            Trace the data.
-            </summary>
-            <param name="eventCache">The event cache.</param>
-            <param name="source">The source.</param>
-            <param name="eventType">The event type.</param>
-            <param name="id">The ID value.</param>
-        </member>
-        <member name="M:StealFocus.Core.Diagnostics.CircularTraceListener.TraceData(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.Object[])">
-            <summary>
-            Trace the data.
-            </summary>
-            <param name="eventCache">The event cache.</param>
-            <param name="source">The source.</param>
-            <param name="eventType">The event type.</param>
-            <param name="id">The ID value.</param>
-            <param name="data">The data to trace.</param>
-        </member>
-        <member name="M:StealFocus.Core.Diagnostics.CircularTraceListener.TraceEvent(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.String,System.Object[])">
-            <summary>
-            Trace the data.
-            </summary>
-            <param name="eventCache">The event cache.</param>
-            <param name="source">The source.</param>
-            <param name="eventType">The event type.</param>
-            <param name="id">The ID value.</param>
-            <param name="format">The format.</param>
-            <param name="args">The args data.</param>
-        </member>
-        <member name="M:StealFocus.Core.Diagnostics.CircularTraceListener.TraceEvent(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.String)">
-            <summary>
-            Trace the data.
-            </summary>
-            <param name="eventCache">The event cache.</param>
-            <param name="source">The source.</param>
-            <param name="eventType">The event type.</param>
-            <param name="id">The ID value.</param>
-            <param name="message">The message.</param>
-        </member>
-        <member name="M:StealFocus.Core.Diagnostics.CircularTraceListener.TraceTransfer(System.Diagnostics.TraceEventCache,System.String,System.Int32,System.String,System.Guid)">
-            <summary>
-            Trace the data.
-            </summary>
-            <param name="eventCache">The event cache.</param>
-            <param name="source">The source.</param>
-            <param name="id">The ID value.</param>
-            <param name="message">The message.</param>
-            <param name="relatedActivityId">The related Activity ID.</param>
-        </member>
-        <member name="M:StealFocus.Core.Diagnostics.CircularTraceListener.GetSupportedAttributes">
-            <summary>
-            Get the supported attributes.
-            </summary>
-            <returns>
-            The attributes.
-            </returns>
-        </member>
-        <member name="M:StealFocus.Core.Diagnostics.CircularTraceListener.DetermineOverQuota">
-            <summary>
-            Determine if over quota.
-            </summary>
-        </member>
-        <member name="P:StealFocus.Core.Diagnostics.CircularTraceListener.MaxQuotaSize">
-            <summary>
-            Gets MaxQuotaSize.
-            </summary>
+            <param name="xmlDocument">The XML document.</param>
+            <param name="xpath">The XPath e.g. "/def:MyDocumentElement".</param>
+            <param name="namespaces">The namespaces e.g. the key/value pair of "def" and "http://schemas.acme.com/PetShop".</param>
+            <returns>The selected XML element.</returns>
         </member>
         <member name="T:StealFocus.Core.Xml.XmlElementExtensions">
             <summary>
@@ -1148,191 +1322,17 @@
             Ignores any XML namespaces.
             </remarks>
         </member>
-        <member name="T:StealFocus.Core.Xml.XmlDocumentExtensions">
+        <member name="T:StealFocus.Core.Xml.XmlValidator">
             <summary>
-            XmlDocumentExtensions Class.
-            </summary>
-            <remarks>
-            Extention methods for <see cref="T:System.Xml.XmlDocument"/>.
-            </remarks>
-        </member>
-        <member name="M:StealFocus.Core.Xml.XmlDocumentExtensions.AddElement(System.Xml.XmlDocument,System.String,System.String)">
-            <summary>
-            Adds an element to the document.
-            </summary>
-            <param name="xmlDocument">The XML document.</param>
-            <param name="elementName">The XML element name.</param>
-            <param name="elementNamespace">The XML element namespace.</param>
-            <returns>The XML element.</returns>
-        </member>
-        <member name="M:StealFocus.Core.Xml.XmlDocumentExtensions.AddElement(System.Xml.XmlDocument,System.String)">
-            <summary>
-            Adds an element to the document.
-            </summary>
-            <param name="xmlDocument">The XML document.</param>
-            <param name="elementName">The XML element name.</param>
-            <returns>The XML element.</returns>
-        </member>
-        <member name="M:StealFocus.Core.Xml.XmlDocumentExtensions.SelectElement(System.Xml.XmlDocument,System.String,System.Collections.Generic.IDictionary{System.String,System.String})">
-            <summary>
-            Selects an XML element.
-            </summary>
-            <param name="xmlDocument">The XML document.</param>
-            <param name="xpath">The XPath e.g. "/def:MyDocumentElement".</param>
-            <param name="namespaces">The namespaces e.g. the key/value pair of "def" and "http://schemas.acme.com/PetShop".</param>
-            <returns>The selected XML element.</returns>
-        </member>
-        <member name="T:StealFocus.Core.OperatingSystem">
-            <summary>
-            OperatingSystem Class.
+            XmlValidator Class.
             </summary>
         </member>
-        <member name="M:StealFocus.Core.OperatingSystem.GetVersion">
+        <member name="M:StealFocus.Core.Xml.XmlValidator.Validate(System.Xml.XmlDocument,System.Xml.Schema.XmlSchemaSet)">
             <summary>
-            Gets the version of the current OS.
+            Validate the given XML against the schema.
             </summary>
-            <returns>The OS version.</returns>
-        </member>
-        <member name="M:StealFocus.Core.OperatingSystem.GetVersion(System.String)">
-            <summary>
-            Gets the version of the OS for the given machine.
-            </summary>
-            <param name="machineName">The machine name.</param>
-            <returns>The OS version.</returns>
-        </member>
-        <member name="M:StealFocus.Core.OperatingSystem.GetVersion(System.String,System.String,System.String)">
-            <summary>
-            Gets the version of the OS for the given machine.
-            </summary>
-            <param name="machineName">The machine name.</param>
-            <param name="userName">The username.</param>
-            <param name="password">The password.</param>
-            <returns>The OS version.</returns>
-        </member>
-        <member name="M:StealFocus.Core.OperatingSystem.GetVersion(System.String,System.Management.ConnectionOptions)">
-            <summary>
-            Gets the version of the OS for the given machine.
-            </summary>
-            <param name="machineName">The machine name.</param>
-            <param name="options">The connection options.</param>
-            <returns>The OS version.</returns>
-        </member>
-        <member name="T:StealFocus.Core.IO.CircularStream">
-            <summary>
-            CircularStream Class.
-            </summary>
-        </member>
-        <member name="F:StealFocus.Core.IO.CircularStream.fileStream">
-            <summary>
-            Holds the file stream.
-            </summary>
-        </member>
-        <member name="F:StealFocus.Core.IO.CircularStream.filePaths">
-            <summary>
-            Holds the file paths.
-            </summary>
-        </member>
-        <member name="F:StealFocus.Core.IO.CircularStream.dataWritten">
-            <summary>
-            Holds the data.
-            </summary>
-        </member>
-        <member name="F:StealFocus.Core.IO.CircularStream.fileQuota">
-            <summary>
-            Holds the file size quota.
-            </summary>
-        </member>
-        <member name="F:StealFocus.Core.IO.CircularStream.currentFile">
-            <summary>
-            Holds the .
-            </summary>
-        </member>
-        <member name="M:StealFocus.Core.IO.CircularStream.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:StealFocus.Core.IO.CircularStream"/> class.
-            </summary>
-            <param name="fileName">The file name.</param>
-        </member>
-        <member name="M:StealFocus.Core.IO.CircularStream.SwitchFiles">
-            <summary>
-            Switch the files being used.
-            </summary>
-        </member>
-        <member name="M:StealFocus.Core.IO.CircularStream.Flush">
-            <summary>
-            Flish to the current file.
-            </summary>
-        </member>
-        <member name="M:StealFocus.Core.IO.CircularStream.Seek(System.Int64,System.IO.SeekOrigin)">
-            <summary>
-            Seek a position in the stream.
-            </summary>
-            <param name="offset">The offset.</param>
-            <param name="origin">The origin.</param>
-            <returns>The position of the stream.</returns>
-        </member>
-        <member name="M:StealFocus.Core.IO.CircularStream.SetLength(System.Int64)">
-            <summary>
-            Set the length of the current stream.
-            </summary>
-            <param name="value">The length to set.</param>
-        </member>
-        <member name="M:StealFocus.Core.IO.CircularStream.Write(System.Byte[],System.Int32,System.Int32)">
-            <summary>
-            Write to the stream.
-            </summary>
-            <param name="buffer">The buffer.</param>
-            <param name="offset">The offset.</param>
-            <param name="count">The count.</param>
-        </member>
-        <member name="M:StealFocus.Core.IO.CircularStream.Read(System.Byte[],System.Int32,System.Int32)">
-            <summary>
-            Read from the current stream.
-            </summary>
-            <param name="buffer">The buffer.</param>
-            <param name="offset">The offset.</param>
-            <param name="count">The count.</param>
-            <returns>The value read.</returns>
-        </member>
-        <member name="M:StealFocus.Core.IO.CircularStream.Close">
-            <summary>
-            Close the currrent stream.
-            </summary>
-        </member>
-        <member name="P:StealFocus.Core.IO.CircularStream.MaxQuotaSize">
-            <summary>
-            Gets or sets MaxQuotaSize.
-            </summary>
-        </member>
-        <member name="P:StealFocus.Core.IO.CircularStream.IsOverQuota">
-            <summary>
-            Gets a value indicating whether IsOverQuota.
-            </summary>
-        </member>
-        <member name="P:StealFocus.Core.IO.CircularStream.CanRead">
-            <summary>
-            Gets a value indicating whether CanRead.
-            </summary>
-        </member>
-        <member name="P:StealFocus.Core.IO.CircularStream.CanSeek">
-            <summary>
-            Gets a value indicating whether CanSeek.
-            </summary>
-        </member>
-        <member name="P:StealFocus.Core.IO.CircularStream.Length">
-            <summary>
-            Gets Length.
-            </summary>
-        </member>
-        <member name="P:StealFocus.Core.IO.CircularStream.Position">
-            <summary>
-            Gets or sets Position.
-            </summary>
-        </member>
-        <member name="P:StealFocus.Core.IO.CircularStream.CanWrite">
-            <summary>
-            Gets a value indicating whether CanWrite.
-            </summary>
+            <param name="xmlDocument">An <see cref="T:System.Xml.XmlDocument"/>. The XML to validate.</param>
+            <param name="schemas">An <see cref="T:System.Xml.Schema.XmlSchemaSet"/>. The schema to validate with.</param>
         </member>
     </members>
 </doc>
