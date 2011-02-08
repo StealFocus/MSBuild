@@ -36,6 +36,14 @@
     <Compile Include="Product.wxs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\StealFocus.MSBuild.Tasks.BizTalk2009\StealFocus.MSBuild.Tasks.BizTalk2009.csproj">
+      <Name>StealFocus.MSBuild.Tasks.BizTalk2009</Name>
+      <Project>{45be1e6e-664f-4be3-93ea-6394700c79cf}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLLOCATION</RefTargetDir>
+    </ProjectReference>
     <ProjectReference Include="..\StealFocus.MSBuild\StealFocus.MSBuild.csproj">
       <Name>StealFocus.MSBuild</Name>
       <Project>{dd84c8ee-9acd-4f85-bbec-a3e9331a9d1d}</Project>

@@ -22,49 +22,165 @@
     <Directory Id="TARGETDIR" Name="SourceDir">
 			<Directory Id="ProgramFilesFolder">
         <Directory Id='MicrosoftVisualStudio9' Name='Microsoft Visual Studio 9.0' >
-          <Directory Id='Xml' Name='Xml'>
-            <Directory Id='XmlSchemas' Name='Schemas'>
-              <Directory Id='XmlSchemas1033_1' Name='1033'>
-                <Component Id='MSBuildSchemaConfiguration' Guid='{1D045E16-EA4E-47DF-8681-C32B1E4BDDA9}' KeyPath='yes'>
+          <Directory Id='MicrosoftVisualStudio9_Xml' Name='Xml'>
+            <Directory Id='MicrosoftVisualStudio9_Xml_XmlSchemas' Name='Schemas'>
+              <Directory Id='MicrosoftVisualStudio9_Xml_XmlSchemas_XmlSchemas1033_1' Name='1033'>
+                <Component Id='VS2008MSBuildSchemaConfiguration' Guid='{1D045E16-EA4E-47DF-8681-C32B1E4BDDA9}' KeyPath='yes'>
                   <!-- Import StealFocus.MSBuild.xsd -->
                   <util:XmlConfig
-                    Id='InsertIncludeElement_StealFocusMSBuild'
+                    Id='VS2008_InsertIncludeElement_StealFocusMSBuild'
                     Action='create'
                     ElementPath='/xs:schema'
-										File='[XmlSchemas1033_1]Microsoft.Build.xsd'
+										File='[MicrosoftVisualStudio9_Xml_XmlSchemas_XmlSchemas1033_1]Microsoft.Build.xsd'
                     Name='xs:include'
                     Node='element'
 										On='install'
                     Sequence='1' />
                   <util:XmlConfig
-                    Id='InsertSchemaLocationAttribute_StealFocusMSBuild'
+                    Id='VS2008_InsertSchemaLocationAttribute_StealFocusMSBuild'
                     Action='create'
 										ElementPath='/xs:schema/xs:include[\[]not(@schemaLocation)[\]]'
-										File='[XmlSchemas1033_1]Microsoft.Build.xsd'
+										File='[MicrosoftVisualStudio9_Xml_XmlSchemas_XmlSchemas1033_1]Microsoft.Build.xsd'
                     Name='schemaLocation'
                     Node='value'
 										On='install'
                     Sequence='2'
                     Value='MSBuild\StealFocus.MSBuild.xsd' />
                   <util:XmlConfig 
-                    Id='RemoveIncludeElement_StealFocusMSBuild'
+                    Id='VS2008_RemoveIncludeElement_StealFocusMSBuild'
 										Action='delete'
 										ElementPath="/xs:schema"
-										File='[XmlSchemas1033_1]Microsoft.Build.xsd'
+										File='[MicrosoftVisualStudio9_Xml_XmlSchemas_XmlSchemas1033_1]Microsoft.Build.xsd'
                     Node='element'
 										On='uninstall'
                     Sequence='1'
                     VerifyPath="xs:include[\[]@schemaLocation = 'MSBuild\\StealFocus.MSBuild.xsd'[\]]" />
+                  <!-- Import StealFocus.MSBuild.Tasks.BizTalk2009.xsd -->
+                  <util:XmlConfig
+                    Id='VS2008_InsertIncludeElement_StealFocusMSBuildTasksBizTalk2009'
+                    Action='create'
+                    ElementPath='/xs:schema'
+										File='[MicrosoftVisualStudio9_Xml_XmlSchemas_XmlSchemas1033_1]Microsoft.Build.xsd'
+                    Name='xs:include'
+                    Node='element'
+										On='install'
+                    Sequence='1' />
+                  <util:XmlConfig
+                    Id='VS2008_InsertSchemaLocationAttribute_StealFocusMSBuildTasksBizTalk2009'
+                    Action='create'
+										ElementPath='/xs:schema/xs:include[\[]not(@schemaLocation)[\]]'
+										File='[MicrosoftVisualStudio9_Xml_XmlSchemas_XmlSchemas1033_1]Microsoft.Build.xsd'
+                    Name='schemaLocation'
+                    Node='value'
+										On='install'
+                    Sequence='2'
+                    Value='MSBuild\StealFocus.MSBuild.Tasks.BizTalk2009.xsd' />
+                  <util:XmlConfig
+                    Id='VS2008_RemoveIncludeElement_StealFocusMSBuildTasksBizTalk2009'
+										Action='delete'
+										ElementPath="/xs:schema"
+										File='[MicrosoftVisualStudio9_Xml_XmlSchemas_XmlSchemas1033_1]Microsoft.Build.xsd'
+                    Node='element'
+										On='uninstall'
+                    Sequence='1'
+                    VerifyPath="xs:include[\[]@schemaLocation = 'MSBuild\\StealFocus.MSBuild.Tasks.BizTalk2009.xsd'[\]]" />
                 </Component>
               </Directory>
-              <Directory Id='XmlSchemas1033_2' Name='1033'>
-                <Directory Id='XmlSchemas1033MSBuild' Name='MSBuild'>
-                  <Component Id='MSBuildSchemas' Guid='{0F06AF8E-4748-4D18-A001-291EF6E15EE6}' KeyPath='yes'>
+              <Directory Id='MicrosoftVisualStudio9_Xml_XmlSchemas_XmlSchemas1033_2' Name='1033'>
+                <Directory Id='MicrosoftVisualStudio9_Xml_XmlSchemas_XmlSchemas1033_2_MSBuild' Name='MSBuild'>
+                  <Component Id='VS2008MSBuildSchemas' Guid='{0F06AF8E-4748-4D18-A001-291EF6E15EE6}' KeyPath='yes'>
                     <!-- Schema files -->
                     <File
-                      Id='StealFocusMSBuildSchema_MSBuildSchemas'
+                      Id='VS2008_StealFocusMSBuild_xsd'
                       Name='StealFocus.MSBuild.xsd'
                       Source='Temp\StealFocus.MSBuild.xsd' />
+                    <File
+                      Id='VS2008_StealFocusMSBuildTasksBizTalk2009_xsd'
+                      Name='StealFocus.MSBuild.Tasks.BizTalk2009.xsd'
+                      Source='Temp\StealFocus.MSBuild.Tasks.BizTalk2009.xsd' />
+                  </Component>
+                </Directory>
+              </Directory>
+            </Directory>
+          </Directory>
+        </Directory>
+        <Directory Id='MicrosoftVisualStudio10' Name='Microsoft Visual Studio 10.0' >
+          <Directory Id='MicrosoftVisualStudio10_Xml' Name='Xml'>
+            <Directory Id='MicrosoftVisualStudio10_Xml_XmlSchemas' Name='Schemas'>
+              <Directory Id='MicrosoftVisualStudio10_Xml_XmlSchemas_XmlSchemas1033_1' Name='1033'>
+                <Component Id='VS2010MSBuildSchemaConfiguration' Guid='{EB48CD53-8E32-434B-AE27-6F75C62BE835}' KeyPath='yes'>
+                  <!-- Import StealFocus.MSBuild.xsd -->
+                  <util:XmlConfig
+                    Id='VS2010_InsertIncludeElement_StealFocusMSBuild'
+                    Action='create'
+                    ElementPath='/xs:schema'
+										File='[MicrosoftVisualStudio10_Xml_XmlSchemas_XmlSchemas1033_1]Microsoft.Build.xsd'
+                    Name='xs:include'
+                    Node='element'
+										On='install'
+                    Sequence='1' />
+                  <util:XmlConfig
+                    Id='VS2010_InsertSchemaLocationAttribute_StealFocusMSBuild'
+                    Action='create'
+										ElementPath='/xs:schema/xs:include[\[]not(@schemaLocation)[\]]'
+										File='[MicrosoftVisualStudio10_Xml_XmlSchemas_XmlSchemas1033_1]Microsoft.Build.xsd'
+                    Name='schemaLocation'
+                    Node='value'
+										On='install'
+                    Sequence='2'
+                    Value='MSBuild\StealFocus.MSBuild.xsd' />
+                  <util:XmlConfig
+                    Id='VS2010_RemoveIncludeElement_StealFocusMSBuild'
+										Action='delete'
+										ElementPath="/xs:schema"
+										File='[MicrosoftVisualStudio10_Xml_XmlSchemas_XmlSchemas1033_1]Microsoft.Build.xsd'
+                    Node='element'
+										On='uninstall'
+                    Sequence='1'
+                    VerifyPath="xs:include[\[]@schemaLocation = 'MSBuild\\StealFocus.MSBuild.xsd'[\]]" />
+                  <!-- Import StealFocus.MSBuild.Tasks.BizTalk2009.xsd -->
+                  <util:XmlConfig
+                    Id='VS2010_InsertIncludeElement_StealFocusMSBuildTasksBizTalk2009'
+                    Action='create'
+                    ElementPath='/xs:schema'
+										File='[MicrosoftVisualStudio10_Xml_XmlSchemas_XmlSchemas1033_1]Microsoft.Build.xsd'
+                    Name='xs:include'
+                    Node='element'
+										On='install'
+                    Sequence='1' />
+                  <util:XmlConfig
+                    Id='VS2010_InsertSchemaLocationAttribute_StealFocusMSBuildTasksBizTalk2009'
+                    Action='create'
+										ElementPath='/xs:schema/xs:include[\[]not(@schemaLocation)[\]]'
+										File='[MicrosoftVisualStudio10_Xml_XmlSchemas_XmlSchemas1033_1]Microsoft.Build.xsd'
+                    Name='schemaLocation'
+                    Node='value'
+										On='install'
+                    Sequence='2'
+                    Value='MSBuild\StealFocus.MSBuild.Tasks.BizTalk2009.xsd' />
+                  <util:XmlConfig
+                    Id='VS2010_RemoveIncludeElement_StealFocusMSBuildTasksBizTalk2009'
+										Action='delete'
+										ElementPath="/xs:schema"
+										File='[MicrosoftVisualStudio10_Xml_XmlSchemas_XmlSchemas1033_1]Microsoft.Build.xsd'
+                    Node='element'
+										On='uninstall'
+                    Sequence='1'
+                    VerifyPath="xs:include[\[]@schemaLocation = 'MSBuild\\StealFocus.MSBuild.Tasks.BizTalk2009.xsd'[\]]" />
+                </Component>
+              </Directory>
+              <Directory Id='MicrosoftVisualStudio10_Xml_XmlSchemas_XmlSchemas1033_2' Name='1033'>
+                <Directory Id='MicrosoftVisualStudio19_Xml_XmlSchemas_XmlSchemas1033_2_MSBuild' Name='MSBuild'>
+                  <Component Id='VS2010MSBuildSchemas' Guid='{9D88199A-555B-44B2-A37E-1F93B10F6295}' KeyPath='yes'>
+                    <!-- Schema files -->
+                    <File
+                      Id='VS2010_StealFocusMSBuild_xsd'
+                      Name='StealFocus.MSBuild.xsd'
+                      Source='Temp\StealFocus.MSBuild.xsd' />
+                    <File
+                      Id='VS2010_StealFocusMSBuildTasksBizTalk2009_xsd'
+                      Name='StealFocus.MSBuild.Tasks.BizTalk2009.xsd'
+                      Source='Temp\StealFocus.MSBuild.Tasks.BizTalk2009.xsd' />
                   </Component>
                 </Directory>
               </Directory>
@@ -81,11 +197,19 @@
                     Id='StealFocusMSBuildTargets'
                     Name='StealFocus.MSBuild.Targets'
 									  Source='Temp\StealFocus.MSBuild.Targets'/>
+                  <File
+                    Id='StealFocusMSBuildTasksBizTalk2009Targets'
+                    Name='StealFocus.MSBuild.Tasks.BizTalk2009.Targets'
+									  Source='Temp\StealFocus.MSBuild.Tasks.BizTalk2009.Targets'/>
                   <!-- Schema files -->
                   <File
-                    Id='StealFocusMSBuildSchema_MSBuildArtefacts'
+                    Id='MSBuildArtefacts_StealFocusMSBuild_xsd'
                     Name='StealFocus.MSBuild.xsd'
                     Source='Temp\StealFocus.MSBuild.xsd' />
+                  <File
+                    Id='MSBuildArtefacts_StealFocusMSBuildTasksBizTalk2009_xsd'
+                    Name='StealFocus.MSBuild.Tasks.BizTalk2009.xsd'
+                    Source='Temp\StealFocus.MSBuild.Tasks.BizTalk2009.xsd' />
                   <File
                     Id='TextFileRegExReplaceDictionarySchema'
                     Name='TextFileRegExReplaceDictionary-v1.0.xsd'
@@ -100,9 +224,17 @@
                     Name='StealFocus.Core.dll'
                     Source='..\..\Library\StealFocus.Core.dll' />
                   <File
+                    Id='StealFocusCoreBizTalk2009Assembly'
+                    Name='StealFocus.Core.BizTalk2009.dll'
+                    Source='..\..\Library\StealFocus.Core.BizTalk2009.dll' />
+                  <File
                     Id='StealFocusMSBuildAssembly'
                     Name='$(var.StealFocus.MSBuild.TargetFileName)'
                     Source='$(var.StealFocus.MSBuild.TargetPath)' />
+                  <File
+                    Id='StealFocusMSBuildTasksBizTalk2009Assembly'
+                    Name='StealFocus.MSBuild.Tasks.BizTalk2009.dll'
+                    Source='$(var.StealFocus.MSBuild.Tasks.BizTalk2009.TargetPath)' />
                 </Component>
               </Directory>
             </Directory>
@@ -116,8 +248,12 @@
 		<Feature Id="ProductFeature" Title="StealFocus MSBuild" Level="1">
       <ComponentRef Id="MSBuildArtefacts" />
       <Feature Id="VisualStudio2008Intellisense" Title="Visual Studio 2008 MSBuild Intellisense" Level="1">
-        <ComponentRef Id="MSBuildSchemaConfiguration" />
-        <ComponentRef Id="MSBuildSchemas" />
+        <ComponentRef Id="VS2008MSBuildSchemaConfiguration" />
+        <ComponentRef Id="VS2008MSBuildSchemas" />
+      </Feature>
+      <Feature Id="VisualStudio2010Intellisense" Title="Visual Studio 2010 MSBuild Intellisense" Level="1">
+        <ComponentRef Id="VS2010MSBuildSchemaConfiguration" />
+        <ComponentRef Id="VS2010MSBuildSchemas" />
       </Feature>
 		</Feature>
 
