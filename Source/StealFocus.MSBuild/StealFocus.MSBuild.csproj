@@ -74,6 +74,7 @@
     <Compile Include="Tasks\FileProperties.cs" />
     <Compile Include="Tasks\FileRegex.cs" />
     <Compile Include="Tasks\FrameworkVersionDependentTask.cs" />
+    <Compile Include="Tasks\GacUninstall.cs" />
     <Compile Include="Tasks\GuidFormat.cs" />
     <Compile Include="Tasks\MSTest.cs" />
     <Compile Include="Tasks\StringCollection.g.cs" />

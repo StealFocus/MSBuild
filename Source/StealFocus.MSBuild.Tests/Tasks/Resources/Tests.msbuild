@@ -11,6 +11,9 @@
     TaskName="StealFocus.MSBuild.Tasks.FileRegex"
 		AssemblyFile="StealFocus.MSBuild.dll" />
   <UsingTask
+    TaskName="StealFocus.MSBuild.Tasks.GacUninstall"
+		AssemblyFile="StealFocus.MSBuild.dll" />
+  <UsingTask
     TaskName="StealFocus.MSBuild.Tasks.TextFileRegexReplace"
 		AssemblyFile="StealFocus.MSBuild.dll" />
   <UsingTask
@@ -193,6 +196,15 @@
         TaskParameter="RevisionNumber"
         PropertyName="RevisionNumber" />
     </VersionNumberParser>
+  </Target>
+
+  <Target Name="GacUninstallSuccess">
+    <GacUninstall 
+      AssemblyName="Acme.PetShop*" 
+      PublicKeyToken="*" 
+      Version="*" 
+      Locale="*" 
+      FrameworkVersion="3.5" />
   </Target>
 
 </Project>

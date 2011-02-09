@@ -9,6 +9,8 @@
 
 namespace StealFocus.MSBuild.Tasks
 {
+    using System.Globalization;
+
     using Microsoft.Build.Framework;
     using Microsoft.Build.Utilities;
 
@@ -22,6 +24,31 @@ namespace StealFocus.MSBuild.Tasks
         /// </summary>
         [Required]
         public string FrameworkVersion { get; set; }
+
+        /// <summary>
+        /// Get the <see cref="TargetDotNetFrameworkVersion" /> from the <see cref="FrameworkVersion"/> property.
+        /// </summary>
+        /// <returns>A <see cref="TargetDotNetFrameworkVersion" />.</returns>
+        protected TargetDotNetFrameworkVersion GetTargetDotNetFrameworkVersion()
+        {
+            if (this.FrameworkVersion == FrameworkVersions.Version20)
+            {
+                return TargetDotNetFrameworkVersion.Version20;
+            }
+
+            if (this.FrameworkVersion == FrameworkVersions.Version30)
+            {
+                return TargetDotNetFrameworkVersion.Version30;
+            }
+
+            if (this.FrameworkVersion == FrameworkVersions.Version35)
+            {
+                return TargetDotNetFrameworkVersion.Version35;
+            }
+
+            string exceptionMessage = string.Format(CultureInfo.CurrentCulture, "The .NET Framework version '{0}' was not supported.", this.FrameworkVersion);
+            throw new MSBuildException(exceptionMessage);
+        }
 
         /// <summary>
         /// Holds a set of valid .NET Framework versions.

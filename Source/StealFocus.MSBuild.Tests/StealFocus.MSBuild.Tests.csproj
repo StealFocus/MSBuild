@@ -73,6 +73,7 @@
     <Compile Include="Tasks\DateFormatterTests.cs" />
     <Compile Include="Tasks\DateStringParserTests.cs" />
     <Compile Include="Tasks\FileRegexTests.cs" />
+    <Compile Include="Tasks\GacUninstall.cs" />
     <Compile Include="Tasks\MSBuildTests.cs" />
     <Compile Include="Tasks\TextFileRegExReplaceTests.cs" />
     <Compile Include="Tasks\VersionNumberParserTests.cs" />
