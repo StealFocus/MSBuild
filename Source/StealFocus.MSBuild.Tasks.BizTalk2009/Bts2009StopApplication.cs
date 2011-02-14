@@ -36,17 +36,26 @@ namespace StealFocus.MSBuild.Tasks.BizTalk2009
         /// <returns>Indicating if the task was successful.</returns>
         public override bool Execute()
         {
-            BizTalkApplication bizTalkApplication = new BizTalkApplication(ManagementDatabaseConnectionString, ApplicationName);
-            if (this.TerminateOrchestrations)
+            BizTalkCatalogExplorer bizTalkCatalogExplorer = new BizTalkCatalogExplorer(ManagementDatabaseConnectionString);
+            if (bizTalkCatalogExplorer.ApplicationExists(ApplicationName))
             {
-                Log.LogMessage("Disabling all Receive Locations for BizTalk application '{0}'.", ApplicationName);
-                bizTalkApplication.DisableAllReceiveLocations();
-                Log.LogMessage("Terminating all Orchestrations for BizTalk application '{0}'.", ApplicationName);
-                bizTalkApplication.TerminateAllOrchestrations();
+                BizTalkApplication bizTalkApplication = new BizTalkApplication(
+                    ManagementDatabaseConnectionString, ApplicationName);
+                if (this.TerminateOrchestrations)
+                {
+                    Log.LogMessage("Disabling all Receive Locations for BizTalk application '{0}'.", ApplicationName);
+                    bizTalkApplication.DisableAllReceiveLocations();
+                    Log.LogMessage("Terminating all Orchestrations for BizTalk application '{0}'.", ApplicationName);
+                    bizTalkApplication.TerminateAllOrchestrations();
+                }
+                Log.LogMessage("Bringing BizTalk application '{0}' to a complete stop.", ApplicationName);
+                bizTalkApplication.StopAll();
+            }
+            else
+            {
+                Log.LogMessage("Skipping stopping of BizTalk application '{0}' as none exist matching that name.", ApplicationName);
             }
 
-            Log.LogMessage("Bringing BizTalk application '{0}' to a complete stop.", ApplicationName);
-            bizTalkApplication.StopAll();
             return true;
         }
 
