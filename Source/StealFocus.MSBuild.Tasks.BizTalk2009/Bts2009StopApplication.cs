@@ -48,6 +48,7 @@ namespace StealFocus.MSBuild.Tasks.BizTalk2009
                     Log.LogMessage("Terminating all Orchestrations for BizTalk application '{0}'.", ApplicationName);
                     bizTalkApplication.TerminateAllOrchestrations();
                 }
+
                 Log.LogMessage("Bringing BizTalk application '{0}' to a complete stop.", ApplicationName);
                 bizTalkApplication.StopAll();
             }
