@@ -2,6 +2,9 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <UsingTask
+    TaskName="StealFocus.MSBuild.Tasks.AssemblyVersionCheck"
+		AssemblyFile="StealFocus.MSBuild.dll" />
+  <UsingTask
     TaskName="StealFocus.MSBuild.Tasks.DateFormatter"
 		AssemblyFile="StealFocus.MSBuild.dll" />
   <UsingTask
@@ -205,6 +208,23 @@
       Version="*" 
       Locale="*" 
       FrameworkVersion="3.5" />
+  </Target>
+
+  <Target Name="AssemblyVersionCheckSuccess">
+    <ItemGroup>
+      <AssemblyToCheck Include=".\StealFocus.MSBuild.dll" />
+    </ItemGroup>
+    <AssemblyVersionCheck
+      AssembliesToCheck="@(AssemblyToCheck)" />
+  </Target>
+
+  <Target Name="AssemblyVersionCheckFail">
+    <ItemGroup>
+      <AssemblyToCheck Include=".\StealFocus.MSBuild.dll" />
+    </ItemGroup>
+    <AssemblyVersionCheck
+      MinimumMajorVersionNumber="1"
+      AssembliesToCheck="@(AssemblyToCheck)" />
   </Target>
 
 </Project>

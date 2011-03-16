@@ -65,6 +65,7 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="MSBuildException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tasks\AssemblyVersionCheck.cs" />
     <Compile Include="Tasks\CreateGuid.cs" />
     <Compile Include="Tasks\DateFormatter.cs" />
     <Compile Include="Tasks\DateStringParser.cs" />
