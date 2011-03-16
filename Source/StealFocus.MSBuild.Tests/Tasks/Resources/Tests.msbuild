@@ -223,7 +223,7 @@
       <AssemblyToCheck Include=".\StealFocus.MSBuild.dll" />
     </ItemGroup>
     <AssemblyVersionCheck
-      MinimumMajorVersionNumber="1"
+      MinimumMajorVersionNumber="9"
       AssembliesToCheck="@(AssemblyToCheck)" />
   </Target>
 
